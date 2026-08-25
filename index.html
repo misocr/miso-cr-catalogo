@@ -1634,17 +1634,21 @@ function searchProducts(){
     products.forEach(product=>{
 
         let name =
-            product.dataset.name
+            (product.dataset.name || "")
             .toLowerCase();
 
         let category =
-            product.dataset.category
+            (product.dataset.category || "")
+            .toLowerCase();
+
+        let keywords =
+            (product.dataset.keywords || "")
             .toLowerCase();
 
         if(
-            name.includes(search)
-            ||
-            category.includes(search)
+            name.includes(search) ||
+            category.includes(search) ||
+            keywords.includes(search)
         ){
 
             product.style.display = "";
@@ -1665,7 +1669,6 @@ function searchProducts(){
         visible === 0 ? "block" : "none";
 
 }
-
 
 /* CART */
 
