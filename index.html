@@ -7,7 +7,184 @@
 <title>MISO CR | Cuadros personalizados</title>
 
 <style>
+/* =========================
+   GALERÍA DE CUADROS
+   ========================= */
 
+.gallery-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 8px 4px 14px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.gallery-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-item {
+    flex: 0 0 82%;
+    max-width: 340px;
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item p {
+    margin: 0;
+    padding: 14px 16px 16px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.gallery-hint {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+
+
+/* =========================
+   UBICACIÓN
+   ========================= */
+
+.location-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+.location-image {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    display: block;
+}
+
+.location-text {
+    padding: 20px;
+}
+
+.location-text p {
+    line-height: 1.6;
+    margin: 0 0 14px;
+}
+
+.location-button {
+    display: block;
+    text-align: center;
+    background: var(--miso);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-weight: 700;
+    margin-top: 18px;
+}
+
+
+/* =========================
+   MÉTODOS DE PAGO
+   ========================= */
+
+.payment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.payment-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 18px 14px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.payment-icon {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.payment-card strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.payment-card span {
+    display: block;
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+
+/* =========================
+   SECCIONES NUEVAS
+   ========================= */
+
+.catalog-section {
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.section-title > span {
+    font-size: 30px;
+}
+
+.section-title h2 {
+    margin: 0 0 4px;
+}
+
+.section-title p {
+    margin: 0;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+
+/* =========================
+   AJUSTES PARA CELULAR
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .gallery-item {
+        flex-basis: 82%;
+    }
+
+    .gallery-item img {
+        height: 300px;
+    }
+
+    .location-image {
+        height: 300px;
+    }
+
+    .payment-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 :root{
     --miso:#9c8cbd;
     --miso-dark:#76669b;
@@ -1025,7 +1202,137 @@ con efecto 3D.
 </div>
 
 </section>
+<!-- GALERÍA -->
+<section class="catalog-section">
+    <div class="section-title">
+        <span>📸</span>
+        <div>
+            <h2>Conocé nuestros cuadros</h2>
+            <p>Algunos de nuestros trabajos personalizados ✨</p>
+        </div>
+    </div>
 
+    <div class="gallery-scroll">
+
+        <div class="gallery-item">
+            <img src="IMG_3108.jpeg" alt="Cuadro personalizado de pareja">
+            <p>💝 Diseños para parejas</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="IMG_3249.jpeg" alt="Cuadro personalizado de reconocimiento">
+            <p>🏆 Reconocimientos especiales</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="IMG_3284.jpeg" alt="Cuadro personalizado de cumpleaños">
+            <p>🎂 Diseños para cumpleaños</p>
+        </div>
+
+    </div>
+
+    <p class="gallery-hint">Deslizá para ver más →</p>
+</section>
+
+
+<!-- UBICACIÓN -->
+<section class="catalog-section location-section">
+
+    <div class="section-title">
+        <span>📍</span>
+        <div>
+            <h2>¿Dónde encontrarnos?</h2>
+            <p>También podés visitarnos en nuestra tienda física ✨</p>
+        </div>
+    </div>
+
+    <div class="location-card">
+
+        <img
+            src="f47c853c-9f5d-4d7a-a251-8e3951dc1b30.jpeg"
+            alt="Ubicación de Miso Costa Rica y Esencia Vestuario"
+            class="location-image"
+        >
+
+        <div class="location-text">
+
+            <p>
+                📍 Estamos ubicados en <strong>Barrio México</strong>,
+                500 metros norte del Hospital de Niños,
+                frente a Agencias Vibo de Centroamérica.
+            </p>
+
+            <p>
+                Encontrás la tienda en Waze como:
+            </p>
+
+            <p>
+                🔹 <strong>Miso Costa Rica</strong><br>
+                🔹 <strong>Esencia Vestuario</strong>
+            </p>
+
+            <p>
+                🚪 En la fachada vas a ver el rótulo de
+                <strong>Esencia Vestuario</strong> ✨
+                <br>
+                Nosotras compartimos el espacio.
+            </p>
+
+            <a
+                href="PEGA_AQUI_EL_LINK_DE_WAZE"
+                target="_blank"
+                class="location-button"
+            >
+                🗺️ Abrir ubicación en Waze
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MÉTODOS DE PAGO -->
+<section class="catalog-section payment-section">
+
+    <div class="section-title">
+        <span>💳</span>
+        <div>
+            <h2>Formas de pago</h2>
+            <p>Elegí la opción que más te convenga 🧡</p>
+        </div>
+    </div>
+
+    <div class="payment-grid">
+
+        <div class="payment-card">
+            <div class="payment-icon">💵</div>
+            <strong>Efectivo</strong>
+            <span>Disponible en tienda física</span>
+        </div>
+
+        <div class="payment-card">
+            <div class="payment-icon">💳</div>
+            <strong>Tarjeta</strong>
+            <span>Disponible en tienda física</span>
+        </div>
+
+        <div class="payment-card">
+            <div class="payment-icon">📲</div>
+            <strong>SINPE Móvil</strong>
+            <span>Disponible para compras en línea</span>
+        </div>
+
+        <div class="payment-card">
+            <div class="payment-icon">🏦</div>
+            <strong>Transferencia</strong>
+            <span>Disponible para compras en línea</span>
+        </div>
+
+    </div>
+
+</section>
 
 <!-- CTA -->
 
