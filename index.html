@@ -2014,6 +2014,38 @@ document
 
 
 </script>
+<script>
+const profesorCarrusel = document.querySelector(
+  '.product[data-name="Cuadro reconocimiento"] .card-image'
+);
 
+if (profesorCarrusel) {
+
+  setInterval(() => {
+
+    if (
+      profesorCarrusel.scrollLeft >=
+      profesorCarrusel.scrollWidth -
+      profesorCarrusel.clientWidth - 5
+    ) {
+
+      profesorCarrusel.scrollTo({
+        left: 0,
+        behavior: "smooth"
+      });
+
+    } else {
+
+      profesorCarrusel.scrollTo({
+        left: profesorCarrusel.clientWidth,
+        behavior: "smooth"
+      });
+
+    }
+
+  }, 3000);
+
+}
+</script>
 </body>
 </html>
