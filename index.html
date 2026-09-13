@@ -789,6 +789,65 @@ footer p{
 
 }
 
+
+/* Catálogo compacto MISO CR: mejoras incrementales */
+:root { --orange:#ef9b56; }
+.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.products { padding:0 14px 40px; scroll-margin-top:90px; }
+.card { min-width:0; border-radius:18px; cursor:pointer; }
+.card-image { aspect-ratio:1/1; background:#f4eff8; }
+.card-image img { object-fit:contain; }
+.card-info { padding:12px; }
+.card-category { font-size:10px; letter-spacing:.6px; color:#76618a; margin-bottom:6px; }
+.card h3 { font-size:14px; line-height:1.3; margin-bottom:8px; }
+.card .card-description { display:none; }
+.card .price { font-size:15px; margin-bottom:10px; color:#68527c; }
+.card .button { padding:10px 5px; font-size:12px; background:#f2eaf8; color:#5c4371; }
+.card .button:hover { background:#e6d7f0; }
+.hero { padding:30px 18px 14px; }
+.hero h1 { font-size:clamp(32px,5vw,58px); letter-spacing:-1.5px; margin-bottom:16px; }
+.hero p { font-size:15px; max-width:600px; }
+.search { margin:22px auto 12px; }
+.search input { font-size:16px; }
+.categories { gap:8px; margin-bottom:16px; padding:0 14px; }
+.category { padding:10px 14px; font-size:13px; }
+.category.active { background:#76618a; border-color:#76618a; }
+.catalog-toolbar { max-width:1200px; margin:0 auto 16px; padding:0 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:13px; color:#76618a; }
+.reset-filter { background:white; border:1px solid #ded3e6; padding:9px 12px; border-radius:20px; cursor:pointer; color:#5c4371; }
+.catalog-section { max-width:1160px; margin:35px auto; padding:0 18px; }
+.gallery-scroll { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); overflow:visible; gap:12px; }
+.gallery-item { max-width:none; min-width:0; }
+.gallery-item img { height:auto; aspect-ratio:1; object-fit:contain; background:#f4eff8; }
+.gallery-item p { font-size:13px; padding:12px; }
+.gallery-hint { display:none; }
+.site-nav { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; padding:0 12px 10px; font-size:13px; }
+.site-nav a { color:#68527c; text-decoration:none; }
+.site-nav a:hover { text-decoration:underline; }
+.cta-button { background:#f5b57d; }
+:focus-visible { outline:3px solid #b96c36; outline-offset:3px; }
+.product-dialog { border:0; border-radius:22px; margin:auto; width:min(740px,94vw); max-height:90dvh; padding:0; color:var(--text); }
+.product-dialog::backdrop { background:rgba(35,24,45,.65); }
+.detail-layout { padding:20px; }
+.detail-close { position:sticky; display:block; margin:10px 10px 0 auto; border:0; border-radius:50%; width:40px; height:40px; cursor:pointer; font-size:24px; background:#f2eaf8; }
+.detail-images { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; border-radius:14px; background:#f4eff8; }
+.detail-images img { width:100%; flex:0 0 100%; min-width:0; max-height:45dvh; object-fit:contain; scroll-snap-align:start; }
+.detail-copy h2 { margin:10px 0; font-size:23px; }
+.detail-copy p { color:#666; line-height:1.6; margin-bottom:16px; }
+.detail-copy .card-category { margin-top:18px; }
+.detail-controls { display:flex; gap:10px; justify-content:center; align-items:center; padding:10px 0; }
+.detail-controls button { border:1px solid #ded3e6; border-radius:20px; padding:8px 14px; background:white; cursor:pointer; }
+.detail-controls[hidden] { display:none; }
+.product-dialog .button { background:#76618a; }
+.modal-box { max-height:85dvh; overflow-y:auto; }
+@media(min-width:700px) {
+ .product-grid,.gallery-scroll { grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+ .card-info { padding:16px; } .card h3 { font-size:17px; }
+ .detail-layout { display:grid; grid-template-columns:1.1fr 1fr; gap:24px; }
+ .detail-copy .card-category { margin-top:0; }
+}
+@media(min-width:1050px) { .product-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
+
 </style>
 </head>
 
@@ -810,6 +869,7 @@ MISO<span>CR</span>
 
 </div>
 
+<nav class="site-nav" aria-label="Navegación principal"><a href="#cuadros">Cuadros</a><a href="#precios">Tamaños y precios</a><a href="#ubicacion">Ubicación</a><a href="#pagos">Formas de pago</a></nav>
 </header>
 
 
@@ -834,7 +894,7 @@ que puedas conservar para siempre.
 
 <input
 type="text"
-id="searchInput"
+id="searchInput" aria-label="Buscar por nombre, categoría o palabras clave"
 placeholder="Buscar un cuadro..."
 oninput="searchProducts()"
 >
@@ -893,7 +953,8 @@ Todos
 
 <!-- PRODUCTS -->
 
-<section class="products">
+<div class="catalog-toolbar"><span id="resultCount" role="status" aria-live="polite"></span><button class="reset-filter" onclick="resetFilters()">Ver todos</button></div>
+<section class="products" id="cuadros">
 
 <div class="product-grid" id="productGrid">
 
@@ -909,7 +970,7 @@ data-keywords="aniversario, pareja, novios, amor, romántico, regalo"
 
 <div class="card-image">
 
-<img
+<img loading="lazy" decoding="async"
 src="IMG_3108.jpeg"
 alt="Cuadro personalizado de aniversario"
 >
@@ -953,18 +1014,18 @@ Quiero personalizar el mío
 class="card product"
 data-category="Reconocimientos"
 data-name="Cuadro reconocimiento"
-   data-keywords="reconocimiento, logro, premio, éxito, felicitaciones, trabajo, especial, regalo"
+   data-keywords="profesor, profesora, profe, docente, maestro, maestra, reconocimiento, logro, premio, éxito, felicitaciones, trabajo, especial, regalo"
 >
 
 <div class="card-image" style="overflow-x:auto; scroll-snap-type:x mandatory; display:flex; gap:0;">
     
-    <img
+    <img loading="lazy" decoding="async"
     src="7571B9FD-85DF-4F66-827D-870590C8DE51.png"
     alt="Cuadro personalizado para profesor - ejemplo 1"
     style="min-width:100%; width:100%; flex:0 0 100%; scroll-snap-align:start; object-fit:cover;"
     >
 
-    <img
+    <img loading="lazy" decoding="async"
     src="21034770-A3FA-4FFC-B21B-B47D4D2D8A2B.png"
     alt="Cuadro personalizado para profesor - ejemplo 2"
     style="min-width:100%; width:100%; flex:0 0 100%; scroll-snap-align:start; object-fit:cover;"
@@ -991,7 +1052,7 @@ Desde ₡19.500
 
 <button
 class="button"
-onclick="chooseWhatsApp('Cuadro personalizado de reconocimiento')"
+onclick="chooseWhatsApp('Cuadro de reconocimiento para profesor')"
 >
 Quiero personalizar el mío
 </button>
@@ -1010,7 +1071,7 @@ data-keywords="reconocimiento, logro, certificado, Yamaha, Japón, trabajo, éxi
 
 <div class="card-image">
 
-<img
+<img loading="lazy" decoding="async"
 src="IMG_7464.jpeg"
 alt="Cuadro personalizado de reconocimiento Yamaha"
 >
@@ -1056,7 +1117,7 @@ data-keywords="reconocimiento, grupo, folclor, folclórico, danza, baile, cultur
 
 <div class="card-image">
 
-<img
+<img loading="lazy" decoding="async"
 src="IMG_9300.jpeg"
 alt="Cuadro personalizado para grupo folclórico"
 >
@@ -1102,7 +1163,7 @@ data-keywords="reconocimiento, bombero, bomberos, héroe, rescate, emergencia, s
 
 <div class="card-image">
 
-<img
+<img loading="lazy" decoding="async"
 src="4CC10730-2038-457A-AA13-9D4A55507B95.png"
 alt="Cuadro personalizado para bombero"
 >
@@ -1148,7 +1209,7 @@ data-keywords="médico, médica, doctor, doctora, medicina, salud, hospital, enf
 
 <div class="card-image">
 
-<img
+<img loading="lazy" decoding="async"
 src="IMG_0312.jpeg"
 alt="Cuadro personalizado para profesional de la salud"
 >
@@ -1194,7 +1255,7 @@ data-keywords="reconocimiento, ingeniero, ingeniería, ingeniero civil, profesi�
 
 <div class="card-image">
 
-<img
+<img loading="lazy" decoding="async"
 src="IMG_3380.jpeg"
 alt="Cuadro personalizado para ingeniero"
 >
@@ -1242,7 +1303,7 @@ data-keywords="reconocimiento, DJ, música, música electrónica, disc jockey, m
 
 <div class="card-image">
 
-<img
+<img loading="lazy" decoding="async"
 src="IMG_3445.jpeg"
 alt="Cuadro personalizado para DJ"
 >
@@ -1290,7 +1351,7 @@ data-keywords="reconocimiento, músico, música, cantante, guitarra, guitarrista
 
 <div class="card-image">
 
-<img
+<img loading="lazy" decoding="async"
 src="IMG_3980.jpeg"
 alt="Cuadro personalizado para músico"
 >
@@ -1336,7 +1397,7 @@ data-name="Cuadro cumpleaños"
 
 <div class="card-image">
 
-<img
+<img loading="lazy" decoding="async"
 src="IMG_3284.jpeg"
 alt="Cuadro personalizado de cumpleaños"
 >
@@ -1383,7 +1444,7 @@ data-keywords="graduación, graduado, graduada, diploma, birrete, universidad, c
 
 <div class="card-image">
 
-<img
+<img loading="lazy" decoding="async"
 src="IMG_0709.jpeg"
 alt="Cuadro personalizado de graduación"
 >
@@ -1437,7 +1498,7 @@ Pronto encontrarás más diseños aquí.
 
 <!-- INFORMATION -->
 
-<section class="info-section">
+<section class="info-section" id="precios">
 
 <div class="info-inner">
 
@@ -1491,6 +1552,7 @@ Pequeño
 <span>
 20 × 14,7 cm
 </span>
+<div class="price-size">₡15.500</div>
 
 <div class="sold-label">
 Actualmente agotado
@@ -1508,6 +1570,7 @@ Mediano
 <span>
 23 × 18 cm
 </span>
+<div class="price-size">₡17.500</div>
 
 <div class="sold-label">
 Actualmente agotado
@@ -1585,7 +1648,7 @@ con efecto 3D.
         <span>📸</span>
         <div>
             <h2>Mirá los detalles de tu cuadro</h2>
-            <p>Deslizá para conocer cada detalle de nuestros cuadros personalizados.</p>
+            <p>Conocé cada detalle de nuestros cuadros personalizados.</p>
         </div>
     </div>
 
@@ -1593,27 +1656,27 @@ con efecto 3D.
 
        
         <div class="gallery-item">
-            <img src="IMG_8900.jpeg" alt="Detalle de cuadro personalizado MISO CR">
+            <img loading="lazy" decoding="async" src="IMG_8900.jpeg" alt="Detalle de cuadro personalizado MISO CR">
             <p>💡 Iluminación LED</p>
         </div>
 
         <div class="gallery-item">
-            <img src="IMG_8191.jpeg" alt="Detalle de cuadro personalizado MISO CR">
+            <img loading="lazy" decoding="async" src="IMG_8191.jpeg" alt="Detalle de cuadro personalizado MISO CR">
             <p>🎨 Diseño personalizado</p>
         </div>
 
         <div class="gallery-item">
-            <img src="IMG_8188.jpeg" alt="Detalle de cuadro personalizado MISO CR">
+            <img loading="lazy" decoding="async" src="IMG_8188.jpeg" alt="Detalle de cuadro personalizado MISO CR">
             <p>✨ Calidad y detalles</p>
         </div>
 
         <div class="gallery-item">
-            <img src="IMG_9736.jpeg" alt="Detalle de cuadro personalizado MISO CR">
+            <img loading="lazy" decoding="async" src="IMG_9736.jpeg" alt="Detalle de cuadro personalizado MISO CR">
             <p>🎁 Presentación especial</p>
         </div>
 
         <div class="gallery-item">
-            <img src="IMG_9836.jpeg" alt="Detalle de cuadro personalizado MISO CR">
+            <img loading="lazy" decoding="async" src="IMG_9836.jpeg" alt="Detalle de cuadro personalizado MISO CR">
             <p>💝 Un regalo hecho para recordar</p>
         </div>
 
@@ -1634,17 +1697,17 @@ con efecto 3D.
     <div class="gallery-scroll">
 
         <div class="gallery-item">
-            <img src="IMG_3108.jpeg" alt="Cuadro personalizado de pareja">
+            <img loading="lazy" decoding="async" src="IMG_3108.jpeg" alt="Cuadro personalizado de pareja">
             <p>💝 Diseños para parejas</p>
         </div>
 
         <div class="gallery-item">
-            <img src="IMG_3249.jpeg" alt="Cuadro personalizado de reconocimiento">
+            <img loading="lazy" decoding="async" src="IMG_3249.jpeg" alt="Cuadro personalizado de reconocimiento">
             <p>🏆 Reconocimientos especiales</p>
         </div>
 
         <div class="gallery-item">
-            <img src="IMG_3284.jpeg" alt="Cuadro personalizado de cumpleaños">
+            <img loading="lazy" decoding="async" src="IMG_3284.jpeg" alt="Cuadro personalizado de cumpleaños">
             <p>🎂 Diseños para cumpleaños</p>
         </div>
 
@@ -1655,7 +1718,7 @@ con efecto 3D.
 
 
 <!-- UBICACIÓN -->
-<section class="catalog-section location-section">
+<section class="catalog-section location-section" id="ubicacion">
 
     <div class="section-title">
         <span>📍</span>
@@ -1667,7 +1730,7 @@ con efecto 3D.
 
     <div class="location-card">
 
-        <img
+        <img loading="lazy" decoding="async"
             src="f47c853c-9f5d-4d7a-a251-8e3951dc1b30.jpeg"
             alt="Ubicación de Miso Costa Rica y Esencia Vestuario"
             class="location-image"
@@ -1698,9 +1761,9 @@ con efecto 3D.
             </p>
 
             <a
-                href="PEGA_AQUI_EL_LINK_DE_WAZE"
+                href="https://waze.com/ul/hd1u0w93wn"
                 target="_blank"
-                class="location-button"
+                class="location-button" rel="noopener noreferrer"
             >
                 🗺️ Abrir ubicación en Waze
             </a>
@@ -1713,7 +1776,7 @@ con efecto 3D.
 
 
 <!-- MÉTODOS DE PAGO -->
-<section class="catalog-section payment-section">
+<section class="catalog-section payment-section" id="pagos">
 
     <div class="section-title">
         <span>💳</span>
@@ -1944,107 +2007,37 @@ function goWhatsApp(person){
 }
 
 
-/* CATEGORIES */
-
-function filterCategory(category,button){
-
-    document
-    .querySelectorAll(".category")
-    .forEach(btn=>{
-        btn.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
-    let products =
-        document.querySelectorAll(".product");
-
-    let visible = 0;
-
-    products.forEach(product=>{
-
-        let productCategory =
-            product.dataset.category;
-
-        if(
-            category === "Todos"
-            ||
-            productCategory === category
-        ){
-
-            product.style.display = "";
-
-            visible++;
-
-        }else{
-
-            product.style.display = "none";
-
-        }
-
-    });
-
-    document
-    .getElementById("emptyMessage")
-    .style.display =
-        visible === 0 ? "block" : "none";
-
+/* Combined category and keyword search. Existing data-keywords remain authoritative. */
+let activeCategory = 'Todos';
+function normalizeSearch(value) {
+ return value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
 }
-
-
-/* SEARCH */
-
-function searchProducts(){
-
-    let search =
-        document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
-
-    let products =
-        document.querySelectorAll(".product");
-
-    let visible = 0;
-
-    products.forEach(product=>{
-
-        let name =
-            (product.dataset.name || "")
-            .toLowerCase();
-
-        let category =
-            (product.dataset.category || "")
-            .toLowerCase();
-
-        let keywords =
-            (product.dataset.keywords || "")
-            .toLowerCase();
-
-        if(
-            name.includes(search) ||
-            category.includes(search) ||
-            keywords.includes(search)
-        ){
-
-            product.style.display = "";
-
-            visible++;
-
-        }else{
-
-            product.style.display = "none";
-
-        }
-
-    });
-
-    document
-    .getElementById("emptyMessage")
-    .style.display =
-        visible === 0 ? "block" : "none";
-
+function applyFilters() {
+ const query = normalizeSearch(document.getElementById('searchInput').value);
+ const aliases = {profe:'profesor',docente:'profesor',maestro:'profesor'};
+ const terms = query.split(/\s+/).filter(Boolean).map(term=>aliases[term] || term);
+ let visible = 0;
+ document.querySelectorAll('.product').forEach(product => {
+  const haystack = normalizeSearch([product.dataset.name,product.dataset.category,product.dataset.keywords,
+   product.querySelector('h3').textContent,product.querySelector('.card-description').textContent].join(' '));
+  const matches = (activeCategory === 'Todos' || product.dataset.category === activeCategory) && terms.every(term=>haystack.includes(term));
+  product.style.display = matches ? '' : 'none';
+  if(matches) visible++;
+ });
+ document.getElementById('resultCount').textContent = `${visible} ${visible === 1 ? 'diseño' : 'diseños'} · ${activeCategory}`;
+ const empty = document.getElementById('emptyMessage');
+ empty.style.display = visible ? 'none' : 'block';
+ empty.textContent = query ? 'No encontramos diseños con esa búsqueda. Probá otra palabra o tocá «Ver todos».' : 'Estamos preparando más diseños para esta categoría. Tocá «Ver todos» para explorar el catálogo.';
+}
+function filterCategory(category,button) {
+ activeCategory = category;
+ document.querySelectorAll('.category').forEach(btn=>{btn.classList.toggle('active',btn===button);btn.setAttribute('aria-pressed',String(btn===button));});
+ applyFilters();
+}
+function searchProducts() { applyFilters(); }
+function resetFilters() {
+ document.getElementById('searchInput').value = '';
+ filterCategory('Todos',document.querySelector('.category'));
 }
 
 /* CART */
@@ -2156,38 +2149,56 @@ document
 
 
 </script>
+<dialog class="product-dialog" id="productDetail" aria-labelledby="detailTitle">
+<button class="detail-close" aria-label="Cerrar detalle" onclick="closeProductDetail()">×</button>
+<div class="detail-layout"><div><div class="detail-images" id="detailImages"></div>
+<div class="detail-controls" id="detailControls" hidden><button onclick="moveDetailPhoto(-1)" aria-label="Foto anterior">←</button><span id="detailPhotoCount" aria-live="polite"></span><button onclick="moveDetailPhoto(1)" aria-label="Foto siguiente">→</button></div></div>
+<div class="detail-copy"><div class="card-category" id="detailCategory"></div><h2 id="detailTitle"></h2><p id="detailDescription"></p><div class="price" id="detailPrice"></div><button class="button" id="detailWhatsApp">Quiero personalizar el mío</button></div></div>
+</dialog>
 <script>
-const profesorCarrusel = document.querySelector(
-  '.product[data-name="Cuadro reconocimiento"] .card-image'
-);
-
-if (profesorCarrusel) {
-
-  setInterval(() => {
-
-    if (
-      profesorCarrusel.scrollLeft >=
-      profesorCarrusel.scrollWidth -
-      profesorCarrusel.clientWidth - 5
-    ) {
-
-      profesorCarrusel.scrollTo({
-        left: 0,
-        behavior: "smooth"
-      });
-
-    } else {
-
-      profesorCarrusel.scrollTo({
-        left: profesorCarrusel.clientWidth,
-        behavior: "smooth"
-      });
-
-    }
-
-  }, 3000);
-
+const detailDialog = document.getElementById('productDetail');
+let detailOrigin = null;
+let detailPhotoIndex = 0;
+function closeProductDetail() { detailDialog.close(); }
+function openProductDetail(product) {
+ detailOrigin = document.activeElement;
+ const name = product.querySelector('h3').textContent.trim();
+ document.getElementById('detailTitle').textContent = name;
+ document.getElementById('detailCategory').textContent = product.querySelector('.card-category').textContent.trim();
+ document.getElementById('detailDescription').textContent = product.querySelector('.card-description').textContent.trim();
+ document.getElementById('detailPrice').textContent = product.querySelector('.price').textContent.trim();
+ const gallery = document.getElementById('detailImages');
+ gallery.replaceChildren();
+ product.querySelectorAll('.card-image img').forEach(source=>{const img=document.createElement('img');img.src=source.getAttribute('src');img.alt=source.alt;gallery.append(img);});
+ detailPhotoIndex=0;
+ document.getElementById('detailControls').hidden=gallery.children.length<2;
+ document.getElementById('detailPhotoCount').textContent='1 / '+gallery.children.length;
+ document.getElementById('detailWhatsApp').onclick=()=>{closeProductDetail();chooseWhatsApp(name);};
+ detailDialog.showModal();
+ document.body.style.overflow='hidden';
 }
+function moveDetailPhoto(step) {
+ const gallery=document.getElementById('detailImages');
+ detailPhotoIndex=(detailPhotoIndex+step+gallery.children.length)%gallery.children.length;
+ gallery.scrollTo({left:detailPhotoIndex*gallery.clientWidth,behavior:'smooth'});
+}
+document.getElementById('detailImages').addEventListener('scroll',function(){
+ if(!this.clientWidth)return;
+ detailPhotoIndex=Math.round(this.scrollLeft/this.clientWidth);
+ document.getElementById('detailPhotoCount').textContent=(detailPhotoIndex+1)+' / '+this.children.length;
+});
+detailDialog.addEventListener('close',()=>{document.body.style.overflow='';if(detailOrigin)detailOrigin.focus();});
+detailDialog.addEventListener('click',event=>{if(event.target===detailDialog){const r=detailDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeProductDetail();}});
+document.querySelectorAll('.product').forEach(product=>{
+ product.tabIndex=0;
+ product.setAttribute('aria-label','Ver detalle: '+product.querySelector('h3').textContent.trim());
+ product.querySelector('.button').textContent='Personalizar';
+ product.addEventListener('click',event=>{if(!event.target.closest('button,a'))openProductDetail(product);});
+ product.addEventListener('keydown',event=>{if(event.target===product&&(event.key==='Enter'||event.key===' ')){event.preventDefault();openProductDetail(product);}});
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeWhatsApp();closeCart();}});
+resetFilters();
 </script>
 </body>
 </html>
+
