@@ -1007,27 +1007,104 @@ function filtered(){
   const q=norm($("#q").value);
   return ITEMS.filter(x=>x.active&&(active==="Todos"||x.category===active)&&(!q||norm(`${x.id} ${x.title} ${x.category} ${x.keywords} ${x.path}`).includes(q)));
 }
+  let showAll = false;
+  const FEATURED_CATEGORIES = [
+  "Familia",
+  "Anime & Fandom",
+  "Graduación + Escolar",
+  "Cumpleaños"
+];
+
+function featuredItems(){
+  return FEATURED_CATEGORIES.map(cat =>
+    ITEMS.find(x => x.category === cat)
+  ).filter(Boolean);
+}
 function render(){
-  const list=filtered();
-  $("#count").textContent=`${list.length} diseño${list.length===1?"":"s"}`;
-  $("#empty").style.display=list.length?"none":"block";
-  $("#grid").innerHTML=list.map(x=>`
+
+  const q=norm($("#q").value);
+
+  const showingFeatured =
+    !showAll &&
+    active==="Todos" &&
+    !q;
+
+  const list =
+    showingFeatured
+      ? featuredItems()
+      : filtered();
+
+  $("#count").textContent = showingFeatured
+    ? "Diseños destacados"
+    : `${list.length} diseño${list.length===1?"":"s"}`;
+
+  $("#empty").style.display =
+    list.length ? "none" : "block";
+
+  $("#grid").innerHTML = list.map(x=>`
     <article class="card">
       <div class="photo" onclick="openDetail('${x.id}')">
-        <img loading="lazy" src="${x.image}" alt="${escapeHtml(x.title)}" onerror="this.closest('.card').style.display='none'">
+        <img
+          loading="lazy"
+          src="${x.image}"
+          alt="${escapeHtml(x.title)}"
+          onerror="this.closest('.card').style.display='none'"
+        >
         <span class="ref">${escapeHtml(x.id)}</span>
       </div>
+
       <div class="body">
         <div class="cat">${escapeHtml(x.category)}</div>
         <div class="title">${escapeHtml(x.title)}</div>
         <div class="price">${escapeHtml(x.price)}</div>
+
         <div class="actions">
-          <button class="view" onclick="openDetail('${x.id}')">Ver grande</button>
-          <button class="wa" onclick="sendWA('${x.id}')">WhatsApp</button>
+          <button
+            class="view"
+            onclick="openDetail('${x.id}')"
+          >
+            Ver grande
+          </button>
+
+          <button
+            class="wa"
+            onclick="sendWA('${x.id}')"
+          >
+            WhatsApp
+          </button>
         </div>
       </div>
-    </article>`).join("");
-}
+    </article>
+  `).join("");
+
+  if(showingFeatured){
+
+    $("#grid").insertAdjacentHTML("beforeend",`
+      <div style="
+        grid-column:1/-1;
+        text-align:center;
+        padding:10px 0 30px;
+      ">
+        <button
+          onclick="showAll=true;render();window.scrollTo({top:0,behavior:'smooth'})"
+          style="
+            border:0;
+            border-radius:999px;
+            padding:13px 22px;
+            background:#78618f;
+            color:white;
+            font-weight:850;
+            font-size:14px;
+            cursor:pointer;
+          "
+        >
+          ✨ Ver todos los diseños
+        </button>
+      </div>
+    `);
+
+  }
+ }
 function openDetail(id){
   selected=ITEMS.find(x=>x.id===id);if(!selected)return;
   $("#detailImg").src=selected.image;
