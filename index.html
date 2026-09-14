@@ -1,2204 +1,417 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MISO CR | Cuadros personalizados</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7b6695">
+<title>MISO CR · Catálogo de diseños</title>
 <style>
-/* =========================
-   GALERÍA DE CUADROS
-   ========================= */
-
-.gallery-scroll {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    padding: 8px 4px 14px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-}
-
-.gallery-scroll::-webkit-scrollbar {
-    display: none;
-}
-
-.gallery-item {
-    flex: 0 0 82%;
-    max-width: 340px;
-    background: #ffffff;
-    border-radius: 18px;
-    overflow: hidden;
-    scroll-snap-align: start;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    display: block;
-}
-
-.gallery-item p {
-    margin: 0;
-    padding: 14px 16px 16px;
-    font-weight: 600;
-    color: var(--text);
-}
-
-.gallery-hint {
-    text-align: center;
-    color: var(--gray);
-    font-size: 0.9rem;
-    margin-top: 8px;
-}
-
-
-/* =========================
-   UBICACIÓN
-   ========================= */
-
-.location-card {
-    background: #ffffff;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-}
-
-.location-image {
-    width: 100%;
-    height: 330px;
-    object-fit: cover;
-    display: block;
-}
-
-.location-text {
-    padding: 20px;
-}
-
-.location-text p {
-    line-height: 1.6;
-    margin: 0 0 14px;
-}
-
-.location-button {
-    display: block;
-    text-align: center;
-    background: var(--miso);
-    color: #ffffff;
-    text-decoration: none;
-    padding: 14px 18px;
-    border-radius: 14px;
-    font-weight: 700;
-    margin-top: 18px;
-}
-
-
-/* =========================
-   MÉTODOS DE PAGO
-   ========================= */
-
-.payment-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
-.payment-card {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 18px 14px;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-}
-
-.payment-icon {
-    font-size: 30px;
-    margin-bottom: 8px;
-}
-
-.payment-card strong {
-    display: block;
-    margin-bottom: 6px;
-}
-
-.payment-card span {
-    display: block;
-    color: var(--gray);
-    font-size: 0.85rem;
-    line-height: 1.4;
-}
-
-
-/* =========================
-   SECCIONES NUEVAS
-   ========================= */
-
-.catalog-section {
-    margin-top: 35px;
-    margin-bottom: 35px;
-}
-
-.section-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
-}
-
-.section-title > span {
-    font-size: 30px;
-}
-
-.section-title h2 {
-    margin: 0 0 4px;
-}
-
-.section-title p {
-    margin: 0;
-    color: var(--gray);
-    font-size: 0.9rem;
-}
-
-
-/* =========================
-   AJUSTES PARA CELULAR
-   ========================= */
-
-@media (max-width: 600px) {
-
-    .gallery-item {
-        flex-basis: 82%;
-    }
-
-    .gallery-item img {
-        height: 300px;
-    }
-
-    .location-image {
-        height: 300px;
-    }
-
-    .payment-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 :root{
-    --miso:#9c8cbd;
-    --miso-dark:#76669b;
-    --cream:#f8f7f5;
-    --pink:#f4dce5;
-    --yellow:#f8cb49;
-    --text:#29272b;
-    --gray:#777;
-    --white:#ffffff;
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    background:var(--cream);
-    color:var(--text);
-}
-
-/* HEADER */
-
-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:white;
-    border-bottom:1px solid #eee;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
-}
-
-.header-inner{
-    max-width:1200px;
-    margin:auto;
-    padding:16px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    font-size:30px;
-    font-weight:900;
-    color:#222;
-    letter-spacing:-2px;
-}
-
-.logo span{
-    color:var(--miso);
-}
-
-.cart-button{
-    border:none;
-    background:#222;
-    color:white;
-    padding:13px 18px;
-    border-radius:30px;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-/* HERO */
-
-.hero{
-    max-width:1000px;
-    margin:auto;
-    padding:70px 20px 35px;
-    text-align:center;
-}
-
-.hero h1{
-    font-size:clamp(38px,7vw,72px);
-    line-height:.98;
-    letter-spacing:-3px;
-    margin-bottom:25px;
-}
-
-.hero h1 span{
-    color:var(--miso);
-}
-
-.hero p{
-    max-width:720px;
-    margin:auto;
-    color:#666;
-    font-size:19px;
-    line-height:1.6;
-}
-
-/* SEARCH */
-
-.search{
-    max-width:760px;
-    margin:30px auto 20px;
-    position:relative;
-}
-
-.search input{
-    width:100%;
-    padding:18px 22px 18px 52px;
-    border-radius:40px;
-    border:1px solid #ddd;
-    background:white;
-    font-size:17px;
-    outline:none;
-}
-
-.search input:focus{
-    border-color:var(--miso);
-    box-shadow:0 0 0 4px rgba(156,140,189,.12);
-}
-
-.search-icon{
-    position:absolute;
-    left:20px;
-    top:15px;
-    font-size:22px;
-}
-
-/* CATEGORIES */
-
-.categories{
-    max-width:1200px;
-    margin:10px auto 35px;
-    padding:0 20px;
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
-    scrollbar-width:none;
-}
-
-.categories::-webkit-scrollbar{
-    display:none;
-}
-
-.category{
-    white-space:nowrap;
-    border:1px solid #ddd;
-    background:white;
-    color:#333;
-    padding:12px 18px;
-    border-radius:30px;
-    font-size:15px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.category:hover{
-    transform:translateY(-2px);
-}
-
-.category.active{
-    background:#222;
-    color:white;
-    border-color:#222;
-}
-
-/* PRODUCTS */
-
-.products{
-    max-width:1200px;
-    margin:auto;
-    padding:0 20px 70px;
-}
-
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-}
-
-.card{
-    background:white;
-    border-radius:22px;
-    overflow:hidden;
-    box-shadow:0 5px 25px rgba(0,0,0,.07);
-    border:1px solid #eee;
-    transition:.25s;
-}
-
-.card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
-}
-
-.card-image{
-    width:100%;
-    aspect-ratio:1/1;
-    background:#eee;
-    overflow:hidden;
-}
-
-.card-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-}
-
-.card-info{
-    padding:20px;
-}
-
-.card-category{
-    font-size:12px;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    color:#999;
-    margin-bottom:8px;
-}
-
-.card h3{
-    font-size:21px;
-    margin-bottom:8px;
-}
-
-.card-description{
-    color:#777;
-    font-size:14px;
-    line-height:1.5;
-    margin-bottom:14px;
-}
-
-.price{
-    font-size:19px;
-    font-weight:800;
-    margin-bottom:15px;
-}
-
-.button{
-    width:100%;
-    border:none;
-    background:#222;
-    color:white;
-    padding:13px;
-    border-radius:12px;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.button:hover{
-    background:var(--miso-dark);
-}
-
-/* EMPTY CATEGORY */
-
-.empty{
-    text-align:center;
-    background:white;
-    border-radius:20px;
-    padding:50px 20px;
-    color:#777;
-    display:none;
-}
-
-.empty strong{
-    display:block;
-    color:#333;
-    font-size:20px;
-    margin-bottom:8px;
-}
-
-/* INFORMATION */
-
-.info-section{
-    background:white;
-    padding:60px 20px;
-}
-
-.info-inner{
-    max-width:1000px;
-    margin:auto;
-}
-
-.info-inner h2{
-    text-align:center;
-    font-size:35px;
-    margin-bottom:35px;
-}
-
-.includes{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.include{
-    background:var(--cream);
-    border-radius:16px;
-    padding:17px;
-    font-size:15px;
-}
-
-.sizes{
-    margin-top:35px;
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.size{
-    border:1px solid #eee;
-    border-radius:18px;
-    padding:20px;
-}
-
-.size strong{
-    display:block;
-    font-size:20px;
-    margin-bottom:6px;
-}
-
-.size span{
-    color:#777;
-}
-
-.available{
-    border:2px solid var(--miso);
-}
-
-.available .price-size{
-    font-size:21px;
-    font-weight:800;
-    color:var(--miso-dark);
-    margin-top:10px;
-}
-
-.sold{
-    opacity:.6;
-}
-
-.sold-label{
-    display:inline-block;
-    margin-top:10px;
-    padding:6px 10px;
-    border-radius:20px;
-    background:#eee;
-    font-size:12px;
-    font-weight:700;
-}
-
-/* EXTRAS */
-
-.extras{
-    margin-top:35px;
-    background:#faf7fc;
-    border-radius:20px;
-    padding:25px;
-}
-
-.extras h3{
-    margin-bottom:15px;
-}
-
-.extras p{
-    margin:8px 0;
-    color:#555;
-}
-
-/* CTA */
-
-.cta{
-    max-width:1000px;
-    margin:60px auto;
-    padding:45px 25px;
-    background:#222;
-    color:white;
-    border-radius:28px;
-    text-align:center;
-}
-
-.cta h2{
-    font-size:34px;
-    margin-bottom:12px;
-}
-
-.cta p{
-    color:#ddd;
-    margin-bottom:25px;
-}
-
-.cta-button{
-    border:none;
-    background:var(--yellow);
-    color:#222;
-    padding:16px 25px;
-    border-radius:30px;
-    font-weight:800;
-    font-size:16px;
-    cursor:pointer;
-}
-
-/* MODAL WHATSAPP */
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:2000;
-    background:rgba(0,0,0,.55);
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:100%;
-    max-width:430px;
-    background:white;
-    border-radius:25px;
-    padding:30px;
-    position:relative;
-    text-align:center;
-}
-
-.close{
-    position:absolute;
-    top:15px;
-    right:18px;
-    border:none;
-    background:#eee;
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.modal-box h2{
-    margin-bottom:10px;
-}
-
-.modal-box p{
-    color:#777;
-    margin-bottom:25px;
-    line-height:1.5;
-}
-
-.whatsapp-option{
-    width:100%;
-    border:none;
-    padding:17px;
-    border-radius:15px;
-    margin-top:10px;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:700;
-    background:#222;
-    color:white;
-}
-
-.whatsapp-option small{
-    display:block;
-    font-weight:400;
-    margin-top:4px;
-    opacity:.8;
-}
-
-/* CART */
-
-.cart-panel{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:2100;
-    background:rgba(0,0,0,.5);
-    justify-content:flex-end;
-}
-
-.cart-panel.show{
-    display:flex;
-}
-
-.cart-content{
-    width:min(430px,100%);
-    background:white;
-    height:100%;
-    padding:25px;
-    overflow-y:auto;
-}
-
-.cart-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.cart-close{
-    border:none;
-    background:#eee;
-    border-radius:50%;
-    width:35px;
-    height:35px;
-    cursor:pointer;
-}
-
-.cart-item{
-    padding:15px 0;
-    border-bottom:1px solid #eee;
-}
-
-.cart-item strong{
-    display:block;
-    margin-bottom:5px;
-}
-
-.cart-item button{
-    margin-top:8px;
-    border:none;
-    background:#eee;
-    padding:7px 10px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.cart-total{
-    margin-top:25px;
-    font-size:20px;
-    font-weight:800;
-}
-
-footer{
-    background:#222;
-    color:white;
-    text-align:center;
-    padding:35px 20px;
-}
-
-footer p{
-    color:#bbb;
-    margin-top:8px;
-}
-
-/* MOBILE */
-
-@media(max-width:800px){
-
-    .product-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .includes,
-    .sizes{
-        grid-template-columns:1fr;
-    }
-
-}
-
-@media(max-width:550px){
-
-    .header-inner{
-        padding:13px 15px;
-    }
-
-    .logo{
-        font-size:25px;
-    }
-
-    .cart-button{
-        padding:11px 14px;
-        font-size:14px;
-    }
-
-    .hero{
-        padding-top:50px;
-    }
-
-    .hero h1{
-        letter-spacing:-2px;
-    }
-
-    .hero p{
-        font-size:16px;
-    }
-
-    .product-grid{
-        grid-template-columns:1fr;
-    }
-
-    .card-image{
-        aspect-ratio:1.15/1;
-    }
-
-    .cta{
-        margin:35px 20px;
-        padding:35px 20px;
-    }
-
-}
-
-
-/* Catálogo compacto MISO CR: mejoras incrementales */
-:root { --orange:#ef9b56; }
-.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
-.products { padding:0 14px 40px; scroll-margin-top:90px; }
-.card { min-width:0; border-radius:18px; cursor:pointer; }
-.card-image { aspect-ratio:1/1; background:#f4eff8; }
-.card-image img { object-fit:contain; }
-.card-info { padding:12px; }
-.card-category { font-size:10px; letter-spacing:.6px; color:#76618a; margin-bottom:6px; }
-.card h3 { font-size:14px; line-height:1.3; margin-bottom:8px; }
-.card .card-description { display:none; }
-.card .price { font-size:15px; margin-bottom:10px; color:#68527c; }
-.card .button { padding:10px 5px; font-size:12px; background:#f2eaf8; color:#5c4371; }
-.card .button:hover { background:#e6d7f0; }
-.hero { padding:30px 18px 14px; }
-.hero h1 { font-size:clamp(32px,5vw,58px); letter-spacing:-1.5px; margin-bottom:16px; }
-.hero p { font-size:15px; max-width:600px; }
-.search { margin:22px auto 12px; }
-.search input { font-size:16px; }
-.categories { gap:8px; margin-bottom:16px; padding:0 14px; }
-.category { padding:10px 14px; font-size:13px; }
-.category.active { background:#76618a; border-color:#76618a; }
-.catalog-toolbar { max-width:1200px; margin:0 auto 16px; padding:0 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:13px; color:#76618a; }
-.reset-filter { background:white; border:1px solid #ded3e6; padding:9px 12px; border-radius:20px; cursor:pointer; color:#5c4371; }
-.catalog-section { max-width:1160px; margin:35px auto; padding:0 18px; }
-.gallery-scroll { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); overflow:visible; gap:12px; }
-.gallery-item { max-width:none; min-width:0; }
-.gallery-item img { height:auto; aspect-ratio:1; object-fit:contain; background:#f4eff8; }
-.gallery-item p { font-size:13px; padding:12px; }
-.gallery-hint { display:none; }
-.site-nav { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; padding:0 12px 10px; font-size:13px; }
-.site-nav a { color:#68527c; text-decoration:none; }
-.site-nav a:hover { text-decoration:underline; }
-.cta-button { background:#f5b57d; }
-:focus-visible { outline:3px solid #b96c36; outline-offset:3px; }
-.product-dialog { border:0; border-radius:22px; margin:auto; width:min(740px,94vw); max-height:90dvh; padding:0; color:var(--text); }
-.product-dialog::backdrop { background:rgba(35,24,45,.65); }
-.detail-layout { padding:20px; }
-.detail-close { position:sticky; display:block; margin:10px 10px 0 auto; border:0; border-radius:50%; width:40px; height:40px; cursor:pointer; font-size:24px; background:#f2eaf8; }
-.detail-images { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; border-radius:14px; background:#f4eff8; }
-.detail-images img { width:100%; flex:0 0 100%; min-width:0; max-height:45dvh; object-fit:contain; scroll-snap-align:start; }
-.detail-copy h2 { margin:10px 0; font-size:23px; }
-.detail-copy p { color:#666; line-height:1.6; margin-bottom:16px; }
-.detail-copy .card-category { margin-top:18px; }
-.detail-controls { display:flex; gap:10px; justify-content:center; align-items:center; padding:10px 0; }
-.detail-controls button { border:1px solid #ded3e6; border-radius:20px; padding:8px 14px; background:white; cursor:pointer; }
-.detail-controls[hidden] { display:none; }
-.product-dialog .button { background:#76618a; }
-.modal-box { max-height:85dvh; overflow-y:auto; }
-@media(min-width:700px) {
- .product-grid,.gallery-scroll { grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
- .card-info { padding:16px; } .card h3 { font-size:17px; }
- .detail-layout { display:grid; grid-template-columns:1.1fr 1fr; gap:24px; }
- .detail-copy .card-category { margin-top:0; }
-}
-@media(min-width:1050px) { .product-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
-@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
-
+  --miso:#78618f;--miso2:#a58bbd;--orange:#f3a35c;--lav:#f2edf6;--bg:#faf8fb;
+  --ink:#242126;--muted:#77727b;--line:#e8e0ec;--white:#fff;--wa:#25d366;
+  --danger:#b94055;--shadow:0 10px 30px rgba(55,38,69,.10)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.head{max-width:1240px;margin:auto;padding:12px 14px;display:flex;align-items:center;gap:10px}
+.logo{font-weight:950;font-size:25px;letter-spacing:-1px}.logo span{color:var(--miso)}
+.head-actions{margin-left:auto;display:flex;gap:8px}
+.iconbtn{border:0;border-radius:999px;padding:10px 13px;background:var(--lav);color:#594768;font-weight:800}
+.adminbtn{background:#27242a;color:white}
+.hero{max-width:1240px;margin:auto;padding:28px 14px 14px}
+.badge{display:inline-flex;background:#efe8f4;color:#624d73;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:850}
+.hero h1{font-size:clamp(31px,7vw,60px);line-height:1.02;letter-spacing:-2px;margin:13px 0 10px}
+.hero h1 em{font-style:normal;color:var(--miso)}
+.hero p{max-width:740px;color:var(--muted);line-height:1.55;margin:0}
+.search-area{max-width:1240px;margin:auto;padding:8px 14px 4px;position:sticky;top:60px;z-index:30;background:linear-gradient(var(--bg) 78%,rgba(250,248,251,0))}
+.search{position:relative}
+.search input{width:100%;padding:15px 45px;border:1px solid var(--line);border-radius:18px;background:#fff;outline:none;box-shadow:0 5px 16px rgba(63,44,76,.06)}
+.search input:focus{border-color:#baa6c8;box-shadow:0 0 0 4px rgba(120,97,143,.12)}
+.search span{position:absolute;left:16px;top:13px;font-size:19px}
+.clear{position:absolute;right:9px;top:8px;width:36px;height:36px;border:0;border-radius:50%;background:#f3eef5;color:#5c5062}
+.chips{display:flex;gap:8px;overflow:auto;padding:10px 0 7px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{border:1px solid var(--line);background:#fff;padding:9px 13px;border-radius:999px;white-space:nowrap;font-size:13px;font-weight:750;color:#5e5562}
+.chip.active{background:var(--miso);border-color:var(--miso);color:#fff}
+.toolbar{max-width:1240px;margin:auto;padding:4px 14px 10px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+.status{max-width:1240px;margin:0 auto 12px;padding:0 14px}
+.statusbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;color:var(--muted);font-size:13px}
+.grid{max-width:1240px;margin:auto;padding:0 12px 70px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 3px 14px rgba(55,38,69,.05);min-width:0}
+.photo{aspect-ratio:1/1;background:#efe9f2;overflow:hidden;position:relative}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.ref{position:absolute;left:8px;bottom:8px;background:rgba(30,25,34,.78);color:#fff;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:850;backdrop-filter:blur(6px)}
+.body{padding:10px}
+.cat{font-size:9px;letter-spacing:.7px;text-transform:uppercase;font-weight:900;color:#806b8c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.title{font-size:13px;font-weight:850;line-height:1.3;margin:5px 0 4px;min-height:34px}
+.price{font-size:12px;font-weight:900;color:#4e4255;margin-bottom:9px}
+.actions{display:flex;gap:6px}
+.actions button{flex:1;border:0;border-radius:10px;padding:9px 5px;font-size:11px;font-weight:850}
+.view{background:#efe8f4;color:#5c4670}.wa{background:#eaf9ef;color:#11753a}
+.empty{display:none;text-align:center;padding:60px 20px;color:var(--muted)}
+.empty h2{color:var(--ink)}
+dialog{border:0;padding:0;border-radius:24px;width:min(760px,95vw);max-height:92dvh;box-shadow:0 25px 80px rgba(20,10,25,.4)}
+dialog::backdrop{background:rgba(28,21,31,.7);backdrop-filter:blur(3px)}
+.modal{background:#fff}.modal-top{display:flex;justify-content:flex-end;padding:8px}
+.x{border:0;width:40px;height:40px;border-radius:50%;background:#efe9f2;font-size:22px}
+.modal-img{background:#eee8f1}.modal-img img{width:100%;max-height:58dvh;object-fit:contain;display:block}
+.modal-copy{padding:18px}.modal-copy h2{margin:6px 0 8px;font-size:23px}
+.modal-copy p{color:var(--muted);line-height:1.5}
+.fullwa{width:100%;border:0;border-radius:14px;background:var(--wa);color:#fff;font-weight:900;padding:14px}
+.prices{max-width:1240px;margin:0 auto 60px;padding:0 14px}
+.prices h2{font-size:26px;margin:0 0 14px}
+.pricegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pricebox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
+.pricebox strong{display:block;font-size:15px}.pricebox span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+.admin-panel{position:fixed;inset:0;z-index:60;background:rgba(25,19,29,.55);display:none;justify-content:flex-end}
+.admin-panel.show{display:flex}
+.admin-sheet{width:min(560px,100%);height:100%;background:#fff;padding:18px;overflow:auto}
+.admin-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.admin-head h2{margin:0}
+.notice{background:#fff7dc;border:1px solid #f0d98c;color:#654f0d;padding:10px 12px;border-radius:12px;font-size:12px;line-height:1.4;margin-top:12px}
+.field{margin-top:14px}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px;color:#635b67}
+.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.field textarea{min-height:80px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.save,.secondary,.danger{margin-top:12px;width:100%;border:0;border-radius:12px;padding:13px;font-weight:900}
+.save{background:var(--miso);color:#fff}.secondary{background:#efe8f4;color:#5c4670}.danger{background:#fff0f2;color:var(--danger)}
+.admin-search{margin-top:18px}
+.admin-list{margin-top:12px}
+.admin-item{display:grid;grid-template-columns:60px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.admin-item img{width:60px;height:60px;border-radius:10px;object-fit:cover}
+.admin-item strong{display:block;font-size:12px}.admin-item small{display:block;color:var(--muted);margin-top:3px}
+.mini{border:0;border-radius:9px;padding:8px 9px;font-size:11px;font-weight:850;background:#efe8f4;color:#5c4670}
+.hiddenitem{opacity:.48}
+footer{padding:35px 20px;text-align:center;color:#8c858f;font-size:12px}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.body{padding:12px}.title{font-size:14px}.pricegrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:980px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}}
 </style>
 </head>
-
 <body>
-
-<!-- HEADER -->
-
 <header>
-
-<div class="header-inner">
-
-<div class="logo">
-MISO<span>CR</span>
-</div>
-
-<button class="cart-button" onclick="openCart()">
-🛒 Carrito <span id="cartCount">0</span>
-</button>
-
-</div>
-
-<nav class="site-nav" aria-label="Navegación principal"><a href="#cuadros">Cuadros</a><a href="#precios">Tamaños y precios</a><a href="#ubicacion">Ubicación</a><a href="#pagos">Formas de pago</a></nav>
+  <div class="head">
+    <div class="logo">MISO<span>CR</span></div>
+    <div class="head-actions">
+      <button class="iconbtn" onclick="openGeneralWA()">WhatsApp</button>
+      <button class="iconbtn adminbtn" onclick="openAdmin()">Administrar</button>
+    </div>
+  </div>
 </header>
 
-
-<!-- HERO -->
-
 <section class="hero">
-
-<h1>
-Recuerdos que<br>
-se convierten en <span>luz</span> ✨
-</h1>
-
-<p>
-Cuadros personalizados con luz LED para convertir
-tus momentos, personas y logros favoritos en algo
-que puedas conservar para siempre.
-</p>
-
-<div class="search">
-
-<span class="search-icon">🔎</span>
-
-<input
-type="text"
-id="searchInput" aria-label="Buscar por nombre, categoría o palabras clave"
-placeholder="Buscar un cuadro..."
-oninput="searchProducts()"
->
-
-</div>
-
+  <span class="badge">✨ CATÁLOGO DE DISEÑOS</span>
+  <h1>Encuentra una referencia <em>en segundos.</em></h1>
+  <p>Busca por temática, ocasión, nombre o referencia. Toca cualquier diseño para verlo grande y enviarnos la referencia exacta por WhatsApp.</p>
 </section>
 
-
-<!-- CATEGORIES -->
-
-<div class="categories">
-
-<button class="category active" onclick="filterCategory('Todos',this)">
-Todos
-</button>
-
-<button class="category" onclick="filterCategory('Parejas',this)">
-❤️ Parejas
-</button>
-
-<button class="category" onclick="filterCategory('Familia',this)">
-👨‍👩‍👧 Familia
-</button>
-
-<button class="category" onclick="filterCategory('Mascotas',this)">
-🐶 Mascotas
-</button>
-
-<button class="category" onclick="filterCategory('Cumpleaños',this)">
-🎂 Cumpleaños
-</button>
-
-<button class="category" onclick="filterCategory('Aniversarios',this)">
-💍 Aniversarios
-</button>
-
-<button class="category" onclick="filterCategory('Reconocimientos',this)">
-✨ Reconocimientos
-</button>
-
-<button class="category" onclick="filterCategory('Otros',this)">
-✨ Otros
-</button>
-
-<button class="category" onclick="filterCategory('Anime',this)">
-🎌 Anime
-</button>
-
-<button class="category" onclick="filterCategory('Graduación + Escolar',this)">
-🎓 Graduación + Escolar
-</button>
-
-</div>
-
-
-<!-- PRODUCTS -->
-
-<div class="catalog-toolbar"><span id="resultCount" role="status" aria-live="polite"></span><button class="reset-filter" onclick="resetFilters()">Ver todos</button></div>
-<section class="products" id="cuadros">
-
-<div class="product-grid" id="productGrid">
-
-
-<!-- ANIVERSARIO -->
-
-<article
-class="card product"
-data-category="Aniversarios"
-data-name="Cuadro aniversario pareja" 
-data-keywords="aniversario, pareja, novios, amor, romántico, regalo"
-   >
-
-<div class="card-image">
-
-<img loading="lazy" decoding="async"
-src="IMG_3108.jpeg"
-alt="Cuadro personalizado de aniversario"
->
-
-</div>
-
-<div class="card-info">
-
-<div class="card-category">
-💍 Aniversarios
-</div>
-
-<h3>
-Cuadro personalizado de aniversario
-</h3>
-
-<p class="card-description">
-Un recuerdo lleno de fotos, momentos y detalles
-para celebrar una historia juntos.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro personalizado de aniversario')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-
-
-<!-- RECONOCIMIENTO -->
-
-<article
-class="card product"
-data-category="Reconocimientos"
-data-name="Cuadro reconocimiento"
-   data-keywords="profesor, profesora, profe, docente, maestro, maestra, reconocimiento, logro, premio, éxito, felicitaciones, trabajo, especial, regalo"
->
-
-<div class="card-image" style="overflow-x:auto; scroll-snap-type:x mandatory; display:flex; gap:0;">
-    
-    <img loading="lazy" decoding="async"
-    src="7571B9FD-85DF-4F66-827D-870590C8DE51.png"
-    alt="Cuadro personalizado para profesor - ejemplo 1"
-    style="min-width:100%; width:100%; flex:0 0 100%; scroll-snap-align:start; object-fit:cover;"
-    >
-
-    <img loading="lazy" decoding="async"
-    src="21034770-A3FA-4FFC-B21B-B47D4D2D8A2B.png"
-    alt="Cuadro personalizado para profesor - ejemplo 2"
-    style="min-width:100%; width:100%; flex:0 0 100%; scroll-snap-align:start; object-fit:cover;"
-    >
-
-</div>
-<div class="card-info">
-
-<div class="card-category">
-✨ Reconocimientos
-</div>
-
-<h3>
-Cuadro de reconocimiento para profesor
-</h3>
-
-<p class="card-description">
-Un regalo personalizado para reconocer el trabajo, dedicación y esfuerzo de un profesor especial.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro de reconocimiento para profesor')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-<!-- RECONOCIMIENTO YAMAHA -->
-
-<article
-class="card product"
-data-category="Reconocimientos"
-data-name="Cuadro personalizado Yamaha"
-data-keywords="reconocimiento, logro, certificado, Yamaha, Japón, trabajo, éxito, empleado, empresa, trayectoria"
->
-
-<div class="card-image">
-
-<img loading="lazy" decoding="async"
-src="IMG_7464.jpeg"
-alt="Cuadro personalizado de reconocimiento Yamaha"
->
-
-</div>
-
-<div class="card-info">
-
-<div class="card-category">
-🏆 Reconocimientos
-</div>
-
-<h3>
-Cuadro personalizado Yamaha
-</h3>
-
-<p class="card-description">
-Un recuerdo especial para celebrar logros, esfuerzo y grandes metas alcanzadas.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro personalizado Yamaha')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-   <!-- RECONOCIMIENTO GRUPO FOLCLÓRICO -->
-
-<article
-class="card product"
-data-category="Reconocimientos"
-data-name="Cuadro personalizado grupo folclórico"
-data-keywords="reconocimiento, grupo, folclor, folclórico, danza, baile, cultura, Costa Rica, participación, equipo"
->
-
-<div class="card-image">
-
-<img loading="lazy" decoding="async"
-src="IMG_9300.jpeg"
-alt="Cuadro personalizado para grupo folclórico"
->
-
-</div>
-
-<div class="card-info">
-
-<div class="card-category">
-🏆 Reconocimientos
-</div>
-
-<h3>
-Cuadro personalizado grupo folclórico
-</h3>
-
-<p class="card-description">
-Un recuerdo especial para celebrar la unión, dedicación y participación de un grupo.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro personalizado grupo folclórico')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-<!-- RECONOCIMIENTO BOMBEROS -->
-
-<article
-class="card product"
-data-category="Reconocimientos"
-data-name="Cuadro personalizado para bombero"
-data-keywords="reconocimiento, bombero, bomberos, héroe, rescate, emergencia, servicio, aniversario, años de servicio, trayectoria, profesión"
->
-
-<div class="card-image">
-
-<img loading="lazy" decoding="async"
-src="4CC10730-2038-457A-AA13-9D4A55507B95.png"
-alt="Cuadro personalizado para bombero"
->
-
-</div>
-
-<div class="card-info">
-
-<div class="card-category">
-🏆 Reconocimientos
-</div>
-
-<h3>
-Cuadro personalizado para bombero
-</h3>
-
-<p class="card-description">
-Un recuerdo especial para reconocer años de servicio, dedicación y entrega.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro personalizado para bombero')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-   <!-- PROFESIONAL DE LA SALUD -->
-
-<article
-class="card product"
-data-category="Reconocimientos"
-data-name="Cuadro personalizado para profesional de la salud"
-data-keywords="médico, médica, doctor, doctora, medicina, salud, hospital, enfermería, Grey's Anatomy, profesión, graduación, reconocimiento, regalo"
->
-
-<div class="card-image">
-
-<img loading="lazy" decoding="async"
-src="IMG_0312.jpeg"
-alt="Cuadro personalizado para profesional de la salud"
->
-
-</div>
-
-<div class="card-info">
-
-<div class="card-category">
-🏆 Reconocimientos
-</div>
-
-<h3>
-Cuadro personalizado para profesional de la salud
-</h3>
-
-<p class="card-description">
-Un regalo especial para celebrar una profesión, un logro o a esa persona que dedica su vida a cuidar de los demás.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro personalizado para profesional de la salud')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-   <!-- RECONOCIMIENTO INGENIERO -->
-
-<article
-class="card product"
-data-category="Reconocimientos"
-data-name="Cuadro personalizado para ingeniero"
-data-keywords="reconocimiento, ingeniero, ingeniería, ingeniero civil, profesión, logro, graduación, éxito, trabajo, carrera, regalo"
->
-
-<div class="card-image">
-
-<img loading="lazy" decoding="async"
-src="IMG_3380.jpeg"
-alt="Cuadro personalizado para ingeniero"
->
-
-</div>
-
-<div class="card-info">
-
-<div class="card-category">
-🏆 Reconocimientos
-</div>
-
-<h3>
-Cuadro personalizado para ingeniero
-</h3>
-
-<p class="card-description">
-Un regalo especial para reconocer la profesión, esfuerzo y logros de un ingeniero.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro personalizado para ingeniero')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-
-
-<!-- RECONOCIMIENTO DJ -->
-
-<article
-class="card product"
-data-category="Reconocimientos"
-data-name="Cuadro personalizado para DJ"
-data-keywords="reconocimiento, DJ, música, música electrónica, disc jockey, mezclador, artista, profesión, logro, éxito, regalo"
->
-
-<div class="card-image">
-
-<img loading="lazy" decoding="async"
-src="IMG_3445.jpeg"
-alt="Cuadro personalizado para DJ"
->
-
-</div>
-
-<div class="card-info">
-
-<div class="card-category">
-🏆 Reconocimientos
-</div>
-
-<h3>
-Cuadro personalizado para DJ
-</h3>
-
-<p class="card-description">
-Un diseño personalizado para celebrar la pasión por la música, el estilo y la trayectoria de un DJ.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro personalizado para DJ')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-
-
-<!-- RECONOCIMIENTO MÚSICO -->
-
-<article
-class="card product"
-data-category="Reconocimientos"
-data-name="Cuadro personalizado para músico"
-data-keywords="reconocimiento, músico, música, cantante, guitarra, guitarrista, artista, instrumento, profesión, talento, logro, regalo"
->
-
-<div class="card-image">
-
-<img loading="lazy" decoding="async"
-src="IMG_3980.jpeg"
-alt="Cuadro personalizado para músico"
->
-
-</div>
-
-<div class="card-info">
-
-<div class="card-category">
-🏆 Reconocimientos
-</div>
-
-<h3>
-Cuadro personalizado para músico
-</h3>
-
-<p class="card-description">
-Un regalo único para celebrar la pasión por la música, el talento y la trayectoria de un músico.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro personalizado para músico')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-<!-- CUMPLEAÑOS -->
-
-<article
-class="card product"
-data-category="Cumpleaños"
-data-name="Cuadro cumpleaños"
-   data-keywords="cumpleaños, cumple, fiesta, celebración, regalo, edad, feliz cumpleaños"
->
-
-<div class="card-image">
-
-<img loading="lazy" decoding="async"
-src="IMG_3284.jpeg"
-alt="Cuadro personalizado de cumpleaños"
->
-
-</div>
-
-<div class="card-info">
-
-<div class="card-category">
-🎂 Cumpleaños
-</div>
-
-<h3>
-Cuadro personalizado de cumpleaños
-</h3>
-
-<p class="card-description">
-Un regalo hecho especialmente para celebrar
-a esa persona que quieres tanto.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro personalizado de cumpleaños')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-<!-- GRADUACIÓN -->
-
-<article
-class="card product"
-data-category="Graduación + Escolar"
-data-name="Cuadro personalizado de graduación"
-data-keywords="graduación, graduado, graduada, diploma, birrete, universidad, colegio, bachillerato, logro, éxito, regalo, estudiante"
->
-
-<div class="card-image">
-
-<img loading="lazy" decoding="async"
-src="IMG_0709.jpeg"
-alt="Cuadro personalizado de graduación"
->
-
-</div>
-
-<div class="card-info">
-
-<div class="card-category">
-🎓 Graduación + Escolar
-</div>
-
-<h3>
-Cuadro personalizado de graduación
-</h3>
-
-<p class="card-description">
-Un recuerdo especial para celebrar uno de los logros más importantes de tu vida.
-</p>
-
-<div class="price">
-Desde ₡19.500
-</div>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Cuadro personalizado de graduación')"
->
-Quiero personalizar el mío
-</button>
-
-</div>
-
-</article>
-
-</div>
-
-
-<div class="empty" id="emptyMessage">
-
-<strong>
-Aún estamos preparando esta categoría ✨
-</strong>
-
-Pronto encontrarás más diseños aquí.
-
-</div>
-
+<section class="search-area">
+  <div class="search">
+    <span>⌕</span>
+    <input id="q" type="search" placeholder="Ej: anime, pareja, profesor, cumpleaños…" autocomplete="off">
+    <button class="clear" id="clear">×</button>
+  </div>
+  <div class="chips" id="chips"></div>
 </section>
 
-
-<!-- INFORMATION -->
-
-<section class="info-section" id="precios">
-
-<div class="info-inner">
-
-<h2>
-✨ Todo lo que incluye tu cuadro
-</h2>
-
-<div class="includes">
-
-<div class="include">
-✔️ Cuadro con luz LED
-</div>
-
-<div class="include">
-✔️ Diseño totalmente personalizado
-</div>
-
-<div class="include">
-✔️ Tarjeta personalizada
-</div>
-
-<div class="include">
-✔️ Caja decorada
-</div>
-
-<div class="include">
-✔️ Dulces
-</div>
-
-<div class="include">
-✔️ Envío gratis por Correos de Costa Rica
-</div>
-
-</div>
-
-
-<h2 style="margin-top:55px;">
-📏 Tamaños disponibles
-</h2>
-
-
-<div class="sizes">
-
-
-<div class="size sold">
-
-<strong>
-Pequeño
-</strong>
-
-<span>
-20 × 14,7 cm
-</span>
-<div class="price-size">₡15.500</div>
-
-<div class="sold-label">
-Actualmente agotado
-</div>
-
-</div>
-
-
-<div class="size sold">
-
-<strong>
-Mediano
-</strong>
-
-<span>
-23 × 18 cm
-</span>
-<div class="price-size">₡17.500</div>
-
-<div class="sold-label">
-Actualmente agotado
-</div>
-
-</div>
-
-
-<div class="size available">
-
-<strong>
-Grande
-</strong>
-
-<span>
-25 × 19,7 cm
-</span>
-
-<div class="price-size">
-₡19.500
-</div>
-
-</div>
-
-
-<div class="size available">
-
-<strong>
-Extra Grande
-</strong>
-
-<span>
-31 × 26 cm
-</span>
-
-<div class="price-size">
-₡27.500
-</div>
-
-</div>
-
-
-</div>
-
-
-<div class="extras">
-
-<h3>
-✨ Extras opcionales
-</h3>
-
-<p>
-🔸 Nombre o detalles grandes en 3D:
-<strong>₡3.000</strong>
-</p>
-
-<p>
-🔸 Elementos pequeños en 3D:
-<strong>₡500 c/u</strong>
-</p>
-
-<p>
-🔥 Todos los tamaños disponibles pueden realizarse
-con efecto 3D.
-</p>
-
-</div>
-
-</div>
-
-</section>
-   <!-- FOTOS DE DETALLE -->
-<section class="catalog-section">
-    <div class="section-title">
-        <span>📸</span>
-        <div>
-            <h2>Mirá los detalles de tu cuadro</h2>
-            <p>Conocé cada detalle de nuestros cuadros personalizados.</p>
-        </div>
-    </div>
-
-    <div class="gallery-scroll">
-
-       
-        <div class="gallery-item">
-            <img loading="lazy" decoding="async" src="IMG_8900.jpeg" alt="Detalle de cuadro personalizado MISO CR">
-            <p>💡 Iluminación LED</p>
-        </div>
-
-        <div class="gallery-item">
-            <img loading="lazy" decoding="async" src="IMG_8191.jpeg" alt="Detalle de cuadro personalizado MISO CR">
-            <p>🎨 Diseño personalizado</p>
-        </div>
-
-        <div class="gallery-item">
-            <img loading="lazy" decoding="async" src="IMG_8188.jpeg" alt="Detalle de cuadro personalizado MISO CR">
-            <p>✨ Calidad y detalles</p>
-        </div>
-
-        <div class="gallery-item">
-            <img loading="lazy" decoding="async" src="IMG_9736.jpeg" alt="Detalle de cuadro personalizado MISO CR">
-            <p>🎁 Presentación especial</p>
-        </div>
-
-        <div class="gallery-item">
-            <img loading="lazy" decoding="async" src="IMG_9836.jpeg" alt="Detalle de cuadro personalizado MISO CR">
-            <p>💝 Un regalo hecho para recordar</p>
-        </div>
-
-    </div>
-
-    <p class="gallery-hint">Deslizá para ver más →</p>
-</section>
-<!-- GALERÍA -->
-<section class="catalog-section">
-    <div class="section-title">
-        <span>📸</span>
-        <div>
-            <h2>Conocé nuestros cuadros</h2>
-            <p>Algunos de nuestros trabajos personalizados ✨</p>
-        </div>
-    </div>
-
-    <div class="gallery-scroll">
-
-        <div class="gallery-item">
-            <img loading="lazy" decoding="async" src="IMG_3108.jpeg" alt="Cuadro personalizado de pareja">
-            <p>💝 Diseños para parejas</p>
-        </div>
-
-        <div class="gallery-item">
-            <img loading="lazy" decoding="async" src="IMG_3249.jpeg" alt="Cuadro personalizado de reconocimiento">
-            <p>🏆 Reconocimientos especiales</p>
-        </div>
-
-        <div class="gallery-item">
-            <img loading="lazy" decoding="async" src="IMG_3284.jpeg" alt="Cuadro personalizado de cumpleaños">
-            <p>🎂 Diseños para cumpleaños</p>
-        </div>
-
-    </div>
-
-    <p class="gallery-hint">Deslizá para ver más →</p>
+<div class="toolbar"><span id="count">Cargando diseños…</span><span>Vista compacta</span></div>
+<div class="status" id="status"><div class="statusbox">Cargando automáticamente las imágenes guardadas en el repositorio de MISO CR…</div></div>
+<main class="grid" id="grid"></main>
+<section class="empty" id="empty"><h2>No encontré diseños</h2><p>Prueba otra palabra o toca “Todos”.</p></section>
+
+<section class="prices">
+  <h2>Tamaños y precios</h2>
+  <div class="pricegrid">
+    <div class="pricebox"><strong>Pequeño · ₡15.500</strong><span>19.8 × 15 cm</span></div>
+    <div class="pricebox"><strong>Mediano · ₡17.500</strong><span>23 × 18 cm</span></div>
+    <div class="pricebox"><strong>Grande · ₡19.500</strong><span>25 × 19.7 cm</span></div>
+    <div class="pricebox"><strong>Extra Grande · ₡27.500</strong><span>31 × 26 cm</span></div>
+  </div>
 </section>
 
-
-<!-- UBICACIÓN -->
-<section class="catalog-section location-section" id="ubicacion">
-
-    <div class="section-title">
-        <span>📍</span>
-        <div>
-            <h2>¿Dónde encontrarnos?</h2>
-            <p>También podés visitarnos en nuestra tienda física ✨</p>
-        </div>
+<dialog id="detail">
+  <div class="modal">
+    <div class="modal-top"><button class="x" onclick="detail.close()">×</button></div>
+    <div class="modal-img"><img id="detailImg" alt=""></div>
+    <div class="modal-copy">
+      <div class="cat" id="detailCat"></div>
+      <h2 id="detailTitle"></h2>
+      <p id="detailRef"></p>
+      <p id="detailDesc">Este diseño puede personalizarse con tus fotos, nombre y detalles. Consulta disponibilidad, tamaño y opción 3D por WhatsApp.</p>
+      <button class="fullwa" id="detailWa">Consultar este diseño por WhatsApp</button>
     </div>
-
-    <div class="location-card">
-
-        <img loading="lazy" decoding="async"
-            src="f47c853c-9f5d-4d7a-a251-8e3951dc1b30.jpeg"
-            alt="Ubicación de Miso Costa Rica y Esencia Vestuario"
-            class="location-image"
-        >
-
-        <div class="location-text">
-
-            <p>
-                📍 Estamos ubicados en <strong>Barrio México</strong>,
-                500 metros norte del Hospital de Niños,
-                frente a Agencias Vibo de Centroamérica.
-            </p>
-
-            <p>
-                Encontrás la tienda en Waze como:
-            </p>
-
-            <p>
-                🔹 <strong>Miso Costa Rica</strong><br>
-                🔹 <strong>Esencia Vestuario</strong>
-            </p>
-
-            <p>
-                🚪 En la fachada vas a ver el rótulo de
-                <strong>Esencia Vestuario</strong> ✨
-                <br>
-                Nosotras compartimos el espacio.
-            </p>
-
-            <a
-                href="https://waze.com/ul/hd1u0w93wn"
-                target="_blank"
-                class="location-button" rel="noopener noreferrer"
-            >
-                🗺️ Abrir ubicación en Waze
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- MÉTODOS DE PAGO -->
-<section class="catalog-section payment-section" id="pagos">
-
-    <div class="section-title">
-        <span>💳</span>
-        <div>
-            <h2>Formas de pago</h2>
-            <p>Elegí la opción que más te convenga 🧡</p>
-        </div>
-    </div>
-
-    <div class="payment-grid">
-
-        <div class="payment-card">
-            <div class="payment-icon">💵</div>
-            <strong>Efectivo</strong>
-            <span>Disponible en tienda física</span>
-        </div>
-
-        <div class="payment-card">
-            <div class="payment-icon">💳</div>
-            <strong>Tarjeta</strong>
-            <span>Disponible en tienda física</span>
-        </div>
-
-        <div class="payment-card">
-            <div class="payment-icon">📲</div>
-            <strong>SINPE Móvil</strong>
-            <span>Disponible para compras en línea</span>
-        </div>
-
-        <div class="payment-card">
-            <div class="payment-icon">🏦</div>
-            <strong>Transferencia</strong>
-            <span>Disponible para compras en línea</span>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- CTA -->
-
-<section class="cta">
-
-<h2>
-¿Ya imaginaste el tuyo? ✨
-</h2>
-
-<p>
-Cuéntanos tu idea y nosotros nos encargamos de convertirla
-en un recuerdo lleno de luz.
-</p>
-
-<button
-class="cta-button"
-onclick="chooseWhatsApp('Cuadro personalizado')"
->
-💜 Quiero personalizar el mío
-</button>
-
-</section>
-
-
-<!-- WHATSAPP MODAL -->
-
-<div class="modal" id="whatsappModal">
-
-<div class="modal-box">
-
-<button class="close" onclick="closeWhatsApp()">
-×
-</button>
-
-<h2>
-💬 ¿Con quién quieres cotizar?
-</h2>
-
-<p>
-Elige a quién quieres escribirle por WhatsApp.
-</p>
-
-
-<button
-class="whatsapp-option"
-onclick="goWhatsApp('Maria')"
->
-💜 María
-
-<small>
-7285-0202
-</small>
-
-</button>
-
-
-<button
-class="whatsapp-option"
-onclick="goWhatsApp('Ximena')"
->
-💜 Ximena
-
-<small>
-7003-5049
-</small>
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- CART -->
-
-<div class="cart-panel" id="cartPanel">
-
-<div class="cart-content">
-
-<div class="cart-header">
-
-<h2>
-🛒 Tu carrito
-</h2>
-
-<button
-class="cart-close"
-onclick="closeCart()"
->
-×
-</button>
-
-</div>
-
-<div id="cartItems"></div>
-
-<div class="cart-total">
-Total: ₡<span id="cartTotal">0</span>
-</div>
-
-<br>
-
-<button
-class="button"
-onclick="chooseWhatsApp('Mi pedido del catálogo')"
->
-💬 Consultar mi pedido
-</button>
-
-</div>
-
-</div>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-<strong>
-MISO CR
-</strong>
-
-<p>
-Recuerdos que se convierten en luz ✨
-</p>
-
-<p>
-Costa Rica 🇨🇷
-</p>
-
-</footer>
-
-
-<script>
-
-let selectedProduct = "Cuadro personalizado";
-
-let cart = [];
-
-
-/* WHATSAPP */
-
-function chooseWhatsApp(product){
-
-    selectedProduct = product;
-
-    document
-    .getElementById("whatsappModal")
-    .classList
-    .add("show");
-
-}
-
-
-function closeWhatsApp(){
-
-    document
-    .getElementById("whatsappModal")
-    .classList
-    .remove("show");
-
-}
-
-
-function goWhatsApp(person){
-
-    let phone = "";
-
-    if(person === "Maria"){
-        phone = "50672850202";
-    }
-
-    if(person === "Ximena"){
-        phone = "50670035049";
-    }
-
-    let message =
-        "Hola MISO CR 💜 Quiero información sobre: "
-        + selectedProduct
-        + ". Vi el catálogo y me gustaría personalizar el mío ✨";
-
-    let url =
-        "https://wa.me/"
-        + phone
-        + "?text="
-        + encodeURIComponent(message);
-
-    window.open(url,"_blank");
-
-}
-
-
-/* Combined category and keyword search. Existing data-keywords remain authoritative. */
-let activeCategory = 'Todos';
-function normalizeSearch(value) {
- return value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
-}
-function applyFilters() {
- const query = normalizeSearch(document.getElementById('searchInput').value);
- const aliases = {profe:'profesor',docente:'profesor',maestro:'profesor'};
- const terms = query.split(/\s+/).filter(Boolean).map(term=>aliases[term] || term);
- let visible = 0;
- document.querySelectorAll('.product').forEach(product => {
-  const haystack = normalizeSearch([product.dataset.name,product.dataset.category,product.dataset.keywords,
-   product.querySelector('h3').textContent,product.querySelector('.card-description').textContent].join(' '));
-  const matches = (activeCategory === 'Todos' || product.dataset.category === activeCategory) && terms.every(term=>haystack.includes(term));
-  product.style.display = matches ? '' : 'none';
-  if(matches) visible++;
- });
- document.getElementById('resultCount').textContent = `${visible} ${visible === 1 ? 'diseño' : 'diseños'} · ${activeCategory}`;
- const empty = document.getElementById('emptyMessage');
- empty.style.display = visible ? 'none' : 'block';
- empty.textContent = query ? 'No encontramos diseños con esa búsqueda. Probá otra palabra o tocá «Ver todos».' : 'Estamos preparando más diseños para esta categoría. Tocá «Ver todos» para explorar el catálogo.';
-}
-function filterCategory(category,button) {
- activeCategory = category;
- document.querySelectorAll('.category').forEach(btn=>{btn.classList.toggle('active',btn===button);btn.setAttribute('aria-pressed',String(btn===button));});
- applyFilters();
-}
-function searchProducts() { applyFilters(); }
-function resetFilters() {
- document.getElementById('searchInput').value = '';
- filterCategory('Todos',document.querySelector('.category'));
-}
-
-/* CART */
-
-function addToCart(name,price){
-
-    cart.push({
-        name:name,
-        price:price
-    });
-
-    updateCart();
-
-}
-
-
-function updateCart(){
-
-    document
-    .getElementById("cartCount")
-    .textContent = cart.length;
-
-    let container =
-        document.getElementById("cartItems");
-
-    container.innerHTML = "";
-
-    let total = 0;
-
-    if(cart.length === 0){
-
-        container.innerHTML =
-            "<p style='color:#777'>Tu carrito está vacío.</p>";
-
-    }
-
-    cart.forEach((item,index)=>{
-
-        total += item.price;
-
-        let div =
-            document.createElement("div");
-
-        div.className = "cart-item";
-
-        div.innerHTML = `
-            <strong>${item.name}</strong>
-            ₡${item.price.toLocaleString("es-CR")}
-            <br>
-            <button onclick="removeFromCart(${index})">
-                Eliminar
-            </button>
-        `;
-
-        container.appendChild(div);
-
-    });
-
-    document
-    .getElementById("cartTotal")
-    .textContent =
-        total.toLocaleString("es-CR");
-
-}
-
-
-function removeFromCart(index){
-
-    cart.splice(index,1);
-
-    updateCart();
-
-}
-
-
-function openCart(){
-
-    updateCart();
-
-    document
-    .getElementById("cartPanel")
-    .classList
-    .add("show");
-
-}
-
-
-function closeCart(){
-
-    document
-    .getElementById("cartPanel")
-    .classList
-    .remove("show");
-
-}
-
-
-/* CLOSE MODAL BY CLICKING OUTSIDE */
-
-document
-.getElementById("whatsappModal")
-.addEventListener("click",function(event){
-
-    if(event.target === this){
-        closeWhatsApp();
-    }
-
-});
-
-
-</script>
-<dialog class="product-dialog" id="productDetail" aria-labelledby="detailTitle">
-<button class="detail-close" aria-label="Cerrar detalle" onclick="closeProductDetail()">×</button>
-<div class="detail-layout"><div><div class="detail-images" id="detailImages"></div>
-<div class="detail-controls" id="detailControls" hidden><button onclick="moveDetailPhoto(-1)" aria-label="Foto anterior">←</button><span id="detailPhotoCount" aria-live="polite"></span><button onclick="moveDetailPhoto(1)" aria-label="Foto siguiente">→</button></div></div>
-<div class="detail-copy"><div class="card-category" id="detailCategory"></div><h2 id="detailTitle"></h2><p id="detailDescription"></p><div class="price" id="detailPrice"></div><button class="button" id="detailWhatsApp">Quiero personalizar el mío</button></div></div>
+  </div>
 </dialog>
+
+<aside class="admin-panel" id="admin">
+  <div class="admin-sheet">
+    <div class="admin-head"><h2>Administrar catálogo</h2><button class="x" onclick="closeAdmin()">×</button></div>
+    <div class="notice">
+      GitHub Pages es estático. Este administrador permite organizar, editar, ocultar y exportar la información del catálogo desde este navegador, pero no guarda cambios directamente en GitHub porque eso exigiría exponer una credencial. Para publicación permanente, exporta la configuración o conecta después este panel al backend seguro de Railway.
+    </div>
+
+    <input type="hidden" id="aPath">
+
+    <div class="row2">
+      <div class="field"><label>Referencia</label><input id="aRef" placeholder="MISO-001"></div>
+      <div class="field"><label>Precio mostrado</label><input id="aPrice" placeholder="Desde ₡15.500"></div>
+    </div>
+    <div class="field"><label>Nombre del diseño</label><input id="aTitle" placeholder="Ej: Diseño Spider-Man"></div>
+    <div class="field"><label>Categoría</label><select id="aCat"></select></div>
+    <div class="field"><label>Palabras clave</label><input id="aKeywords" placeholder="anime, goku, cumpleaños…"></div>
+    <div class="field"><label>Descripción</label><textarea id="aDesc" placeholder="Descripción corta del diseño"></textarea></div>
+    <div class="field"><label>URL/ruta de imagen</label><input id="aImg" readonly></div>
+
+    <button class="save" onclick="saveAdminItem()">Guardar cambios en este navegador</button>
+    <button class="danger" id="toggleVisible" onclick="toggleAdminVisible()">Ocultar esta ficha</button>
+    <button class="secondary" onclick="exportConfig()">Exportar configuración JSON</button>
+    <button class="secondary" onclick="document.querySelector('#importFile').click()">Importar configuración JSON</button>
+    <input id="importFile" type="file" accept="application/json,.json" hidden>
+
+    <div class="field admin-search"><label>Buscar ficha para editar</label><input id="adminQ" placeholder="Referencia, nombre o archivo…"></div>
+    <div class="admin-list" id="adminList"></div>
+  </div>
+</aside>
+
+<footer>MISO CR · Catálogo de cuadros personalizados</footer>
+
 <script>
-const detailDialog = document.getElementById('productDetail');
-let detailOrigin = null;
-let detailPhotoIndex = 0;
-function closeProductDetail() { detailDialog.close(); }
-function openProductDetail(product) {
- detailOrigin = document.activeElement;
- const name = product.querySelector('h3').textContent.trim();
- document.getElementById('detailTitle').textContent = name;
- document.getElementById('detailCategory').textContent = product.querySelector('.card-category').textContent.trim();
- document.getElementById('detailDescription').textContent = product.querySelector('.card-description').textContent.trim();
- document.getElementById('detailPrice').textContent = product.querySelector('.price').textContent.trim();
- const gallery = document.getElementById('detailImages');
- gallery.replaceChildren();
- product.querySelectorAll('.card-image img').forEach(source=>{const img=document.createElement('img');img.src=source.getAttribute('src');img.alt=source.alt;gallery.append(img);});
- detailPhotoIndex=0;
- document.getElementById('detailControls').hidden=gallery.children.length<2;
- document.getElementById('detailPhotoCount').textContent='1 / '+gallery.children.length;
- document.getElementById('detailWhatsApp').onclick=()=>{closeProductDetail();chooseWhatsApp(name);};
- detailDialog.showModal();
- document.body.style.overflow='hidden';
+const OWNER="misocr";
+const REPO="miso-cr-catalogo";
+const BRANCH="main";
+const WHATSAPP="50672850202";
+const CONFIG_KEY="miso_catalog_config_v2";
+
+const CATS=[
+  "Todos","Parejas","Familia","Mascotas","Cumpleaños","Aniversarios",
+  "Reconocimientos","Anime","Graduación + Escolar","Otros"
+];
+
+const IMAGE_EXT=/\.(png|jpe?g|webp|gif|avif)$/i;
+const EXCLUDE_NAME=/(logo|favicon|icon|banner|portada|header|qr|waze|mapa|map|payment|pago|sinpe)/i;
+const EXCLUDE_PATH=/(^|\/)(\.git|\.github|node_modules|assets\/icons?)(\/|$)/i;
+
+let ITEMS=[];
+let active="Todos";
+let selected=null;
+let editing=null;
+const $=s=>document.querySelector(s);
+const norm=s=>(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+
+function hashString(str){
+  let h=2166136261;
+  for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}
+  return (h>>>0).toString(36).toUpperCase().padStart(6,"0").slice(0,6);
 }
-function moveDetailPhoto(step) {
- const gallery=document.getElementById('detailImages');
- detailPhotoIndex=(detailPhotoIndex+step+gallery.children.length)%gallery.children.length;
- gallery.scrollTo({left:detailPhotoIndex*gallery.clientWidth,behavior:'smooth'});
+function refFor(path){return "MISO-"+hashString(path)}
+function rawUrl(path){return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path.split("/").map(encodeURIComponent).join("/")}`}
+function loadConfig(){
+  try{return JSON.parse(localStorage.getItem(CONFIG_KEY)||"{}")}catch{return {}}
 }
-document.getElementById('detailImages').addEventListener('scroll',function(){
- if(!this.clientWidth)return;
- detailPhotoIndex=Math.round(this.scrollLeft/this.clientWidth);
- document.getElementById('detailPhotoCount').textContent=(detailPhotoIndex+1)+' / '+this.children.length;
-});
-detailDialog.addEventListener('close',()=>{document.body.style.overflow='';if(detailOrigin)detailOrigin.focus();});
-detailDialog.addEventListener('click',event=>{if(event.target===detailDialog){const r=detailDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeProductDetail();}});
-document.querySelectorAll('.product').forEach(product=>{
- product.tabIndex=0;
- product.setAttribute('aria-label','Ver detalle: '+product.querySelector('h3').textContent.trim());
- product.querySelector('.button').textContent='Personalizar';
- product.addEventListener('click',event=>{if(!event.target.closest('button,a'))openProductDetail(product);});
- product.addEventListener('keydown',event=>{if(event.target===product&&(event.key==='Enter'||event.key===' ')){event.preventDefault();openProductDetail(product);}});
-});
-document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeWhatsApp();closeCart();}});
-resetFilters();
+function saveConfig(cfg){localStorage.setItem(CONFIG_KEY,JSON.stringify(cfg))}
+function cleanTitle(path){
+  let n=path.split("/").pop().replace(/\.[^.]+$/,"").replace(/[_-]+/g," ").trim();
+  if(/^img\s*\d+/i.test(n)||/^[0-9a-f]{8,}/i.test(n)) return "Diseño personalizado";
+  return n.replace(/\b\w/g,m=>m.toUpperCase());
+}
+function inferCategory(path){
+  const n=norm(path);
+  if(/anime|goku|vegeta|dragon|naruto|luffy|one piece|chopper|levi|manga/.test(n))return"Anime";
+  if(/gradu|escolar|profe|maestro|teacher|colegio|escuela/.test(n))return"Graduación + Escolar";
+  if(/cumple|birthday|feliz/.test(n))return"Cumpleaños";
+  if(/anivers|novio|novia|pareja|amor|spotify|boda/.test(n))return"Parejas";
+  if(/mama|mamá|papa|papá|familia|abuela|abuelo|hija|hijo/.test(n))return"Familia";
+  if(/mascota|perro|gato|pet/.test(n))return"Mascotas";
+  if(/reconoc|ingenier|bombero|medic|doctor|dj|musico|músico|yamaha|laboral/.test(n))return"Reconocimientos";
+  return"Otros";
+}
+function buildItem(path,index,cfg){
+  const c=cfg[path]||{};
+  return{
+    path,
+    id:c.id||refFor(path),
+    title:c.title||cleanTitle(path),
+    category:c.category||inferCategory(path),
+    keywords:c.keywords||path.replace(/[\/_.-]+/g," "),
+    description:c.description||"Diseño personalizado de MISO CR.",
+    price:c.price||"Personalizable",
+    image:c.image||rawUrl(path),
+    active:c.active!==false
+  };
+}
+
+async function loadImages(){
+  $("#status").style.display="block";
+  try{
+    const api=`https://api.github.com/repos/${OWNER}/${REPO}/git/trees/${BRANCH}?recursive=1`;
+    const r=await fetch(api,{headers:{"Accept":"application/vnd.github+json"}});
+    if(!r.ok) throw new Error("GitHub API "+r.status);
+    const data=await r.json();
+    if(!Array.isArray(data.tree))throw new Error("No se recibió el árbol del repositorio.");
+    const paths=data.tree
+      .filter(x=>x.type==="blob"&&IMAGE_EXT.test(x.path)&&!EXCLUDE_PATH.test(x.path)&&!EXCLUDE_NAME.test(x.path.split("/").pop()))
+      .map(x=>x.path)
+      .sort((a,b)=>a.localeCompare(b,undefined,{numeric:true,sensitivity:"base"}));
+
+    const cfg=loadConfig();
+    ITEMS=paths.map((p,i)=>buildItem(p,i,cfg));
+
+    $("#status").innerHTML=`<div class="statusbox">✓ ${ITEMS.length} imágenes encontradas automáticamente en el repositorio.</div>`;
+    setTimeout(()=>$("#status").style.display="none",3500);
+    renderChips();render();refreshAdmin();
+  }catch(err){
+    console.error(err);
+    $("#count").textContent="No se pudo cargar el catálogo";
+    $("#status").innerHTML=`<div class="statusbox"><strong>No pude leer automáticamente las imágenes.</strong><br>Verifica que el repositorio <b>${OWNER}/${REPO}</b> siga público y que la rama sea <b>${BRANCH}</b>. No se borró ninguna imagen.</div>`;
+  }
+}
+
+function renderChips(){
+  const used=new Set(ITEMS.filter(x=>x.active).map(x=>x.category));
+  const visibleCats=CATS.filter(c=>c==="Todos"||used.has(c));
+  $("#chips").innerHTML=visibleCats.map(c=>`<button class="chip ${c===active?"active":""}" data-c="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join("");
+  document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{active=b.dataset.c;renderChips();render()});
+}
+function escapeHtml(s=""){
+  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+}
+function filtered(){
+  const q=norm($("#q").value);
+  return ITEMS.filter(x=>x.active&&(active==="Todos"||x.category===active)&&(!q||norm(`${x.id} ${x.title} ${x.category} ${x.keywords} ${x.path}`).includes(q)));
+}
+function render(){
+  const list=filtered();
+  $("#count").textContent=`${list.length} diseño${list.length===1?"":"s"}`;
+  $("#empty").style.display=list.length?"none":"block";
+  $("#grid").innerHTML=list.map(x=>`
+    <article class="card">
+      <div class="photo" onclick="openDetail('${x.id}')">
+        <img loading="lazy" src="${x.image}" alt="${escapeHtml(x.title)}" onerror="this.closest('.card').style.display='none'">
+        <span class="ref">${escapeHtml(x.id)}</span>
+      </div>
+      <div class="body">
+        <div class="cat">${escapeHtml(x.category)}</div>
+        <div class="title">${escapeHtml(x.title)}</div>
+        <div class="price">${escapeHtml(x.price)}</div>
+        <div class="actions">
+          <button class="view" onclick="openDetail('${x.id}')">Ver grande</button>
+          <button class="wa" onclick="sendWA('${x.id}')">WhatsApp</button>
+        </div>
+      </div>
+    </article>`).join("");
+}
+function openDetail(id){
+  selected=ITEMS.find(x=>x.id===id);if(!selected)return;
+  $("#detailImg").src=selected.image;
+  $("#detailImg").alt=selected.title;
+  $("#detailCat").textContent=selected.category;
+  $("#detailTitle").textContent=selected.title;
+  $("#detailRef").textContent=`Referencia: ${selected.id} · ${selected.price}`;
+  $("#detailDesc").textContent=selected.description||"Diseño personalizado de MISO CR.";
+  detail.showModal();
+}
+function sendWA(id){
+  const x=ITEMS.find(i=>i.id===id);if(!x)return;
+  const msg=`Hola MISO CR 👋 Me interesa el diseño ${x.id} (${x.title}). ¿Me pueden dar información para personalizarlo?`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+function openGeneralWA(){
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola MISO CR 👋 Quiero información sobre los cuadros personalizados.")}`,"_blank");
+}
+$("#detailWa").onclick=()=>selected&&sendWA(selected.id);
+$("#q").oninput=render;
+$("#clear").onclick=()=>{$("#q").value="";render();$("#q").focus()};
+
+function openAdmin(){
+  $("#admin").classList.add("show");
+  populateAdminCats();
+  refreshAdmin();
+}
+function closeAdmin(){$("#admin").classList.remove("show")}
+function populateAdminCats(){
+  $("#aCat").innerHTML=CATS.filter(x=>x!=="Todos").map(c=>`<option>${escapeHtml(c)}</option>`).join("");
+}
+function editItem(path){
+  editing=ITEMS.find(x=>x.path===path);if(!editing)return;
+  $("#aPath").value=editing.path;
+  $("#aRef").value=editing.id;
+  $("#aTitle").value=editing.title;
+  $("#aCat").value=editing.category;
+  $("#aKeywords").value=editing.keywords;
+  $("#aDesc").value=editing.description;
+  $("#aPrice").value=editing.price;
+  $("#aImg").value=editing.image;
+  $("#toggleVisible").textContent=editing.active?"Ocultar esta ficha":"Restaurar esta ficha";
+  $("#admin").scrollTo({top:0,behavior:"smooth"});
+}
+function saveAdminItem(){
+  if(!editing)return alert("Primero selecciona una ficha de la lista inferior.");
+  editing.id=$("#aRef").value.trim()||editing.id;
+  editing.title=$("#aTitle").value.trim()||editing.title;
+  editing.category=$("#aCat").value;
+  editing.keywords=$("#aKeywords").value.trim();
+  editing.description=$("#aDesc").value.trim();
+  editing.price=$("#aPrice").value.trim()||"Personalizable";
+
+  const cfg=loadConfig();
+  cfg[editing.path]={
+    id:editing.id,title:editing.title,category:editing.category,keywords:editing.keywords,
+    description:editing.description,price:editing.price,image:editing.image,active:editing.active
+  };
+  saveConfig(cfg);
+  renderChips();render();refreshAdmin();
+  alert("Cambios guardados en este navegador.");
+}
+function toggleAdminVisible(){
+  if(!editing)return alert("Primero selecciona una ficha.");
+  editing.active=!editing.active;
+  const cfg=loadConfig();
+  cfg[editing.path]={
+    id:editing.id,title:editing.title,category:editing.category,keywords:editing.keywords,
+    description:editing.description,price:editing.price,image:editing.image,active:editing.active
+  };
+  saveConfig(cfg);
+  $("#toggleVisible").textContent=editing.active?"Ocultar esta ficha":"Restaurar esta ficha";
+  renderChips();render();refreshAdmin();
+}
+function refreshAdmin(){
+  if(!ITEMS.length){$("#adminList").innerHTML="<p>Cargando…</p>";return}
+  const q=norm($("#adminQ").value);
+  const list=ITEMS.filter(x=>!q||norm(`${x.id} ${x.title} ${x.category} ${x.path}`).includes(q)).slice(0,100);
+  $("#adminList").innerHTML=list.map(x=>`
+    <div class="admin-item ${x.active?"":"hiddenitem"}">
+      <img src="${x.image}" alt="">
+      <div><strong>${escapeHtml(x.id)} · ${escapeHtml(x.title)}</strong><small>${escapeHtml(x.category)} · ${escapeHtml(x.path)}</small></div>
+      <button class="mini" onclick='editItem(${JSON.stringify(x.path)})'>Editar</button>
+    </div>`).join("");
+}
+$("#adminQ").oninput=refreshAdmin;
+
+function exportConfig(){
+  const cfg=loadConfig();
+  const blob=new Blob([JSON.stringify(cfg,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="miso-catalog-config.json";
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+$("#importFile").onchange=async e=>{
+  const f=e.target.files?.[0];if(!f)return;
+  try{
+    const cfg=JSON.parse(await f.text());
+    saveConfig(cfg);
+    ITEMS=ITEMS.map((x,i)=>buildItem(x.path,i,cfg));
+    renderChips();render();refreshAdmin();
+    alert("Configuración importada.");
+  }catch{alert("El archivo JSON no es válido.")}
+  e.target.value="";
+};
+
+loadImages();
 </script>
 </body>
 </html>
-
