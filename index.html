@@ -97,7 +97,83 @@ footer{padding:35px 20px;text-align:center;color:#8c858f;font-size:12px}
   border:1px solid rgba(120,97,143,.14);
   text-align:center;
 }
+.how-section{
+  margin:34px 0;
+  padding:24px 18px;
+  text-align:center;
+}
 
+.steps-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  max-width:900px;
+  margin:0 auto 22px;
+}
+
+.step-card{
+  padding:20px 14px;
+  background:white;
+  border:1px solid rgba(120,97,143,.12);
+  border-radius:20px;
+  box-shadow:0 8px 24px rgba(0,0,0,.05);
+}
+
+.step-card span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#efe8f4;
+  color:var(--miso);
+  font-weight:900;
+  margin-bottom:10px;
+}
+
+.step-card h3{
+  margin:0 0 8px;
+  font-size:16px;
+}
+
+.step-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+}
+
+.how-section .btn-whatsapp{
+  display:inline-flex;
+  text-decoration:none;
+  align-items:center;
+  justify-content:center;
+}
+
+@media(max-width:650px){
+  .steps-grid{
+    grid-template-columns:1fr;
+    max-width:420px;
+  }
+
+  .step-card{
+    display:grid;
+    grid-template-columns:42px 1fr;
+    column-gap:10px;
+    text-align:left;
+    align-items:center;
+  }
+
+  .step-card span{
+    grid-row:1 / span 2;
+    margin:0;
+  }
+
+  .step-card h3{
+    margin:0 0 3px;
+  }
+}
 .section-title{
   text-align:center;
   margin-bottom:20px;
