@@ -609,6 +609,10 @@ const CATS=[
 ];
 
 const IMAGE_EXT=/\.(png|jpe?g|webp|gif|avif)$/i;
+  const HIDDEN_REFS=new Set([
+  "MISO-1NIT4",
+  "MISO-L895CJ"
+]);
 const EXCLUDE_NAME=/(logo|favicon|icon|banner|portada|header|qr|waze|mapa|map|payment|pago|sinpe)/i;
 const EXCLUDE_PATH=/(^|\/)(\.git|\.github|node_modules|assets\/icons?)(\/|$)/i;
 
@@ -1211,7 +1215,9 @@ async function loadImages(){
       .sort((a,b)=>a.localeCompare(b,undefined,{numeric:true,sensitivity:"base"}));
 
     const cfg=loadConfig();
-    ITEMS=paths.map((p,i)=>buildItem(p,i,cfg));
+    ITEMS=paths
+  .map((p,i)=>buildItem(p,i,cfg))
+  .filter(x=>!HIDDEN_REFS.has(x.id));
 
     $("#status").innerHTML=`<div class="statusbox">✓ ${ITEMS.length} imágenes encontradas automáticamente en el repositorio.</div>`;
     setTimeout(()=>$("#status").style.display="none",3500);
