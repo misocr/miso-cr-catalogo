@@ -2662,22 +2662,12 @@ function buildItem(path,index,cfg){
 async function loadImages(){
   $("#status").style.display="block";
   try{
-    const api=`https://api.github.com/repos/${OWNER}/${REPO}/git/trees/${BRANCH}?recursive=1`;
-    const r=await fetch(api,{headers:{"Accept":"application/vnd.github+json"}});
-    if(!r.ok) throw new Error("GitHub API "+r.status);
-    const data=await r.json();
-    if(!Array.isArray(data.tree))throw new Error("No se recibió el árbol del repositorio.");
-    const paths=data.tree
-      .filter(x=>x.type==="blob"&&IMAGE_EXT.test(x.path)&&!EXCLUDE_PATH.test(x.path)&&!EXCLUDE_NAME.test(x.path.split("/").pop()))
-      .map(x=>x.path)
-      .sort((a,b)=>a.localeCompare(b,undefined,{numeric:true,sensitivity:"base"}));
-
-    const cfg={};
-    ITEMS=paths
-  .map((p,i)=>buildItem(p,i,cfg))
-  .filter(x=>!HIDDEN_REFS.has(x.id));
-
-    $("#status").innerHTML=`<div class="statusbox">✓ ${ITEMS.length} imágenes encontradas automáticamente en el repositorio.</div>`;
+    const response=await fetch('./catalog.json',{cache:'no-store'});
+    if(!response.ok)throw new Error('No se pudo leer el catálogo.');
+    const data=await response.json();
+    if(data.version!==1||!Array.isArray(data.items))throw new Error('Formato de catálogo no válido.');
+    ITEMS=data.items.map((item,index)=>({...buildItem(item.path,index,{}),...item,image:rawUrl(item.path)})).filter(x=>!HIDDEN_REFS.has(x.id));
+    $("#status").innerHTML=`<div class="statusbox">✓ ${ITEMS.filter(x=>x.active!==false).length} diseños disponibles.</div>`;
     setTimeout(()=>$("#status").style.display="none",3500);
     renderChips();render();
   }catch(err){
@@ -2831,6 +2821,7 @@ loadImages();
 </script>
 </body>
 </html>
+
 
 
 
