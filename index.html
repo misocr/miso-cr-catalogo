@@ -21,7 +21,6 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdro
 .logo{font-weight:950;font-size:25px;letter-spacing:-1px}.logo span{color:var(--miso)}
 .head-actions{margin-left:auto;display:flex;gap:8px}
 .iconbtn{border:0;border-radius:999px;padding:10px 13px;background:var(--lav);color:#594768;font-weight:800}
-.adminbtn{background:#27242a;color:white}
 .hero{max-width:1240px;margin:auto;padding:28px 14px 14px}
 .badge{display:inline-flex;background:#efe8f4;color:#624d73;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:850}
 .hero h1{font-size:clamp(31px,7vw,60px);line-height:1.02;letter-spacing:-2px;margin:13px 0 10px}
@@ -67,25 +66,6 @@ dialog::backdrop{background:rgba(28,21,31,.7);backdrop-filter:blur(3px)}
 .pricegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .pricebox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
 .pricebox strong{display:block;font-size:15px}.pricebox span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
-.admin-panel{position:fixed;inset:0;z-index:60;background:rgba(25,19,29,.55);display:none;justify-content:flex-end}
-.admin-panel.show{display:flex}
-.admin-sheet{width:min(560px,100%);height:100%;background:#fff;padding:18px;overflow:auto}
-.admin-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.admin-head h2{margin:0}
-.notice{background:#fff7dc;border:1px solid #f0d98c;color:#654f0d;padding:10px 12px;border-radius:12px;font-size:12px;line-height:1.4;margin-top:12px}
-.field{margin-top:14px}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px;color:#635b67}
-.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
-.field textarea{min-height:80px;resize:vertical}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.save,.secondary,.danger{margin-top:12px;width:100%;border:0;border-radius:12px;padding:13px;font-weight:900}
-.save{background:var(--miso);color:#fff}.secondary{background:#efe8f4;color:#5c4670}.danger{background:#fff0f2;color:var(--danger)}
-.admin-search{margin-top:18px}
-.admin-list{margin-top:12px}
-.admin-item{display:grid;grid-template-columns:60px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
-.admin-item img{width:60px;height:60px;border-radius:10px;object-fit:cover}
-.admin-item strong{display:block;font-size:12px}.admin-item small{display:block;color:var(--muted);margin-top:3px}
-.mini{border:0;border-radius:9px;padding:8px 9px;font-size:11px;font-weight:850;background:#efe8f4;color:#5c4670}
-.hiddenitem{opacity:.48}
 footer{padding:35px 20px;text-align:center;color:#8c858f;font-size:12px}
 @media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.body{padding:12px}.title{font-size:14px}.pricegrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(min-width:980px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}}
@@ -326,7 +306,6 @@ footer{padding:35px 20px;text-align:center;color:#8c858f;font-size:12px}
     <div class="logo">MISO<span>CR</span></div>
     <div class="head-actions">
       <button class="iconbtn" onclick="openGeneralWA()">WhatsApp</button>
-      <button class="iconbtn adminbtn" onclick="openAdmin()">Administrar</button>
     </div>
   </div>
 </header>
@@ -553,36 +532,6 @@ footer{padding:35px 20px;text-align:center;color:#8c858f;font-size:12px}
   </div>
 </dialog>
 
-<aside class="admin-panel" id="admin">
-  <div class="admin-sheet">
-    <div class="admin-head"><h2>Administrar catálogo</h2><button class="x" onclick="closeAdmin()">×</button></div>
-    <div class="notice">
-      GitHub Pages es estático. Este administrador permite organizar, editar, ocultar y exportar la información del catálogo desde este navegador, pero no guarda cambios directamente en GitHub porque eso exigiría exponer una credencial. Para publicación permanente, exporta la configuración o conecta después este panel al backend seguro de Railway.
-    </div>
-
-    <input type="hidden" id="aPath">
-
-    <div class="row2">
-      <div class="field"><label>Referencia</label><input id="aRef" placeholder="MISO-001"></div>
-      <div class="field"><label>Precio mostrado</label><input id="aPrice" placeholder="Desde ₡15.500"></div>
-    </div>
-    <div class="field"><label>Nombre del diseño</label><input id="aTitle" placeholder="Ej: Diseño Spider-Man"></div>
-    <div class="field"><label>Categoría</label><select id="aCat"></select></div>
-    <div class="field"><label>Palabras clave</label><input id="aKeywords" placeholder="anime, goku, cumpleaños…"></div>
-    <div class="field"><label>Descripción</label><textarea id="aDesc" placeholder="Descripción corta del diseño"></textarea></div>
-    <div class="field"><label>URL/ruta de imagen</label><input id="aImg" readonly></div>
-
-    <button class="save" onclick="saveAdminItem()">Guardar cambios en este navegador</button>
-    <button class="danger" id="toggleVisible" onclick="toggleAdminVisible()">Ocultar esta ficha</button>
-    <button class="secondary" onclick="exportConfig()">Exportar configuración JSON</button>
-    <button class="secondary" onclick="document.querySelector('#importFile').click()">Importar configuración JSON</button>
-    <input id="importFile" type="file" accept="application/json,.json" hidden>
-
-    <div class="field admin-search"><label>Buscar ficha para editar</label><input id="adminQ" placeholder="Referencia, nombre o archivo…"></div>
-    <div class="admin-list" id="adminList"></div>
-  </div>
-</aside>
-
 <footer>MISO CR · Catálogo de cuadros personalizados</footer>
 
 <script>
@@ -590,7 +539,6 @@ const OWNER="misocr";
 const REPO="miso-cr-catalogo";
 const BRANCH="main";
 const WHATSAPP="50672850202";
-const CONFIG_KEY="miso_catalog_config_v2";
 
 const CATS=[
   "Todos",
@@ -620,7 +568,6 @@ const EXCLUDE_PATH=/(^|\/)(\.git|\.github|node_modules|assets\/icons?)(\/|$)/i;
 let ITEMS=[];
 let active="Todos";
 let selected=null;
-let editing=null;
 const $=s=>document.querySelector(s);
 const norm=s=>(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 
@@ -631,10 +578,6 @@ function hashString(str){
 }
 function refFor(path){return "MISO-"+hashString(path)}
 function rawUrl(path){return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path.split("/").map(encodeURIComponent).join("/")}`}
-function loadConfig(){
-  try{return JSON.parse(localStorage.getItem(CONFIG_KEY)||"{}")}catch{return {}}
-}
-function saveConfig(cfg){localStorage.setItem(CONFIG_KEY,JSON.stringify(cfg))}
 function cleanTitle(path){
   let n=path.split("/").pop().replace(/\.[^.]+$/,"").replace(/[_-]+/g," ").trim();
   if(/^img\s*\d+/i.test(n)||/^[0-9a-f]{8,}/i.test(n)) return "Diseño personalizado";
@@ -2729,14 +2672,14 @@ async function loadImages(){
       .map(x=>x.path)
       .sort((a,b)=>a.localeCompare(b,undefined,{numeric:true,sensitivity:"base"}));
 
-    const cfg=loadConfig();
+    const cfg={};
     ITEMS=paths
   .map((p,i)=>buildItem(p,i,cfg))
   .filter(x=>!HIDDEN_REFS.has(x.id));
 
     $("#status").innerHTML=`<div class="statusbox">✓ ${ITEMS.length} imágenes encontradas automáticamente en el repositorio.</div>`;
     setTimeout(()=>$("#status").style.display="none",3500);
-    renderChips();render();refreshAdmin();
+    renderChips();render();
   }catch(err){
     console.error(err);
     $("#count").textContent="No se pudo cargar el catálogo";
@@ -2884,96 +2827,11 @@ $("#detailWa").onclick=()=>selected&&sendWA(selected.id);
 $("#q").oninput=render;
 $("#clear").onclick=()=>{$("#q").value="";render();$("#q").focus()};
 
-function openAdmin(){
-  $("#admin").classList.add("show");
-  populateAdminCats();
-  refreshAdmin();
-}
-function closeAdmin(){$("#admin").classList.remove("show")}
-function populateAdminCats(){
-  $("#aCat").innerHTML=CATS.filter(x=>x!=="Todos").map(c=>`<option>${escapeHtml(c)}</option>`).join("");
-}
-function editItem(path){
-  editing=ITEMS.find(x=>x.path===path);if(!editing)return;
-  $("#aPath").value=editing.path;
-  $("#aRef").value=editing.id;
-  $("#aTitle").value=editing.title;
-  $("#aCat").value=editing.category;
-  $("#aKeywords").value=editing.keywords;
-  $("#aDesc").value=editing.description;
-  $("#aPrice").value=editing.price;
-  $("#aImg").value=editing.image;
-  $("#toggleVisible").textContent=editing.active?"Ocultar esta ficha":"Restaurar esta ficha";
-  $("#admin").scrollTo({top:0,behavior:"smooth"});
-}
-function saveAdminItem(){
-  if(!editing)return alert("Primero selecciona una ficha de la lista inferior.");
-  editing.id=$("#aRef").value.trim()||editing.id;
-  editing.title=$("#aTitle").value.trim()||editing.title;
-  editing.category=$("#aCat").value;
-  editing.keywords=$("#aKeywords").value.trim();
-  editing.description=$("#aDesc").value.trim();
-  editing.price=$("#aPrice").value.trim()||"Personalizable";
-
-  const cfg=loadConfig();
-  cfg[editing.path]={
-    id:editing.id,title:editing.title,category:editing.category,keywords:editing.keywords,
-    description:editing.description,price:editing.price,image:editing.image,active:editing.active
-  };
-  saveConfig(cfg);
-  renderChips();render();refreshAdmin();
-  alert("Cambios guardados en este navegador.");
-}
-function toggleAdminVisible(){
-  if(!editing)return alert("Primero selecciona una ficha.");
-  editing.active=!editing.active;
-  const cfg=loadConfig();
-  cfg[editing.path]={
-    id:editing.id,title:editing.title,category:editing.category,keywords:editing.keywords,
-    description:editing.description,price:editing.price,image:editing.image,active:editing.active
-  };
-  saveConfig(cfg);
-  $("#toggleVisible").textContent=editing.active?"Ocultar esta ficha":"Restaurar esta ficha";
-  renderChips();render();refreshAdmin();
-}
-function refreshAdmin(){
-  if(!ITEMS.length){$("#adminList").innerHTML="<p>Cargando…</p>";return}
-  const q=norm($("#adminQ").value);
-  const list=ITEMS.filter(x=>!q||norm(`${x.id} ${x.title} ${x.category} ${x.path}`).includes(q)).slice(0,100);
-  $("#adminList").innerHTML=list.map(x=>`
-    <div class="admin-item ${x.active?"":"hiddenitem"}">
-      <img src="${x.image}" alt="">
-      <div><strong>${escapeHtml(x.id)} · ${escapeHtml(x.title)}</strong><small>${escapeHtml(x.category)} · ${escapeHtml(x.path)}</small></div>
-      <button class="mini" onclick='editItem(${JSON.stringify(x.path)})'>Editar</button>
-    </div>`).join("");
-}
-$("#adminQ").oninput=refreshAdmin;
-
-function exportConfig(){
-  const cfg=loadConfig();
-  const blob=new Blob([JSON.stringify(cfg,null,2)],{type:"application/json"});
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download="miso-catalog-config.json";
-  a.click();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-}
-$("#importFile").onchange=async e=>{
-  const f=e.target.files?.[0];if(!f)return;
-  try{
-    const cfg=JSON.parse(await f.text());
-    saveConfig(cfg);
-    ITEMS=ITEMS.map((x,i)=>buildItem(x.path,i,cfg));
-    renderChips();render();refreshAdmin();
-    alert("Configuración importada.");
-  }catch{alert("El archivo JSON no es válido.")}
-  e.target.value="";
-};
-
 loadImages();
 </script>
 </body>
 </html>
+
 
 
 
