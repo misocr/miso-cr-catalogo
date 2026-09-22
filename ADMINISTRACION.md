@@ -12,7 +12,17 @@ El panel Node se aloja por separado; guarda los cambios en este mismo repositori
 - Guardar en `catalog.json`; GitHub Pages publica los cambios en unos minutos.
 - Las fichas existentes conservan sus referencias y las correcciones revisadas.
 
-## Activación pendiente
+## Cómo entrar
+
+1. Abrir https://miso-admin-privado-production.up.railway.app/.
+2. Pulsar **Iniciar sesión con GitHub** y usar la cuenta `misocr`.
+3. En **Mis diseños**, buscar una ficha y pulsar **Editar diseño**.
+4. Modificar los campos y pulsar **Guardar y publicar**. La página de clientes tarda unos minutos en actualizarse.
+5. Para agregar un cuadro, pulsar **Nuevo diseño**, seleccionar la foto y completar la ficha.
+6. Para ocultar un cuadro, desmarcar **Visible para los clientes** y guardar. Para restaurarlo, buscarlo en el filtro **Ocultos** y volver a marcar esa opción.
+7. Al terminar, pulsar **Cerrar sesión**.
+
+## Configuración del servicio
 
 1. Alojar este repositorio como servicio Node 22+ con `npm start` y healthcheck `/health`. Mantener una sola réplica: las sesiones viven en memoria y duran como máximo una hora.
 2. Establecer `APP_ORIGIN` con el origen HTTPS exacto del servicio, sin ruta ni barra final.
@@ -20,7 +30,7 @@ El panel Node se aloja por separado; guarda los cambios en este mismo repositori
 4. Permisos del repositorio: **Contents: Read and write** y **Metadata: Read-only**. Sin permisos de cuenta, organización, administración ni workflows. Instalar la app solamente en `misocr/miso-cr-catalogo`.
 5. Guardar `GITHUB_CLIENT_ID` y `GITHUB_CLIENT_SECRET` exclusivamente en variables privadas del servicio. Nunca en el repositorio, el navegador o el catálogo.
 6. `ADMIN_LOGINS=misocr`. Para otra persona, agregar su usuario exacto separado por coma y darle permiso de escritura sobre este repositorio. Debe iniciar sesión con su propia cuenta de GitHub.
-7. Validar el inicio de sesión real y una edición autorizada después de completar la conexión. Hasta entonces el panel permanece cerrado.
+7. Después de cambiar credenciales o permisos, validar el inicio de sesión real y una edición autorizada. Si no se han configurado las credenciales, el panel permanece cerrado.
 
 ## Seguridad y operación
 
@@ -30,7 +40,7 @@ Las ediciones comprueban la versión de `catalog.json`. Una foto nueva y su fich
 
 Para reducir reinicios, configurar el servicio para desplegarse únicamente cuando cambien `miso-admin-server.mjs`, `miso-admin.js`, `miso-admin.html`, `miso-admin.css` o `package.json`. Reiniciar el servicio cierra las sesiones. Cerrar sesión invalida la sesión inmediatamente.
 
-Pruebas locales: `npm test`. Las pruebas usan GitHub simulado; no sustituyen la validación de la conexión real después de instalar la app.
+Pruebas locales: `npm test`. Las pruebas automatizadas usan GitHub simulado. También se debe comprobar el inicio de sesión y el guardado contra GitHub al cambiar la configuración de acceso.
 
 ## Recuperación
 
