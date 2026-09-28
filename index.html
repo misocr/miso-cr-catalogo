@@ -296,6 +296,70 @@ footer{padding:35px 20px;text-align:center;color:#8c858f;font-size:12px}
     grid-template-columns:repeat(2,1fr);
   }
 }
+
+/* Catálogo primero: renovación visual de septiembre de 2026. */
+:root{--wa:#176f45;--muted:#655d6c}
+.head{min-height:64px;padding:10px 16px}
+.hero{padding:22px 16px 14px}
+.hero h1{max-width:940px;font-size:clamp(28px,3.5vw,44px);line-height:1.12;letter-spacing:-1.1px;margin:10px 0 8px}
+.hero p{font-size:16px;line-height:1.45}
+.benefits{margin-top:14px;padding:11px 14px;background:#efe8f4;border-radius:12px;color:#594768;font-size:14px;line-height:1.6;font-weight:650}
+.search-area{position:relative;top:auto;padding:8px 16px 4px;background:var(--bg)}
+.search input{font-size:16px;min-height:48px;padding:13px 48px 13px 42px}
+.chip{min-height:44px;font-size:14px;padding:10px 15px}
+.toolbar{font-size:16px;font-weight:750;padding:12px 16px;color:#594768;scroll-margin-top:80px}
+.grid{padding:0 16px 22px;gap:16px}
+.card{display:flex;flex-direction:column;border-radius:18px}
+.photo{aspect-ratio:4/3;background:#f0ecf3;cursor:pointer}
+.photo img{object-fit:contain}
+.ref{font-size:10px;max-width:calc(100% - 16px)}
+.body{padding:14px;display:flex;flex-direction:column;flex:1}
+.cat{font-size:11px;line-height:1.4;letter-spacing:.45px;white-space:normal;color:#715a81;min-height:16px}
+.title{font-size:16px;line-height:1.35;margin:7px 0;min-height:44px;overflow-wrap:anywhere}
+.price{font-size:15px;margin:0 0 12px}
+.actions{margin-top:auto;gap:8px}
+.actions button,.iconbtn,.fullwa,.btn-whatsapp,.cta{min-height:44px;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:12px;font-size:14px;font-weight:750;line-height:1.3;padding:11px 14px;text-decoration:none;cursor:pointer;transition:background .15s,box-shadow .15s}
+.actions button{padding:10px 6px;min-width:0}
+.wa,.fullwa,.head-actions .iconbtn,.btn-whatsapp{background:var(--wa);color:#fff}
+.wa:hover,.fullwa:hover,.head-actions .iconbtn:hover,.btn-whatsapp:hover{background:#115735}
+.view{background:#efe8f4;color:#594368}
+.view:hover{background:#e3d8eb}
+.cta{background:#78618f;color:#fff;padding:14px 24px;font-size:16px}
+.cta:hover{background:#624d77}
+button:focus-visible,a:focus-visible{outline:3px solid #f3a35c;outline-offset:3px}
+.catalog-more{grid-column:1/-1;text-align:center;padding:8px 0 14px}
+.sizes-section,.how-section,.location-section,.payments-section,.final-cta{max-width:1212px;margin:28px auto;padding:28px 20px}
+.final-cta{text-align:center;background:#efe8f4;border-radius:24px}
+.final-cta p{line-height:1.6;color:var(--muted)}
+.final-cta h2{font-size:28px}
+.location-card .btn-whatsapp{background:#78618f}
+.size-card p{font-size:14px}
+@media(max-width:649px){
+  .head{min-height:60px;padding:8px 12px}
+  .logo{font-size:24px}
+  .hero{padding:16px 12px 10px}
+  .hero .badge{font-size:10px;padding:5px 8px}
+  .hero h1{font-size:28px;letter-spacing:-.65px;margin:8px 0}
+  .hero p{font-size:14px;line-height:1.4}
+  .benefits{font-size:12px;padding:9px 10px;margin-top:12px;line-height:1.75}
+  .search-area{padding:4px 12px}
+  .toolbar{padding:8px 12px 12px;font-size:15px;scroll-margin-top:74px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:0 10px 16px;gap:10px}
+  .card{border-radius:14px}
+  .body{padding:10px}
+  .cat{font-size:11px;min-height:30px}
+  .title{font-size:15px;min-height:40px;margin:5px 0 8px}
+  .price{font-size:14px;margin-bottom:10px}
+  .actions{flex-direction:column;gap:6px}
+  .actions button{font-size:14px;width:100%;flex:auto}
+  .ref{font-size:9px;padding:4px 6px;left:6px;bottom:6px}
+  .sizes-section,.how-section,.location-section,.payments-section,.final-cta{margin:20px 10px;padding:22px 14px}
+  .section-title h2,.final-cta h2{font-size:25px;line-height:1.2}
+  .section-title p{font-size:14px}
+  .size-card h3{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
 </style>
 
 
@@ -313,24 +377,25 @@ footer{padding:35px 20px;text-align:center;color:#8c858f;font-size:12px}
 <section class="hero">
   <span class="badge">✨ MISO COSTA RICA</span>
 
-  <h1>¡Hola! 🧡 Bienvenid@ a <em>MISO CR</em></h1>
+  <h1>Cuadros personalizados hechos para vos 🧡</h1>
 
-  <p>
-    Creamos cuadros personalizados para convertir tus recuerdos,
-    personas favoritas y momentos especiales en un detalle único.
-    ✨ Elegí tu diseño favorito, personalizalo con tus fotos y
-    nosotros nos encargamos de hacerlo realidad.
-  </p>
+  <p>Elegí tu diseño favorito y personalizalo con tus fotos, nombres y recuerdos.</p>
+  <div class="benefits">✨ Personalizado · 🎁 Listo para regalar · 💡 Opción 3D · 🚚 Envíos disponibles</div>
 </section>
 
 <section class="search-area">
   <div class="search">
     <span>⌕</span>
-    <input id="q" type="search" placeholder="Ej: anime, pareja, profesor, cumpleaños…" autocomplete="off">
-    <button class="clear" id="clear">×</button>
+    <input id="q" aria-label="Buscar diseños" type="search" placeholder="Ej: anime, pareja, profesor, cumpleaños…" autocomplete="off">
+    <button class="clear" id="clear" aria-label="Limpiar búsqueda">×</button>
   </div>
   <div class="chips" id="chips"></div>
 </section>
+<div class="toolbar" id="catalogo" tabindex="-1"><span id="count" role="status" aria-live="polite">Cargando diseños…</span></div>
+<div class="status" id="status"><div class="statusbox">Cargando automáticamente las imágenes guardadas en el repositorio de MISO CR…</div></div>
+<main class="grid" id="grid"></main>
+<section class="empty" id="empty"><h2>No encontré diseños</h2><p>Prueba otra palabra o toca “Todos”.</p></section>
+
 <section class="sizes-section">
 
   <div class="section-title">
@@ -345,12 +410,14 @@ footer{padding:35px 20px;text-align:center;color:#8c858f;font-size:12px}
       <div class="size-icon">🧡</div>
       <h3>Pequeño</h3>
       <strong>₡17.500</strong>
+      <p>19,8 × 15 cm</p>
     </div>
 
     <div class="size-card">
       <div class="size-icon">🧡</div>
       <h3>Mediano</h3>
       <strong>₡19.500</strong>
+      <p>23 × 18 cm</p>
     </div>
 
     <div class="size-card">
@@ -414,10 +481,6 @@ footer{padding:35px 20px;text-align:center;color:#8c858f;font-size:12px}
   </a>
 
 </section>
-<div class="toolbar"><span id="count">Cargando diseños…</span><span>Vista compacta</span></div>
-<div class="status" id="status"><div class="statusbox">Cargando automáticamente las imágenes guardadas en el repositorio de MISO CR…</div></div>
-<main class="grid" id="grid"></main>
-<section class="empty" id="empty"><h2>No encontré diseños</h2><p>Prueba otra palabra o toca “Todos”.</p></section>
 
 <section class="location-section">
 
@@ -532,7 +595,7 @@ footer{padding:35px 20px;text-align:center;color:#8c858f;font-size:12px}
 </section>
 <dialog id="detail">
   <div class="modal">
-    <div class="modal-top"><button class="x" onclick="detail.close()">×</button></div>
+    <div class="modal-top"><button class="x" aria-label="Cerrar diseño" onclick="detail.close()">×</button></div>
     <div class="modal-img"><img id="detailImg" alt=""></div>
     <div class="modal-copy">
       <div class="cat" id="detailCat"></div>
@@ -2659,7 +2722,7 @@ function buildItem(path,index,cfg){
     price:
       c.price ||
       manual.price ||
-      "Desde ₡19.500",
+      "Desde ₡17.500",
 
     image:
       c.image ||
@@ -2679,8 +2742,7 @@ async function loadImages(){
     const data=await response.json();
     if(data.version!==1||!Array.isArray(data.items))throw new Error('Formato de catálogo no válido.');
     ITEMS=data.items.map((item,index)=>({...buildItem(item.path,index,{}),...item,image:rawUrl(item.path)})).filter(x=>!HIDDEN_REFS.has(x.id));
-    $("#status").innerHTML=`<div class="statusbox">✓ ${ITEMS.filter(x=>x.active!==false).length} diseños disponibles.</div>`;
-    setTimeout(()=>$("#status").style.display="none",3500);
+    $("#status").style.display="none";
     renderChips();render();
   }catch(err){
     console.error(err);
@@ -2692,7 +2754,7 @@ async function loadImages(){
 function renderChips(){
   const used=new Set(ITEMS.filter(x=>x.active).map(x=>x.category));
   const visibleCats=CATS.filter(c=>c==="Todos"||used.has(c));
-  $("#chips").innerHTML=visibleCats.map(c=>`<button class="chip ${c===active?"active":""}" data-c="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join("");
+  $("#chips").innerHTML=visibleCats.map(c=>`<button class="chip ${c===active?"active":""}" aria-pressed="${c===active}" data-c="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join("");
   document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{active=b.dataset.c;renderChips();render()});
 }
 function escapeHtml(s=""){
@@ -2710,16 +2772,11 @@ function filtered(){
   return ITEMS.filter(x=>x.active&&(active==="Todos"||x.category===active)&&matchesSearch(x,$("#q").value));
 }
   let showAll = false;
-  const FEATURED_CATEGORIES = [
-  "Familia",
-  "Anime & Fandom",
-  "Graduación + Escolar",
-  "Cumpleaños"
-];
+  const FEATURED_CATEGORIES = ["Parejas", "Familia", "Anime & Fandom", "Deportes", "Mascotas", "Cumpleaños", "Aniversarios", "Profesiones y hobbies"];
 
 function featuredItems(){
   return FEATURED_CATEGORIES.map(cat =>
-    ITEMS.find(x => x.category === cat)
+    ITEMS.find(x => x.active !== false && x.category === cat)
   ).filter(Boolean);
 }
 function render(){
@@ -2750,14 +2807,14 @@ function render(){
           loading="lazy"
           src="${x.image}"
           alt="${escapeHtml(x.title)}"
-          onerror="this.closest('.card').style.display='none'"
+          onerror="this.alt='Imagen temporalmente no disponible: ' + this.alt"
         >
         <span class="ref">${escapeHtml(x.id)}</span>
       </div>
 
       <div class="body">
         <div class="cat">${escapeHtml(x.category)}</div>
-        <div class="title">${escapeHtml(x.title)}</div>
+        <h2 class="title">${escapeHtml(x.title)}</h2>
         <div class="price">${escapeHtml(x.price)}</div>
 
         <div class="actions">
@@ -2780,33 +2837,20 @@ function render(){
   `).join("");
 
   if(showingFeatured){
-
     $("#grid").insertAdjacentHTML("beforeend",`
-      <div style="
-        grid-column:1/-1;
-        text-align:center;
-        padding:10px 0 30px;
-      ">
-        <button
-          onclick="showAll=true;render();window.scrollTo({top:0,behavior:'smooth'})"
-          style="
-            border:0;
-            border-radius:999px;
-            padding:13px 22px;
-            background:#78618f;
-            color:white;
-            font-weight:850;
-            font-size:14px;
-            cursor:pointer;
-          "
-        >
-          ✨ Ver todos los diseños
-        </button>
+      <div class="catalog-more">
+        <button class="cta" onclick="expandCatalog()">Ver todos los ${ITEMS.filter(x=>x.active!==false).length} diseños</button>
       </div>
     `);
-
   }
- }
+}
+function expandCatalog(){
+  showAll=true;
+  render();
+  $("#catalogo").focus({preventScroll:true});
+  $("#catalogo").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
 function openDetail(id){
   selected=ITEMS.find(x=>x.id===id);if(!selected)return;
   $("#detailImg").src=selected.image;
@@ -2833,6 +2877,7 @@ loadImages();
 </script>
 </body>
 </html>
+
 
 
 
