@@ -47,7 +47,7 @@ export function createApp({env=process.env,fetcher=fetch}={}){
  }
  async function permission(token){const repo=await gh(token,`/repos/${REPO}`);if(!repo.permissions?.push)throw fail(403,'Esta cuenta no tiene permisos para administrar MISO CR.');}
  async function readCatalog(token){const file=await gh(token,`/repos/${REPO}/contents/${DATA}?ref=${BRANCH}`);const data=JSON.parse(Buffer.from(file.content,'base64').toString('utf8'));if(data.version!==1||!Array.isArray(data.items))throw fail(502,'Formato de catálogo no válido.');return {sha:file.sha,data};}
- async function body(req){if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))throw fail(415,'Se requiere JSON.');const chunks=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>8_500_000)throw fail(413,'Archivo demasiado grande.');chunks.push(chunk);}try{return JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{throw fail(400,'Datos no válidos.');}}
+ async function body(req){if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))throw fail(415,'Se requiere JSON.');const chunks=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>40_000_000)throw fail(413,'Archivo demasiado grande.');chunks.push(chunk);}try{return JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{throw fail(400,'Datos no válidos.');}}
  const server=http.createServer(async(req,res)=>{
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');
   res.setHeader('Content-Security-Policy',"default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' https://raw.githubusercontent.com blob: data:; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'");
@@ -94,6 +94,42 @@ export function createApp({env=process.env,fetcher=fetch}={}){
      const result=await gh(session.token,`/repos/${REPO}/contents/${DATA}`,'PUT',{message:`Actualizar ficha: ${value.title}`,branch:BRANCH,sha:current.sha,content:Buffer.from(JSON.stringify(current.data,null,2)+'\n').toString('base64')});
      return json(200,{ok:true,commit:result.commit.sha});
     }
+    if(req.method==='POST'&&route==='/api/gallery'){
+     const input=await body(req),value=validateItem(input.item);
+     if(!imagePath(input.path)||!Array.isArray(input.photos)||input.photos.length<1||input.photos.length>10)throw fail(400,'La galería debe tener entre 1 y 10 fotos.');
+     const ref=await gh(session.token,`/repos/${REPO}/git/ref/heads/${BRANCH}`);
+     const head=await gh(session.token,`/repos/${REPO}/git/commits/${ref.object.sha}`);
+     const file=await gh(session.token,`/repos/${REPO}/contents/${DATA}?ref=${ref.object.sha}`);
+     if(input.sha!==file.sha)throw fail(409,'El catálogo cambió. Recarga antes de guardar.');
+     const data=JSON.parse(Buffer.from(file.content,'base64').toString('utf8'));
+     const index=data.items.findIndex(x=>x.path===input.path);
+     if(index<0)throw fail(404,'La ficha ya no existe.');
+     const original=data.items[index];
+     const allowedPaths=new Set([original.path,...(original.photos||[])]);
+     const photos=[],uploads=new Map();let total=0;
+     for(const entry of input.photos){
+      let path;
+      if(entry&&typeof entry.path==='string'){
+       path=entry.path;if(!imagePath(path)||!allowedPaths.has(path))throw fail(400,'Foto no perteneciente a este diseño.');
+      }else{
+       const upload=decodeImage(entry);total+=upload.bytes.length;
+       if(total>25_000_000)throw fail(413,'Las fotos superan el límite de 25 MB.');
+       path=upload.path;uploads.set(path,upload);
+      }
+      if(photos.includes(path))throw fail(400,'No repitas la misma foto en la galería.');photos.push(path);
+     }
+     if(!photos.includes(original.path))throw fail(400,'Conserva la fotografía original del diseño.');
+     if(!Number.isInteger(input.coverIndex)||input.coverIndex<0||input.coverIndex>=photos.length)throw fail(400,'Elige una portada válida.');
+     data.items[index]={...original,...value,photos,coverPhoto:photos[input.coverIndex]};
+     const entries=[];
+     for(const [path,upload] of uploads){const image=await gh(session.token,`/repos/${REPO}/git/blobs`,'POST',{content:upload.bytes.toString('base64'),encoding:'base64'});entries.push({path,mode:'100644',type:'blob',sha:image.sha});}
+     const metadata=await gh(session.token,`/repos/${REPO}/git/blobs`,'POST',{content:JSON.stringify(data,null,2)+'\n',encoding:'utf-8'});
+     entries.push({path:DATA,mode:'100644',type:'blob',sha:metadata.sha});
+     const tree=await gh(session.token,`/repos/${REPO}/git/trees`,'POST',{base_tree:head.tree.sha,tree:entries});
+     const commit=await gh(session.token,`/repos/${REPO}/git/commits`,'POST',{message:`Actualizar galería: ${value.title}`,tree:tree.sha,parents:[ref.object.sha]});
+     await gh(session.token,`/repos/${REPO}/git/refs/heads/${BRANCH}`,'PATCH',{sha:commit.sha,force:false});
+     return json(200,{ok:true,commit:commit.sha});
+    }
     if(req.method==='POST'&&route==='/api/create'){
      const input=await body(req);const value=validateItem(input.item),upload=decodeImage(input.upload);
      // Capture a base commit and read the catalog at that exact commit. A concurrent
@@ -117,3 +153,4 @@ export function createApp({env=process.env,fetcher=fetch}={}){
  server.requestTimeout=30000;server.headersTimeout=10000;return server;
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){const server=createApp();server.listen(Number(process.env.PORT||3000),'0.0.0.0',()=>console.log('MISO admin ready'));}
+

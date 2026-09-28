@@ -360,6 +360,8 @@ button:focus-visible,a:focus-visible{outline:3px solid #f3a35c;outline-offset:3p
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
+
+[hidden]{display:none!important}.gallery-nav{display:flex;align-items:center;justify-content:center;gap:20px;padding:10px}.gallery-nav button{min-width:44px;min-height:44px;border:0;border-radius:12px;background:#efe8f4;color:#594368;font-size:22px}#galleryThumbs{display:flex;gap:8px;overflow-x:auto;padding:4px 16px 12px}#galleryThumbs button{flex:0 0 64px;height:64px;padding:3px;border:2px solid transparent;border-radius:10px;background:#f2edf6}#galleryThumbs button[aria-pressed="true"]{border-color:#78618f}#galleryThumbs img{width:100%;height:100%;object-fit:contain}#galleryCounter{font-size:14px;color:#594368}
 </style>
 
 
@@ -596,7 +598,8 @@ button:focus-visible,a:focus-visible{outline:3px solid #f3a35c;outline-offset:3p
 <dialog id="detail">
   <div class="modal">
     <div class="modal-top"><button class="x" aria-label="Cerrar diseño" onclick="detail.close()">×</button></div>
-    <div class="modal-img"><img id="detailImg" alt=""></div>
+    <div class="modal-img" id="galleryStage"><img id="detailImg" alt=""></div>
+    <div id="galleryControls" hidden><div class="gallery-nav"><button id="galleryPrev" aria-label="Foto anterior">←</button><span id="galleryCounter" role="status" aria-live="polite"></span><button id="galleryNext" aria-label="Foto siguiente">→</button></div><div id="galleryThumbs" aria-label="Fotos de este diseño"></div></div>
     <div class="modal-copy">
       <div class="cat" id="detailCat"></div>
       <h2 id="detailTitle"></h2>
@@ -2741,7 +2744,7 @@ async function loadImages(){
     if(!response.ok)throw new Error('No se pudo leer el catálogo.');
     const data=await response.json();
     if(data.version!==1||!Array.isArray(data.items))throw new Error('Formato de catálogo no válido.');
-    ITEMS=data.items.map((item,index)=>({...buildItem(item.path,index,{}),...item,image:rawUrl(item.path)})).filter(x=>!HIDDEN_REFS.has(x.id));
+    ITEMS=data.items.map((item,index)=>({...buildItem(item.path,index,{}),...item,image:rawUrl(item.coverPhoto||item.path)})).filter(x=>!HIDDEN_REFS.has(x.id));
     $("#status").style.display="none";
     renderChips();render();
   }catch(err){
@@ -2851,10 +2854,26 @@ function expandCatalog(){
   $("#catalogo").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
+let detailPhotos=[],detailPhotoIndex=0;
+function renderDetailPhoto(){
+  $("#detailImg").src=rawUrl(detailPhotos[detailPhotoIndex]);
+  $("#detailImg").alt=`${selected.title} · Foto ${detailPhotoIndex+1} de ${detailPhotos.length}`;
+  $("#galleryControls").hidden=detailPhotos.length<2;
+  $("#galleryCounter").textContent=`${detailPhotoIndex+1} / ${detailPhotos.length}`;
+  $("#galleryThumbs").replaceChildren();
+  detailPhotos.forEach((path,index)=>{const button=document.createElement('button');button.type='button';button.setAttribute('aria-label',`Ver foto ${index+1}`);button.setAttribute('aria-pressed',String(index===detailPhotoIndex));const img=document.createElement('img');img.src=rawUrl(path);img.alt='';img.loading='lazy';button.append(img);button.onclick=()=>{detailPhotoIndex=index;renderDetailPhoto();};$("#galleryThumbs").append(button);});
+}
+function stepPhoto(step){if(!detailPhotos.length)return;detailPhotoIndex=(detailPhotoIndex+step+detailPhotos.length)%detailPhotos.length;renderDetailPhoto();}
+$("#galleryPrev").onclick=()=>stepPhoto(-1);$("#galleryNext").onclick=()=>stepPhoto(1);
+$("#detail").addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();stepPhoto(e.key==='ArrowLeft'?-1:1);}});
+let touchStart=null;
+$("#galleryStage").addEventListener('touchstart',e=>{touchStart=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null;},{passive:true});
+$("#galleryStage").addEventListener('touchend',e=>{if(!touchStart||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)stepPhoto(dx<0?1:-1);},{passive:true});
 function openDetail(id){
   selected=ITEMS.find(x=>x.id===id);if(!selected)return;
-  $("#detailImg").src=selected.image;
-  $("#detailImg").alt=selected.title;
+  detailPhotos=[...new Set([...(Array.isArray(selected.photos)?selected.photos:[selected.path]),selected.path])];
+  detailPhotoIndex=Math.max(0,detailPhotos.indexOf(selected.coverPhoto||selected.path));
+  renderDetailPhoto();
   $("#detailCat").textContent=selected.category;
   $("#detailTitle").textContent=selected.title;
   $("#detailRef").textContent=`Referencia: ${selected.id} · ${selected.price}`;
@@ -2877,6 +2896,7 @@ loadImages();
 </script>
 </body>
 </html>
+
 
 
 
