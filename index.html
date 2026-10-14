@@ -111,6 +111,7 @@ dialog::backdrop{background:rgba(35,25,44,.65);backdrop-filter:blur(4px)}
 </style>
 
 
+<link rel="stylesheet" href="./temporada.css">
 </head>
 <body>
 <header>
@@ -138,6 +139,23 @@ dialog::backdrop{background:rgba(35,25,44,.65);backdrop-filter:blur(4px)}
   <div class="benefits">✨ Personalizado · 🎁 Listo para regalar · 💡 Opción 3D · 🚚 Envíos disponibles</div>
 </section>
 
+<section class="seasonal" aria-labelledby="seasonal-title">
+  <div class="seasonal-heading"><h2 id="seasonal-title">Cuadros de temporada</h2><span aria-hidden="true">✧</span></div>
+  <div class="seasonal-grid">
+    <article class="seasonal-card" data-season="graduacion" aria-labelledby="graduacion-title">
+      <h3 id="graduacion-title">Graduación</h3>
+      <div class="seasonal-stage" aria-label="Galería de Graduación"><img src="./B0F76F40-C6EA-450E-9B68-80986DC0CE3C.jpeg" alt="Cuadro de graduación con fotografías, en caja de regalo" loading="lazy" width="1086" height="1448"></div>
+      <div class="seasonal-controls"><span class="seasonal-counter">1 / 9</span><button type="button" class="seasonal-prev" aria-label="Foto anterior de Graduación">←</button><button type="button" class="seasonal-pause" aria-label="Pausar galería de Graduación">Pausar</button><button type="button" class="seasonal-next" aria-label="Foto siguiente de Graduación">→</button></div>
+      <a class="seasonal-link" href="#catalogo" aria-label="Ver catálogo de Graduación" aria-disabled="true">Ver catálogo <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="seasonal-card teacher" data-season="maestros" aria-labelledby="maestros-title">
+      <h3 id="maestros-title">Día del Maestro</h3>
+      <div class="seasonal-stage" aria-label="Galería del Día del Maestro"><img src="./F2F90262-945E-4FC0-8419-B639C7CDAB6C.jpeg" alt="Cuadro Teacher Isabel en caja de regalo" loading="lazy" width="1086" height="1448"></div>
+      <div class="seasonal-controls"><span class="seasonal-counter">1 / 6</span><button type="button" class="seasonal-prev" aria-label="Foto anterior del Día del Maestro">←</button><button type="button" class="seasonal-pause" aria-label="Pausar galería de Día del Maestro">Pausar</button><button type="button" class="seasonal-next" aria-label="Foto siguiente del Día del Maestro">→</button></div>
+      <a class="seasonal-link" href="#catalogo" aria-label="Ver catálogo del Día del Maestro" aria-disabled="true">Ver catálogo <span aria-hidden="true">→</span></a>
+    </article>
+  </div>
+</section>
 <section class="search-area" id="explorar" aria-label="Explorar diseños">
   <div class="search">
     <span>⌕</span>
@@ -145,6 +163,7 @@ dialog::backdrop{background:rgba(35,25,44,.65);backdrop-filter:blur(4px)}
     <button class="clear" id="clear" aria-label="Limpiar búsqueda">×</button>
   </div>
   <div class="chips" id="chips"></div>
+  <div class="seasonal-selection" id="seasonal-selection" hidden><span></span><button type="button" id="seasonal-clear">Ver todas las colecciones</button></div>
 </section>
 <div class="toolbar" id="catalogo" tabindex="-1"><span id="count" role="status" aria-live="polite">Cargando diseños…</span></div>
 <div class="status" id="status"><div class="statusbox">Cargando automáticamente las imágenes guardadas en el repositorio de MISO CR…</div></div>
@@ -365,6 +384,7 @@ dialog::backdrop{background:rgba(35,25,44,.65);backdrop-filter:blur(4px)}
 
 <footer>MISO CR · Catálogo de cuadros personalizados</footer>
 
+<script src="./temporada.js"></script>
 <script>
 const OWNER="misocr";
 const REPO="miso-cr-catalogo";
@@ -2499,7 +2519,7 @@ async function loadImages(){
     if(data.version!==1||!Array.isArray(data.items))throw new Error('Formato de catálogo no válido.');
     ITEMS=data.items.map((item,index)=>({...buildItem(item.path,index,{}),...item,image:rawUrl(item.coverPhoto||item.path)})).filter(x=>!HIDDEN_REFS.has(x.id));
     $("#status").style.display="none";
-    renderChips();render();
+    renderChips();render();initSeasonal();
   }catch(err){
     console.error(err);
     $("#count").textContent="No se pudo cargar el catálogo";
@@ -2511,7 +2531,7 @@ function renderChips(){
   const used=new Set(ITEMS.filter(x=>x.active).map(x=>x.category));
   const visibleCats=CATS.filter(c=>c==="Todos"||used.has(c));
   $("#chips").innerHTML=visibleCats.map(c=>`<button class="chip ${c===active?"active":""}" aria-pressed="${c===active}" data-c="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join("");
-  document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{active=b.dataset.c;renderChips();render()});
+  document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{clearSeason();active=b.dataset.c;renderChips();render()});
 }
 function escapeHtml(s=""){
   return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
@@ -2525,7 +2545,7 @@ function matchesSearch(item,query){
   return terms.every(term=>text.includes(term));
 }
 function filtered(){
-  return ITEMS.filter(x=>x.active&&(active==="Todos"||x.category===active)&&matchesSearch(x,$("#q").value));
+  return ITEMS.filter(x=>x.active&&matchesSeason(x)&&(active==="Todos"||x.category===active)&&matchesSearch(x,$("#q").value));
 }
   let showAll = false;
   const FEATURED_CATEGORIES = ["Parejas", "Familia", "Anime & Fandom", "Deportes", "Mascotas", "Cumpleaños", "Aniversarios", "Profesiones y hobbies"];
@@ -2540,7 +2560,7 @@ function render(){
   const q=norm($("#q").value);
 
   const showingFeatured =
-    !showAll &&
+    !showAll && !activeSeason &&
     active==="Todos" &&
     !q;
 
