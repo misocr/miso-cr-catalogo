@@ -64,7 +64,7 @@ function initSeasonal(){
     card.querySelector('.seasonal-next').onclick=()=>{paused=true;step(1);};
     pause.onclick=()=>{paused=!paused;sync();};
     // Detener la reproducción al navegar con teclado; reanudar solo a petición.
-    card.addEventListener('focusin',()=>{paused=true;sync();});
+    card.addEventListener('focusin',event=>{if(event.target!==pause){paused=true;sync();}});
     motion.addEventListener('change',()=>{if(motion.matches){paused=true;sync();}});
     document.addEventListener('visibilitychange',sync);
     if('IntersectionObserver' in window){
