@@ -1,0 +1,2699 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7b6695">
+<title>MISO CR · Catálogo de diseños</title>
+<style>
+/* MISO CR — identidad visual. Conserva el DOM y las funciones del catálogo. */
+:root{
+  --miso:#786092;--miso2:#a28ab9;--orange:#e9a66d;--lav:#f3eef8;--bg:#fff;
+  --ink:#30283a;--muted:#6e6577;--line:#eae3ef;--white:#fff;--wa:#24694f;
+  --danger:#b94055;--shadow:0 10px 32px rgba(61,43,80,.065);--radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.head{max-width:1240px;min-height:72px;margin:auto;padding:12px 24px;display:flex;align-items:center;gap:12px}
+.logo{display:flex;align-items:center}.logo img{display:block;width:124px;height:auto;mix-blend-mode:multiply}
+.head-actions{margin-left:auto;display:flex;gap:8px}
+.hero{position:relative;isolation:isolate;max-width:1192px;margin:24px auto 32px;padding:44px 44px 0;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:24px 40px;border:1px solid #eee3f5;border-radius:32px;background:radial-gradient(ellipse at 0 0,#fffdf6,transparent 55%),radial-gradient(ellipse at 100% 70%,#dfcdec,transparent 62%),#f6effb}
+.hero-copy{padding:14px 0 24px;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;padding:7px 11px;border:1px solid #e7deef;border-radius:999px;background:#f7f3fb;color:#69527f;font-size:11px;font-weight:750;letter-spacing:.8px;line-height:1.4}
+.hero h1{font-size:clamp(38px,4.5vw,61px);font-weight:800;line-height:1.08;letter-spacing:-2px;margin:24px 0;text-wrap:balance;color:#38234e}
+.hero h1 em{display:block;margin-top:8px;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;color:#8254a7;letter-spacing:-1.8px;text-decoration:underline;text-decoration-color:#f3d47b;text-decoration-thickness:4px;text-underline-offset:9px}
+.hero p{max-width:430px;margin:0;color:#665771;font-size:16px;line-height:1.65}
+.hero .hero-subtitle{font-size:18px;font-weight:650;color:#43324e;margin:0 0 10px}
+.hero-catalog{display:inline-flex;align-items:center;justify-content:center;gap:30px;min-height:54px;margin-top:26px;padding:15px 28px;border-radius:999px;color:white;background:#78459a;text-decoration:none;font-weight:700;font-size:17px;box-shadow:0 5px 0 #edd58f,0 12px 26px #69438320;transition:background .2s,transform .2s}
+.hero-catalog span{font-size:24px;line-height:1}
+.hero-visual{position:relative;padding:0 4px 6px;max-width:430px;justify-self:center;width:100%}
+.hero-visual>img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;border-radius:24px;border:6px solid #ffffff;box-shadow:0 18px 40px #51346324;transform:rotate(2deg)}
+.hero-spark{position:absolute;z-index:1;pointer-events:none;line-height:1;text-shadow:0 2px 0 white}
+.hero-spark-one{top:12%;left:-22px;font-size:54px;color:#d4a73e}.hero-spark-two{right:-20px;bottom:13%;font-size:60px;color:#a46fc1;transform:rotate(14deg)}
+.benefits{grid-column:1/-1;margin:8px -20px 0;padding:20px 16px;border:1px solid #eadff0;border-bottom:0;border-radius:22px 22px 0 0;background:#ffffffdf;color:#665571;font-size:14px;font-weight:550;line-height:1.9;text-align:center}
+.search-area{scroll-margin-top:92px;max-width:1240px;margin:auto;padding:10px 24px 0;position:relative}
+.search{position:relative}
+.search input{width:100%;min-height:54px;padding:15px 50px 15px 46px;border:1px solid #ddd2e6;border-radius:16px;background:#fff;color:var(--ink);font-size:16px;outline:none;box-shadow:0 4px 16px rgba(61,43,80,.04)}
+.search input::placeholder{color:#7b7184;opacity:1}
+.search input:focus{border-color:var(--miso);box-shadow:0 0 0 4px #eee7f5}
+.search span{position:absolute;left:17px;top:12px;font-size:23px;color:var(--miso);pointer-events:none}
+.clear{position:absolute;right:6px;top:5px;width:44px;height:44px;border:0;border-radius:12px;background:#f7f3fa;color:#675575;font-size:20px}
+.chips{display:flex;gap:8px;overflow:auto;padding:14px 0 12px;scrollbar-width:thin;scrollbar-color:#d8cae4 transparent}
+.chip{min-height:44px;border:1px solid var(--line);background:#fff;padding:10px 16px;border-radius:999px;white-space:nowrap;font-size:13px;font-weight:650;color:#66596f;transition:background .18s,border-color .18s,color .18s}
+.chip.active{background:var(--miso);border-color:var(--miso);color:#fff;box-shadow:0 3px 9px #78609220}
+.toolbar{max-width:1240px;margin:auto;padding:20px 24px 16px;display:flex;justify-content:space-between;align-items:center;color:#51425f;font-size:16px;font-weight:700;scroll-margin-top:84px}
+.toolbar span{display:flex;align-items:center;gap:10px}.toolbar span::before{content:"";width:5px;height:18px;border-radius:3px;background:#d5bedf}
+.status{max-width:1240px;margin:0 auto 12px;padding:0 24px}
+.statusbox{background:var(--lav);border:1px solid var(--line);border-radius:14px;padding:14px;color:var(--muted);font-size:13px;line-height:1.6}
+.grid{max-width:1240px;margin:auto;padding:0 24px 28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:0 4px 18px rgba(61,43,80,.045);transition:box-shadow .22s,border-color .22s,transform .22s}
+.photo{aspect-ratio:4/3;background:#f6f3f8;overflow:hidden;position:relative;cursor:pointer;border-bottom:1px solid #eee8f2}
+.photo img{width:100%;height:100%;object-fit:contain;display:block}
+.ref{position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.95);color:#544261;border:1px solid #e7deed;padding:5px 8px;border-radius:7px;font-size:10px;font-weight:700;letter-spacing:.4px;max-width:calc(100% - 20px)}
+.body{padding:17px;display:flex;flex-direction:column;flex:1}
+.cat{font-size:10px;line-height:1.5;letter-spacing:.7px;text-transform:uppercase;font-weight:700;color:#7b638e;overflow-wrap:anywhere;min-height:16px}
+.title{font-size:16px;font-weight:650;line-height:1.45;margin:7px 0 10px;min-height:46px;overflow-wrap:anywhere}
+.price{font-size:15px;font-weight:750;color:#554063;margin:0 0 16px}
+.actions{display:flex;gap:8px;margin-top:auto}
+.actions button,.iconbtn,.fullwa,.btn-whatsapp,.cta{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid transparent;border-radius:12px;font-size:13px;font-weight:650;line-height:1.4;padding:11px 14px;text-decoration:none;cursor:pointer;transition:background .18s,box-shadow .18s,border-color .18s}
+.actions button{flex:1;min-width:0;padding:10px 6px}
+.wa,.fullwa,.head-actions .iconbtn,.btn-whatsapp{background:var(--wa);color:#fff}
+.view,.iconbtn{background:var(--lav);color:#614b75;border-color:#e8def0}
+.cta,.location-card .btn-whatsapp{background:var(--miso);color:#fff;padding:14px 25px;font-size:15px;box-shadow:0 6px 16px #7860921f}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #ad743e;outline-offset:3px}
+.catalog-more{grid-column:1/-1;text-align:center;padding:14px 0 8px}
+.empty{display:none;text-align:center;padding:60px 20px;color:var(--muted)}.empty h2{color:var(--ink)}
+.sizes-section,.how-section,.location-section,.payments-section,.final-cta{max-width:1192px;margin:36px auto;padding:38px 26px;border-radius:26px}
+.sizes-section{background:linear-gradient(135deg,#f8f4fc,#fdfbff);border:1px solid var(--line);text-align:center}
+.how-section{text-align:center}
+.section-title{text-align:center;margin-bottom:28px}
+.section-title h2,.final-cta h2{margin:14px 0 10px;font-size:clamp(24px,3vw,32px);font-weight:700;letter-spacing:-.8px;line-height:1.25;text-wrap:balance}
+.section-title p{max-width:600px;margin:0 auto;color:var(--muted);font-size:15px;line-height:1.65}
+.sizes-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:860px;margin:0 auto}
+.size-card,.step-card,.payment-card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 4px 16px rgba(61,43,80,.025)}
+.size-card{padding:24px 12px}.size-icon{font-size:23px;margin-bottom:10px}.size-card h3{margin:0 0 10px;font-size:16px;font-weight:600}.size-card strong{display:block;font-size:23px;color:#634e76;letter-spacing:-.6px}.size-card p{margin:7px 0 0;color:var(--muted);font-size:14px}.size-note{margin:24px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
+.steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:980px;margin:0 auto 26px}
+.step-card{padding:24px 18px;text-align:left}.step-card span{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:var(--lav);color:var(--miso);font-weight:750;margin-bottom:16px}.step-card h3{margin:0 0 8px;font-size:16px;font-weight:650}.step-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+.location-section,.payments-section{border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+.location-card{max-width:720px;margin:auto;text-align:center}.location-card h3{margin:0 0 16px;font-size:20px;font-weight:650}.location-card p{margin:12px auto;color:var(--muted);line-height:1.75;font-size:15px}.location-card .btn-whatsapp{margin-top:14px}
+.payments-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:980px;margin:auto}.payment-card{padding:22px 14px;text-align:center;background:#fcfafdfa;box-shadow:none}.payment-card span{display:block;font-size:24px;margin-bottom:10px}.payment-card h3{margin:0 0 7px;font-size:15px;font-weight:650}.payment-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.final-cta{position:relative;isolation:isolate;overflow:hidden;text-align:center;background:radial-gradient(ellipse at 0 100%,#fff5e5,transparent 48%),linear-gradient(130deg,#f8f3fc,#f0e9f7);border:1px solid var(--line)}
+.final-cta::after{content:"♡";position:absolute;right:5%;bottom:22px;z-index:-1;color:#d6c4e3;font-size:80px;pointer-events:none}
+.final-cta h2{max-width:730px;margin:16px auto}.final-cta p{max-width:660px;margin:16px auto 22px;color:var(--muted);font-size:15px;line-height:1.7}.final-cta .contact-info{margin:26px auto 0;font-size:13px}.contact-info strong{font-weight:600}
+footer{padding:26px 20px 34px;text-align:center;color:var(--muted);font-size:12px;letter-spacing:.3px;border-top:1px solid var(--line)}
+dialog{border:1px solid var(--line);padding:0;border-radius:24px;width:min(760px,95vw);max-height:92dvh;box-shadow:0 25px 80px rgba(30,20,40,.24);color:var(--ink)}
+dialog::backdrop{background:rgba(35,25,44,.65);backdrop-filter:blur(4px)}
+.modal{background:#fff}.modal-top{display:flex;justify-content:flex-end;padding:9px}.x{border:0;width:44px;height:44px;border-radius:50%;background:var(--lav);color:var(--ink);font-size:24px}.modal-img{background:#f6f3f8}.modal-img img{width:100%;max-height:58dvh;object-fit:contain;display:block}.modal-copy{padding:24px}.modal-copy h2{margin:8px 0 12px;font-size:25px;font-weight:650;line-height:1.3}.modal-copy p{color:var(--muted);line-height:1.65}.fullwa{width:100%;font-size:15px;padding:14px}
+.gallery-nav{display:flex;align-items:center;justify-content:center;gap:20px;padding:12px}.gallery-nav button{min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--lav);color:#614b75;font-size:22px}#galleryThumbs{display:flex;gap:8px;overflow-x:auto;padding:4px 16px 12px}#galleryThumbs button{flex:0 0 64px;height:64px;padding:3px;border:2px solid transparent;border-radius:10px;background:var(--lav)}#galleryThumbs button[aria-pressed="true"]{border-color:var(--miso)}#galleryThumbs img{width:100%;height:100%;object-fit:contain}#galleryCounter{font-size:14px;color:#614b75}
+@media(min-width:650px) and (max-width:1000px){.hero{margin:20px 20px 28px;padding:30px 28px 0;gap:20px}.hero h1{font-size:42px}}
+@media(hover:hover) and (pointer:fine){.hero-catalog:hover{background:#643581;transform:translateY(-2px)}}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:980px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.sizes-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(hover:hover) and (pointer:fine){.card:hover{transform:translateY(-3px);box-shadow:0 14px 32px #3d2b5014;border-color:#d4c2e2}.chip:not(.active):hover,.view:hover{background:#eae1f3;border-color:#d4c2e2}.wa:hover,.fullwa:hover,.head-actions .iconbtn:hover,.btn-whatsapp:hover{background:#1b533e}.cta:hover,.location-card .btn-whatsapp:hover{background:#654c80}}
+@media(max-width:649px){
+  .head{min-height:62px;padding:9px 14px}.logo img{width:108px}.head-actions .iconbtn{min-height:44px;padding:10px 14px}
+  .hero{margin:14px 12px 24px;padding:26px 20px 0;grid-template-columns:1fr;gap:20px;border-radius:26px}.hero-copy{padding:0;text-align:center}.hero h1{font-size:40px;letter-spacing:-1.4px;margin:18px 0 22px}.hero h1 em{letter-spacing:-1.3px;text-underline-offset:7px}.hero p{font-size:14px;line-height:1.6;margin-left:auto;margin-right:auto}.hero .hero-subtitle{font-size:16px}.hero .badge{font-size:10px}.hero-catalog{margin-top:22px;min-height:52px;padding:13px 26px;font-size:16px}.hero-visual{max-width:310px;padding:0 6px}.hero-visual>img{border-width:5px;border-radius:20px;transform:rotate(1deg)}.hero-spark-one{font-size:38px;left:-9px}.hero-spark-two{font-size:44px;right:-8px}.benefits{margin:0 -8px;padding:14px 8px;font-size:12px;line-height:1.9;border-radius:18px 18px 0 0}
+  .search-area{padding:4px 14px 0}.search input{min-height:52px;font-size:16px}.chips{padding:12px 0 10px}.chip{font-size:13px;padding:10px 14px}
+  .toolbar{font-size:15px;padding:15px 14px;scroll-margin-top:74px}.status{padding:0 14px}.grid{padding:0 12px 18px;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .card{border-radius:16px}.body{padding:11px}.cat{font-size:10px;min-height:30px;letter-spacing:.4px}.title{font-size:14px;min-height:41px;margin:6px 0 10px}.price{font-size:13px;margin-bottom:12px}.actions{flex-direction:column;gap:7px}.actions button{width:100%;flex:auto;font-size:13px}.ref{left:6px;bottom:6px;font-size:9px;padding:4px 6px}
+  .catalog-more{padding:12px 0}.sizes-section,.how-section,.location-section,.payments-section,.final-cta{margin:24px 12px;padding:26px 16px;border-radius:22px}.section-title{margin-bottom:22px}.section-title h2,.final-cta h2{font-size:25px;letter-spacing:-.6px}.section-title p{font-size:14px}.sizes-grid{gap:12px}.size-card{padding:20px 8px}.size-card h3{font-size:15px}.size-card strong{font-size:21px}.size-card p{font-size:13px}
+  .steps-grid{grid-template-columns:1fr;gap:12px}.step-card{display:grid;grid-template-columns:40px 1fr;column-gap:14px;padding:20px 16px;align-items:start}.step-card span{grid-row:1/span 2;margin:0}.step-card h3{margin:0 0 5px}.step-card p{font-size:13px}.payments-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.payment-card{padding:20px 10px}.modal-copy{padding:20px}.modal-copy h2{font-size:23px}.final-cta::after{font-size:48px;right:12px;bottom:12px}
+}
+/* El contenido nunca se oculta: si JS falla permanece disponible. */
+@keyframes miso-arrive{from{opacity:.25;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:no-preference){.miso-arrive{animation:miso-arrive .42s ease-out both}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+
+</head>
+<body>
+<header>
+  <div class="head">
+    <div class="logo"><img src="./miso-logo.jpg" alt="Miso Costa Rica" width="1280" height="578"></div>
+    <div class="head-actions">
+      <button class="iconbtn" onclick="openGeneralWA()">WhatsApp</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+  <span class="badge">✨ MISO COSTA RICA</span>
+  <h1>Regalos que cuentan <em>grandes historias</em></h1>
+  <p class="hero-subtitle">Cuadros personalizados hechos para vos 🧡</p>
+  <p>Elegí tu diseño favorito y personalizalo con tus fotos, nombres y recuerdos.</p>
+  <a class="hero-catalog" href="#explorar">Ver catálogo <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="hero-visual">
+    <span class="hero-spark hero-spark-one" aria-hidden="true">✧</span>
+    <img src="./regalo-real-naruto.jpg" alt="Cuadro personalizado de Naruto con luz LED, presentado en su caja con tarjeta y dulces" width="1152" height="1536" fetchpriority="high" decoding="async">
+    <span class="hero-spark hero-spark-two" aria-hidden="true">♡</span>
+  </div>
+  <div class="benefits">✨ Personalizado · 🎁 Listo para regalar · 💡 Opción 3D · 🚚 Envíos disponibles</div>
+</section>
+
+<section class="search-area" id="explorar" aria-label="Explorar diseños">
+  <div class="search">
+    <span>⌕</span>
+    <input id="q" aria-label="Buscar diseños" type="search" placeholder="Ej: anime, pareja, profesor, cumpleaños…" autocomplete="off">
+    <button class="clear" id="clear" aria-label="Limpiar búsqueda">×</button>
+  </div>
+  <div class="chips" id="chips"></div>
+</section>
+<div class="toolbar" id="catalogo" tabindex="-1"><span id="count" role="status" aria-live="polite">Cargando diseños…</span></div>
+<div class="status" id="status"><div class="statusbox">Cargando automáticamente las imágenes guardadas en el repositorio de MISO CR…</div></div>
+<main class="grid" id="grid"></main>
+<section class="empty" id="empty"><h2>No encontré diseños</h2><p>Prueba otra palabra o toca “Todos”.</p></section>
+
+<section class="sizes-section">
+
+  <div class="section-title">
+    <span class="badge">🖼️ NUESTROS TAMAÑOS</span>
+    <h2>Elegí el tamaño perfecto para tu recuerdo ✨</h2>
+    <p>Actualmente contamos con estas cuatro opciones disponibles.</p>
+  </div>
+
+  <div class="sizes-grid">
+
+    <div class="size-card">
+      <div class="size-icon">🧡</div>
+      <h3>Pequeño</h3>
+      <strong>₡17.500</strong>
+      <p>19,8 × 15 cm</p>
+    </div>
+
+    <div class="size-card">
+      <div class="size-icon">🧡</div>
+      <h3>Mediano</h3>
+      <strong>₡19.500</strong>
+      <p>23 × 18 cm</p>
+    </div>
+
+    <div class="size-card">
+      <div class="size-icon">🧡</div>
+      <h3>Grande</h3>
+      <strong>₡21.500</strong>
+      <p>25 × 19,7 cm</p>
+    </div>
+
+    <div class="size-card">
+      <div class="size-icon">✨</div>
+      <h3>Extra Grande</h3>
+      <strong>₡27.500</strong>
+      <p>31 × 26 cm</p>
+    </div>
+
+  </div>
+
+  <p class="size-note">
+    ✨ Todos nuestros cuadros son personalizados con tus fotos y detalles.
+  </p>
+
+</section>
+  <section class="how-section">
+
+  <div class="section-title">
+    <span class="badge">💌 PERSONALIZÁ TU CUADRO</span>
+    <h2>¿Cómo funciona?</h2>
+    <p>Crear tu cuadro personalizado es muy sencillo 🧡</p>
+  </div>
+
+  <div class="steps-grid">
+
+    <div class="step-card">
+      <span>01</span>
+      <h3>Elegí tu diseño</h3>
+      <p>Explorá nuestro catálogo y encontrá la referencia que más te guste.</p>
+    </div>
+
+    <div class="step-card">
+      <span>02</span>
+      <h3>Enviános tus fotos</h3>
+      <p>Compartinos las fotografías y los detalles que querés agregar a tu cuadro.</p>
+    </div>
+
+    <div class="step-card">
+      <span>03</span>
+      <h3>Lo hacemos realidad</h3>
+      <p>Nosotros nos encargamos de personalizarlo para convertir tu idea en un recuerdo único. ✨</p>
+    </div>
+
+  </div>
+
+  <a
+    class="btn-whatsapp"
+    href="https://wa.me/50672850202"
+    target="_blank"
+    rel="noopener"
+  >
+    💬 Quiero personalizar mi cuadro
+  </a>
+
+</section>
+
+<section class="location-section">
+
+  <div class="section-title">
+    <span class="badge">📍 ENCONTRANOS</span>
+    <h2>¿Dónde estamos?</h2>
+    <p>Podés visitarnos en nuestra tienda física 🧡</p>
+  </div>
+
+  <div class="location-card">
+
+    <h3>📍 Miso Costa Rica</h3>
+
+    <p>
+      Estamos ubicados en <strong>Barrio México</strong>,
+      500 metros norte del Hospital de Niños,
+      frente a Agencias Vibo de Centroamérica.
+    </p>
+
+    <p>
+      Encontrás la tienda en Waze como:
+      <br>
+      🔹 <strong>Miso Costa Rica</strong>
+      <br>
+      🔹 <strong>Esencia Vestuario</strong>
+    </p>
+
+    <p>
+      🚪 En la fachada vas a ver el rótulo de
+      <strong>Esencia Vestuario</strong> ✨
+      <br>
+      Nosotras compartimos el espacio.
+    </p>
+
+    <a
+      class="btn-whatsapp"
+      href="https://waze.com/ul/hd1u0w93wn"
+      target="_blank"
+      rel="noopener"
+    >
+      🗺️ Cómo llegar con Waze
+    </a>
+
+  </div>
+
+</section>
+  <section class="payments-section">
+
+  <div class="section-title">
+    <span class="badge">💳 FORMAS DE PAGO</span>
+    <h2>Pagá como prefirás</h2>
+    <p>Tenemos diferentes opciones para que tu compra sea más sencilla. 🧡</p>
+  </div>
+
+  <div class="payments-grid">
+
+    <div class="payment-card">
+      <span>💵</span>
+      <h3>Efectivo</h3>
+      <p>Disponible en tienda física.</p>
+    </div>
+
+    <div class="payment-card">
+      <span>💳</span>
+      <h3>Tarjeta</h3>
+      <p>Disponible en tienda física.</p>
+    </div>
+
+    <div class="payment-card">
+      <span>📱</span>
+      <h3>SINPE Móvil</h3>
+      <p>Disponible para compras en línea.</p>
+    </div>
+
+    <div class="payment-card">
+      <span>🏦</span>
+      <h3>Transferencia</h3>
+      <p>Disponible para compras en línea.</p>
+    </div>
+
+  </div>
+
+</section>
+  <section class="final-cta">
+
+  <span class="badge">✨ HACÉLO TUYO</span>
+
+  <h2>Tu recuerdo merece convertirse en algo especial. 🧡</h2>
+
+  <p>
+    Elegí tu diseño favorito, enviános tus fotos y contanos
+    cómo querés personalizarlo. Nosotros hacemos el resto. ✨
+  </p>
+
+  <a
+    class="btn-whatsapp"
+    href="https://wa.me/50672850202"
+    target="_blank"
+    rel="noopener"
+  >
+    💬 Quiero personalizar mi cuadro
+  </a>
+
+  <p class="contact-info">
+    También podés escribirnos directamente:
+    <br><br>
+    <strong>María · 7285-0202</strong>
+    <br>
+    <strong>Ximena · 7003-5049</strong>
+  </p>
+
+</section>
+<dialog id="detail">
+  <div class="modal">
+    <div class="modal-top"><button class="x" aria-label="Cerrar diseño" onclick="detail.close()">×</button></div>
+    <div class="modal-img" id="galleryStage"><img id="detailImg" alt=""></div>
+    <div id="galleryControls" hidden><div class="gallery-nav"><button id="galleryPrev" aria-label="Foto anterior">←</button><span id="galleryCounter" role="status" aria-live="polite"></span><button id="galleryNext" aria-label="Foto siguiente">→</button></div><div id="galleryThumbs" aria-label="Fotos de este diseño"></div></div>
+    <div class="modal-copy">
+      <div class="cat" id="detailCat"></div>
+      <h2 id="detailTitle"></h2>
+      <p id="detailRef"></p>
+      <p id="detailDesc">Este diseño puede personalizarse con tus fotos, nombre y detalles. Consulta disponibilidad, tamaño y opción 3D por WhatsApp.</p>
+      <button class="fullwa" id="detailWa">Consultar este diseño por WhatsApp</button>
+    </div>
+  </div>
+</dialog>
+
+<footer>MISO CR · Catálogo de cuadros personalizados</footer>
+
+<script>
+const OWNER="misocr";
+const REPO="miso-cr-catalogo";
+const BRANCH="main";
+const WHATSAPP="50672850202";
+
+const CATS=[
+  "Todos",
+  "Parejas",
+  "Familia",
+  "Mascotas",
+  "Cumpleaños",
+  "Aniversarios",
+  "Reconocimientos",
+  "Deportes",
+  "Anime & Fandom",
+  "Profesiones y hobbies",
+  "Fe e inspiración",
+  "Graduación + Escolar",
+  "Otros"
+];
+
+const IMAGE_EXT=/\.(png|jpe?g|webp|gif|avif)$/i;
+  const HIDDEN_REFS=new Set([
+  "MISO-1NIT4",
+  "MISO-1NIIT4",
+  "MISO-L895CJ"
+]);
+const EXCLUDE_NAME=/(logo|favicon|icon|banner|portada|header|qr|waze|mapa|map|payment|pago|sinpe)/i;
+const EXCLUDE_PATH=/(^|\/)(\.git|\.github|node_modules|assets\/icons?)(\/|$)/i;
+
+let ITEMS=[];
+let active="Todos";
+let selected=null;
+const $=s=>document.querySelector(s);
+const norm=s=>(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+
+function hashString(str){
+  let h=2166136261;
+  for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}
+  return (h>>>0).toString(36).toUpperCase().padStart(6,"0").slice(0,6);
+}
+function refFor(path){return "MISO-"+hashString(path)}
+function rawUrl(path){return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path.split("/").map(encodeURIComponent).join("/")}`}
+function cleanTitle(path){
+  let n=path.split("/").pop().replace(/\.[^.]+$/,"").replace(/[_-]+/g," ").trim();
+  if(/^img\s*\d+/i.test(n)||/^[0-9a-f]{8,}/i.test(n)) return "Diseño personalizado";
+  return n.replace(/\b\w/g,m=>m.toUpperCase());
+}
+  // Catalog metadata reviewed against each photograph.
+  const MANUAL_CATALOG = {
+  "4a5c0ee5-88c9-40f2-8f85-66470b246c4a.jpeg": {
+    "title": "Mamá · Collage de fotos y dedicatoria",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Mamá. La muestra presenta Collage de fotos y dedicatoria. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá · Collage de fotos y dedicatoria, familia recuerdo regalo, madre madres mami día de la madre, fotografías collage"
+  },
+  "4CC10730-2038-457A-AA13-9D4A55507B95.png": {
+    "title": "Bomberos · Retratos y equipo de emergencia",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de bomberos. La muestra presenta Retratos y equipo de emergencia. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Bomberos · Retratos y equipo de emergencia, , bombero rescate emergencia"
+  },
+  "4eec5d82-ac23-4393-91cf-09f210e7c330.jpeg": {
+    "title": "Billie Eilish · Sam",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Billie Eilish. La muestra presenta Sam. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Billie Eilish · Sam, , música cantante"
+  },
+  "5b29d29a-2e6b-4052-af07-25c1dbf61e7c.jpeg": {
+    "title": "Dragon Ball · Collage de personajes",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Dragon Ball. La muestra presenta Collage de personajes. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Dragon Ball · Collage de personajes, , anime manga dragonball saiyajin"
+  },
+  "7d4ca9e4-9852-4a20-9ae0-0f4072c70abd.jpeg": {
+    "title": "Naruto · Fabi",
+    "category": "Anime & Fandom",
+    "description": "Cuadro de Naruto con el nombre Fabi, personajes a color y viñetas de manga en el fondo.",
+    "keywords": "Naruto · Fabi, , anime manga ninja uzumaki"
+  },
+  "62deaa56-de0d-4270-b1b2-7922b38131b7.jpeg": {
+    "title": "Batman · Juank",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Batman. La muestra presenta Juank. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Batman · Juank, , DC cómics superhéroes caballero oscuro"
+  },
+  "080dd217-1768-45e7-b00d-607468109211.jpeg": {
+    "title": "Capibaras · Alison",
+    "category": "Anime & Fandom",
+    "description": "Cuadro con capibaras ilustradas, fotografías y el nombre Alison.",
+    "keywords": "Capibaras · Alison, , capibara capybara carpincho chigüiro"
+  },
+  "729ac862-3899-48fc-bef0-784eff94e311.jpeg": {
+    "title": "Museo de nuestra historia · Fotos de pareja",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Museo de nuestra historia. La muestra presenta Fotos de pareja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Museo de nuestra historia · Fotos de pareja, aniversario pareja amor celebración, fotografías collage"
+  },
+  "6452f2c5-704b-4808-9e47-2634a2a1a3da.jpeg": {
+    "title": "Star Wars · Darío",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Star Wars. La muestra presenta Darío. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Star Wars · Darío, , guerra de las galaxias ciencia ficción"
+  },
+  "7431efc1-b642-49bf-b57c-5248a71f67db.jpeg": {
+    "title": "Collage romántico · Fotos y mensaje",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Collage romántico. La muestra presenta Fotos y mensaje. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Collage romántico · Fotos y mensaje, pareja novios amor romántico san valentín, fotografías collage"
+  },
+  "7571B9FD-85DF-4F66-827D-870590C8DE51.png": {
+    "title": "Gracias al orientador · Retrato y dedicatoria",
+    "category": "Reconocimientos",
+    "description": "Cuadro personalizado: Gracias al orientador. La muestra presenta Retrato y dedicatoria. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Gracias al orientador · Retrato y dedicatoria, reconocimiento agradecimiento homenaje, orientación reconocimiento"
+  },
+  "18280b33-2114-4f0d-b989-f6a7ebcf3750.jpeg": {
+    "title": "Contigo cada instante es único · Collage",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Contigo cada instante es único. La muestra presenta Collage. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Contigo cada instante es único · Collage, pareja novios amor romántico san valentín"
+  },
+  "21034770-A3FA-4FFC-B21B-B47D4D2D8A2B.png": {
+    "title": "Profesor de Estudios Sociales · Mario",
+    "category": "Reconocimientos",
+    "description": "Cuadro personalizado: Profesor de Estudios Sociales. La muestra presenta Mario. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Profesor de Estudios Sociales · Mario, reconocimiento agradecimiento homenaje, profe docente maestro"
+  },
+  "a8ed2c28-39f2-409e-85c4-a78b75bcae6d.jpeg": {
+    "title": "Boston Celtics · Daniel",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Boston Celtics. La muestra presenta Daniel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Boston Celtics · Daniel, , nba baloncesto basquetbol basketball basket"
+  },
+  "e6ee1137-4ee8-4ff5-9e3b-30fcd43b425f.jpeg": {
+    "title": "Minecraft · Ryan",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Minecraft. La muestra presenta Ryan. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Minecraft · Ryan, , videojuego gamer"
+  },
+  "e7435ec3-a9ec-4cb1-9913-0e6538c1315f.jpeg": {
+    "title": "Spider-Man · Josué",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Spider-Man. La muestra presenta Josué. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Spider-Man · Josué, , spiderman spider man hombre araña marvel superhéroes cómics"
+  },
+  "fd08ea19-f445-44cf-bb7d-24cc27e3d9bb.jpeg": {
+    "title": "Collage de pareja · Fotos en blanco y negro",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Collage de pareja. La muestra presenta Fotos en blanco y negro. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Collage de pareja · Fotos en blanco y negro, pareja novios amor romántico san valentín, fotografías collage"
+  },
+  "ff22fdcd-ee18-4059-9488-dea02aa0b9e9.jpeg": {
+    "title": "One Piece · Efraín",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en One Piece. La muestra presenta Efraín. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "One Piece · Efraín, , anime manga piratas"
+  },
+  "IMG_0044.jpeg": {
+    "title": "BTS y BT21 · Te amo",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en BTS y BT21. La muestra presenta Te amo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "BTS y BT21 · Te amo, , música kpop k pop army"
+  },
+  "IMG_0050.jpeg": {
+    "title": "Enredados · Rapunzel y Flynn",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Enredados. La muestra presenta Rapunzel y Flynn. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Enredados · Rapunzel y Flynn, , rapunzel tangled disney princesa"
+  },
+  "IMG_0072.jpeg": {
+    "title": "FC Barcelona y Messi · Aarón",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: FC Barcelona y Messi. La muestra presenta Aarón. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "FC Barcelona y Messi · Aarón, , lionel fútbol futbolista, barca barça fútbol"
+  },
+  "IMG_0091.jpeg": {
+    "title": "God of War · Kratos y Atreus",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en God of War. La muestra presenta Kratos y Atreus. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "God of War · Kratos y Atreus, , videojuego gamer"
+  },
+  "IMG_0098.jpeg": {
+    "title": "Stitch · Joss",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Stitch. La muestra presenta Joss. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Stitch · Joss, , lilo stitch disney"
+  },
+  "IMG_0162.jpeg": {
+    "title": "Stitch · Nicole",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Stitch. La muestra presenta Nicole. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Stitch · Nicole, , lilo stitch disney"
+  },
+  "IMG_0168.jpeg": {
+    "title": "Motocicletas Fórmula · Damián",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de motocicletas fórmula. La muestra presenta Damián. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Motocicletas Fórmula · Damián, , moto motos motocicleta motor"
+  },
+  "IMG_0172.jpeg": {
+    "title": "Cristiano Ronaldo · Kalet",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Kalet. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Kalet, , cr7 fútbol futbolista"
+  },
+  "IMG_0253.jpeg": {
+    "title": "Chica Fresita · Luciana",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Chica Fresita. La muestra presenta Luciana. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Chica Fresita · Luciana, , rosita fresita strawberry shortcake"
+  },
+  "IMG_0266.jpeg": {
+    "title": "Harley Quinn · Dolls",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Harley Quinn. La muestra presenta Dolls. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Harley Quinn · Dolls, "
+  },
+  "IMG_0312.jpeg": {
+    "title": "Grey's Anatomy · Grey y Yang",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Grey's Anatomy. La muestra presenta Grey y Yang. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Grey's Anatomy · Grey y Yang, "
+  },
+  "IMG_0315.jpeg": {
+    "title": "Oggy y las cucarachas · Frank",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Oggy y las cucarachas. La muestra presenta Frank. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Oggy y las cucarachas · Frank, "
+  },
+  "IMG_0320.jpeg": {
+    "title": "Harry Potter · Hogwarts",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Harry Potter. La muestra presenta Hogwarts. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Harry Potter · Hogwarts, , hogwarts magia"
+  },
+  "IMG_0325.jpeg": {
+    "title": "Batman · Gabriel",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Batman. La muestra presenta Gabriel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Batman · Gabriel, , DC cómics superhéroes caballero oscuro"
+  },
+  "IMG_0397.jpeg": {
+    "title": "Spider-Man · Luka",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Spider-Man. La muestra presenta Luka. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Spider-Man · Luka, , spiderman spider man hombre araña marvel superhéroes cómics"
+  },
+  "IMG_0403.jpeg": {
+    "title": "Motocicletas · Scarleth",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro de motocicletas con el nombre Scarleth y dibujos técnicos de motos.",
+    "keywords": "Motocicletas · Scarleth, , moto motos motocicleta motor"
+  },
+  "IMG_0405.jpeg": {
+    "title": "Black Clover · Darwin",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Black Clover. La muestra presenta Darwin. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Black Clover · Darwin, , anime manga"
+  },
+  "IMG_0421.jpeg": {
+    "title": "Calendario y collage de fotos en blanco y negro",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Calendario y collage de fotos en blanco y negro. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Calendario y collage de fotos en blanco y negro, pareja novios amor romántico san valentín, fotografías collage"
+  },
+  "IMG_0473.jpeg": {
+    "title": "Fairy Tail · Adriet",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Fairy Tail. La muestra presenta Adriet. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Fairy Tail · Adriet, , anime manga"
+  },
+  "IMG_0542.jpeg": {
+    "title": "Secretaria · Collage de fotos y personajes",
+    "category": "Reconocimientos",
+    "description": "Cuadro personalizado: Secretaria. La muestra presenta Collage de fotos y personajes. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Secretaria · Collage de fotos y personajes, reconocimiento agradecimiento homenaje, fotografías collage"
+  },
+  "IMG_0550.jpeg": {
+    "title": "Neymar · Lohan",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Neymar. La muestra presenta Lohan. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Neymar · Lohan, , fútbol futbolista"
+  },
+  "IMG_0565.jpeg": {
+    "title": "Contigo esta y mil vidas · Collage romántico",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Contigo esta y mil vidas. La muestra presenta Collage romántico. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Contigo esta y mil vidas · Collage romántico, pareja novios amor romántico san valentín"
+  },
+  "IMG_0622.jpeg": {
+    "title": "Mamá · Letras verticales y fotos",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Mamá. La muestra presenta Letras verticales y fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá · Letras verticales y fotos, familia recuerdo regalo, madre madres mami día de la madre, fotografías collage"
+  },
+  "IMG_0623.jpeg": {
+    "title": "Mamá · Cuadrícula de fotografías",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Mamá. La muestra presenta Cuadrícula de fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá · Cuadrícula de fotografías, familia recuerdo regalo, madre madres mami día de la madre, fotos retratos"
+  },
+  "IMG_0624.jpeg": {
+    "title": "Abuela · Fotos y dedicatoria",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Abuela. La muestra presenta Fotos y dedicatoria. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Abuela · Fotos y dedicatoria, familia recuerdo regalo, abuelita, fotografías collage"
+  },
+  "IMG_0625.jpeg": {
+    "title": "MOM · Retratos de mamá",
+    "category": "Familia",
+    "description": "Cuadro personalizado: MOM. La muestra presenta Retratos de mamá. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "MOM · Retratos de mamá, familia recuerdo regalo, mamá madre"
+  },
+  "IMG_0626.jpeg": {
+    "title": "Mamá · Letras con fotos y agradecimiento",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Mamá. La muestra presenta Letras con fotos y agradecimiento. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá · Letras con fotos y agradecimiento, familia recuerdo regalo, madre madres mami día de la madre, fotografías collage"
+  },
+  "IMG_0645.jpeg": {
+    "title": "15 años de aniversario · Collage familiar",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: 15 años de aniversario. La muestra presenta Collage familiar. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "15 años de aniversario · Collage familiar, aniversario pareja amor celebración"
+  },
+  "IMG_0650.jpeg": {
+    "title": "Cumpleaños · Collage de fotos de pareja",
+    "category": "Cumpleaños",
+    "description": "Cuadro personalizado: Cumpleaños. La muestra presenta Collage de fotos de pareja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cumpleaños · Collage de fotos de pareja, cumpleaños birthday celebración, fotografías collage"
+  },
+  "IMG_0709.jpeg": {
+    "title": "Mi graduación 2026 · Retrato y birrete",
+    "category": "Graduación + Escolar",
+    "description": "Cuadro personalizado: Mi graduación 2026. La muestra presenta Retrato y birrete. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mi graduación 2026 · Retrato y birrete, graduación escolar graduado logro, graduado graduada escolar"
+  },
+  "IMG_0714.jpeg": {
+    "title": "Harry Potter y Ravenclaw · Marx Duarte",
+    "category": "Anime & Fandom",
+    "description": "Cuadro con el nombre Marx Duarte, ilustraciones de Harry Potter y escudos de Ravenclaw.",
+    "keywords": "Harry Potter y Ravenclaw · Marx Duarte, , hogwarts magia"
+  },
+  "IMG_0729.jpeg": {
+    "title": "50 años de mamá · Número con fotos",
+    "category": "Cumpleaños",
+    "description": "Cuadro personalizado: 50 años de mamá. La muestra presenta Número con fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "50 años de mamá · Número con fotos, cumpleaños birthday celebración, fotografías collage"
+  },
+  "IMG_0734.jpeg": {
+    "title": "Snoopy y Peanuts · Kater",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Snoopy y Peanuts. La muestra presenta Kater. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Snoopy y Peanuts · Kater, , peanuts charlie brown caricaturas"
+  },
+  "IMG_0753.jpeg": {
+    "title": "Orientador · Gracias por ser el mejor",
+    "category": "Reconocimientos",
+    "description": "Cuadro personalizado: Orientador. La muestra presenta Gracias por ser el mejor. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Orientador · Gracias por ser el mejor, reconocimiento agradecimiento homenaje, orientación reconocimiento"
+  },
+  "IMG_0758.jpeg": {
+    "title": "Profe Mario · Estudios Sociales",
+    "category": "Reconocimientos",
+    "description": "Cuadro personalizado: Profe Mario. La muestra presenta Estudios Sociales. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Profe Mario · Estudios Sociales, reconocimiento agradecimiento homenaje, profesor docente maestro"
+  },
+  "IMG_0805.jpeg": {
+    "title": "Mamá · Collage de fotos y rosa",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Mamá. La muestra presenta Collage de fotos y rosa. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá · Collage de fotos y rosa, familia recuerdo regalo, madre madres mami día de la madre, fotografías collage"
+  },
+  "IMG_0809.jpeg": {
+    "title": "Mamá · Fotografías y corazones",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Mamá. La muestra presenta Fotografías y corazones. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá · Fotografías y corazones, familia recuerdo regalo, madre madres mami día de la madre, fotos retratos"
+  },
+  "IMG_0812.jpeg": {
+    "title": "Marvel · Heinzel",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Marvel. La muestra presenta Heinzel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Marvel · Heinzel, , superhéroes cómics"
+  },
+  "IMG_0845.jpeg": {
+    "title": "Motocicletas KTM · Leslie",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de motocicletas ktm. La muestra presenta Leslie. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Motocicletas KTM · Leslie, , moto motos motocicleta motor"
+  },
+  "IMG_0850.jpeg": {
+    "title": "Mamá y abuela · Fotos y dedicatoria",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Mamá y abuela. La muestra presenta Fotos y dedicatoria. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá y abuela · Fotos y dedicatoria, familia recuerdo regalo, madre madres mami día de la madre, fotografías collage"
+  },
+  "IMG_0881.jpeg": {
+    "title": "FC Barcelona y Messi · Josué",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: FC Barcelona y Messi. La muestra presenta Josué. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "FC Barcelona y Messi · Josué, , lionel fútbol futbolista, barca barça fútbol"
+  },
+  "IMG_0885.jpeg": {
+    "title": "Chicago Bulls · Jeremy",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Chicago Bulls. La muestra presenta Jeremy. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Chicago Bulls · Jeremy, , nba baloncesto basquetbol basketball basket"
+  },
+  "IMG_0889.jpeg": {
+    "title": "Messi y Argentina · Ana",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi y Argentina. La muestra presenta Ana. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi y Argentina · Ana, , lionel fútbol futbolista"
+  },
+  "IMG_0892.jpeg": {
+    "title": "Retrato de pareja · Marco floral",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Retrato de pareja. La muestra presenta Marco floral. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Retrato de pareja · Marco floral, pareja novios amor romántico san valentín"
+  },
+  "IMG_0900.jpeg": {
+    "title": "Foto de pareja · Corazones y código musical",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Foto de pareja. La muestra presenta Corazones y código musical. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Foto de pareja · Corazones y código musical, pareja novios amor romántico san valentín"
+  },
+  "IMG_0924.jpeg": {
+    "title": "Mamá y bebé · Fotografía y constelaciones",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Mamá y bebé. La muestra presenta Fotografía y constelaciones. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá y bebé · Fotografía y constelaciones, familia recuerdo regalo, madre madres mami día de la madre, fotos retratos"
+  },
+  "IMG_0927.jpeg": {
+    "title": "Hermana y mamá · Letras con fotos",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Hermana y mamá. La muestra presenta Letras con fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Hermana y mamá · Letras con fotos, familia recuerdo regalo, fotografías collage"
+  },
+  "IMG_0933.jpeg": {
+    "title": "Deportivo Saprissa · Leyendas",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Deportivo Saprissa. La muestra presenta Leyendas. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Deportivo Saprissa · Leyendas, , fútbol morado"
+  },
+  "IMG_0948.jpeg": {
+    "title": "Mamá · Minnie Mouse y collage",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Mamá. La muestra presenta Minnie Mouse y collage. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá · Minnie Mouse y collage, familia recuerdo regalo, disney mouse, madre madres mami día de la madre"
+  },
+  "IMG_0954.jpeg": {
+    "title": "Abuela · Collage de recuerdos",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Abuela. La muestra presenta Collage de recuerdos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Abuela · Collage de recuerdos, familia recuerdo regalo, abuelita"
+  },
+  "IMG_0973.jpeg": {
+    "title": "Mamá · Collage vertical rosa",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Mamá. La muestra presenta Collage vertical rosa. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá · Collage vertical rosa, familia recuerdo regalo, madre madres mami día de la madre"
+  },
+  "IMG_0983.jpeg": {
+    "title": "Familia · Collage con mariposas",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Familia. La muestra presenta Collage con mariposas. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Familia · Collage con mariposas, familia recuerdo regalo"
+  },
+  "IMG_1008.jpeg": {
+    "title": "15 años · Número con fotografías",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: 15 años. La muestra presenta Número con fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "15 años · Número con fotografías, aniversario pareja amor celebración, fotos retratos"
+  },
+  "IMG_1014.jpeg": {
+    "title": "Te amamos David · Foto familiar",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Te amamos David. La muestra presenta Foto familiar. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Te amamos David · Foto familiar, familia recuerdo regalo"
+  },
+  "IMG_1127.jpeg": {
+    "title": "Neymar · Michael",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Neymar. La muestra presenta Michael. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Neymar · Michael, , fútbol futbolista"
+  },
+  "IMG_1131.jpeg": {
+    "title": "Fútbol · Yohan",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Fútbol. La muestra presenta Yohan. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Fútbol · Yohan, "
+  },
+  "IMG_1137.jpeg": {
+    "title": "Spider-Man · Fabián",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Spider-Man. La muestra presenta Fabián. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Spider-Man · Fabián, , spiderman spider man hombre araña marvel superhéroes cómics"
+  },
+  "IMG_1149.jpeg": {
+    "title": "Spider-Man · Ángelo",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Spider-Man. La muestra presenta Ángelo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Spider-Man · Ángelo, , spiderman spider man hombre araña marvel superhéroes cómics"
+  },
+  "IMG_1166.jpeg": {
+    "title": "Messi y FC Barcelona · Marvin",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi y FC Barcelona. La muestra presenta Marvin. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi y FC Barcelona · Marvin, , lionel fútbol futbolista, barca barça fútbol"
+  },
+  "IMG_1169.jpeg": {
+    "title": "Viajes · Isa y destinos del mundo",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de viajes. La muestra presenta Isa y destinos del mundo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Viajes · Isa y destinos del mundo, "
+  },
+  "IMG_1191.jpeg": {
+    "title": "Recuerdos familiares · Para siempre en mi corazón",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Recuerdos familiares. La muestra presenta Para siempre en mi corazón. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Recuerdos familiares · Para siempre en mi corazón, familia recuerdo regalo"
+  },
+  "IMG_1195.jpeg": {
+    "title": "Minecraft · Pablo",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Minecraft. La muestra presenta Pablo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Minecraft · Pablo, , videojuego gamer"
+  },
+  "IMG_1223.jpeg": {
+    "title": "Mi amor eterno · Fotografías de perros",
+    "category": "Mascotas",
+    "description": "Cuadro personalizado: Mi amor eterno. La muestra presenta Fotografías de perros. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mi amor eterno · Fotografías de perros, mascota animales recuerdo, perrito mascota, fotos retratos"
+  },
+  "IMG_1228.jpeg": {
+    "title": "Fórmula 1 · Red Bull y Verstappen",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Fórmula 1. La muestra presenta Red Bull y Verstappen. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Fórmula 1 · Red Bull y Verstappen, , formula1 f1 automovilismo carreras"
+  },
+  "IMG_1298.jpeg": {
+    "title": "Grogu · Baby Yoda con galleta",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Grogu. La muestra presenta Baby Yoda con galleta. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Grogu · Baby Yoda con galleta, , star wars baby yoda mandalorian"
+  },
+  "IMG_1317.jpeg": {
+    "title": "Barbería · Evans",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de barbería. La muestra presenta Evans. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Barbería · Evans, , barbero barberia barber shop peluquería, barbero"
+  },
+  "IMG_1633.jpeg": {
+    "title": "Star Wars · Darth Vader y Vinicio",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Star Wars. La muestra presenta Darth Vader y Vinicio. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Star Wars · Darth Vader y Vinicio, , guerra de las galaxias ciencia ficción"
+  },
+  "IMG_1640.jpeg": {
+    "title": "Girasoles · Nery",
+    "category": "Cumpleaños",
+    "description": "Cuadro personalizado: Girasoles. La muestra presenta Nery. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Girasoles · Nery, cumpleaños birthday celebración"
+  },
+  "IMG_1649.jpeg": {
+    "title": "Pokémon · Iron",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Pokémon. La muestra presenta Iron. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Pokémon · Iron, , pokemon anime videojuegos"
+  },
+  "IMG_1660.jpeg": {
+    "title": "Gallos y llamas · Kaleb",
+    "category": "Otros",
+    "description": "Cuadro con gallos, llamas en tonos rojos y naranjas y el nombre Kaleb.",
+    "keywords": "Gallos y llamas · Kaleb, "
+  },
+  "IMG_1665.jpeg": {
+    "title": "Carta romántica · ¿Quieres ser mi novia?",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Carta romántica. La muestra presenta ¿Quieres ser mi novia?. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Carta romántica · ¿Quieres ser mi novia?, pareja novios amor romántico san valentín"
+  },
+  "IMG_1688.jpeg": {
+    "title": "Marvel · Luis",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Marvel. La muestra presenta Luis. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Marvel · Luis, , superhéroes cómics"
+  },
+  "IMG_1706.jpeg": {
+    "title": "Cómo entrenar a tu dragón · Guía de dragones",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Cómo entrenar a tu dragón. La muestra presenta Guía de dragones. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cómo entrenar a tu dragón · Guía de dragones, , how to train your dragon dreamworks"
+  },
+  "IMG_1881.jpeg": {
+    "title": "Heidi · Personajes y nombre personalizado",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Heidi. La muestra presenta Personajes y nombre personalizado. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Heidi · Personajes y nombre personalizado, "
+  },
+  "IMG_1930.jpeg": {
+    "title": "Paisaje y fotografías · Edwin",
+    "category": "Cumpleaños",
+    "description": "Cuadro personalizado: Paisaje y fotografías. La muestra presenta Edwin. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Paisaje y fotografías · Edwin, cumpleaños birthday celebración, fotos retratos"
+  },
+  "IMG_1934.jpeg": {
+    "title": "Batman · Armando",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Batman. La muestra presenta Armando. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Batman · Armando, , DC cómics superhéroes caballero oscuro"
+  },
+  "IMG_1970.jpeg": {
+    "title": "Carros y motocicletas · Moisés",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de carros y motocicletas. La muestra presenta Moisés. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Carros y motocicletas · Moisés, , autos coches automóviles"
+  },
+  "IMG_1973.jpeg": {
+    "title": "Real Madrid · Erick",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Real Madrid. La muestra presenta Erick. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Real Madrid · Erick, , fútbol madridista"
+  },
+  "IMG_1982.jpeg": {
+    "title": "BTS y BT21 · Collage Te amo",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en BTS y BT21. La muestra presenta Collage Te amo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "BTS y BT21 · Collage Te amo, , música kpop k pop army"
+  },
+  "IMG_1986.jpeg": {
+    "title": "Gatos · Collage de memes felinos",
+    "category": "Mascotas",
+    "description": "Cuadro personalizado: Gatos. La muestra presenta Collage de memes felinos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Gatos · Collage de memes felinos, mascota animales recuerdo, gato felino"
+  },
+  "IMG_2704.jpeg": {
+    "title": "Motocicletas · Darwin",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de motocicletas. La muestra presenta Darwin. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Motocicletas · Darwin, , moto motos motocicleta motor"
+  },
+  "IMG_2767.jpeg": {
+    "title": "Fotos de pareja · Dani",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Fotos de pareja. La muestra presenta Dani. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Fotos de pareja · Dani, pareja novios amor romántico san valentín, fotografías collage"
+  },
+  "IMG_2771.jpeg": {
+    "title": "Batman y Marvel · Adrián",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Batman y Marvel. La muestra presenta Adrián. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Batman y Marvel · Adrián, , DC cómics superhéroes caballero oscuro, superhéroes cómics"
+  },
+  "IMG_2805.jpeg": {
+    "title": "Naruto · Stewart y pergamino ninja",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Naruto. La muestra presenta Stewart y pergamino ninja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Naruto · Stewart y pergamino ninja, , anime manga ninja uzumaki"
+  },
+  "IMG_2869.jpeg": {
+    "title": "Enredados · Rapunzel y faroles",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Enredados. La muestra presenta Rapunzel y faroles. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Enredados · Rapunzel y faroles, , rapunzel tangled disney princesa"
+  },
+  "IMG_2915.jpeg": {
+    "title": "Jesús y una niña · María de Jesús",
+    "category": "Fe e inspiración",
+    "description": "Cuadro personalizado: Jesús y una niña. La muestra presenta María de Jesús. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Jesús y una niña · María de Jesús, fe inspiración mensaje motivación"
+  },
+  "IMG_2935.jpeg": {
+    "title": "Pokémon · Daniel",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Pokémon. La muestra presenta Daniel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Pokémon · Daniel, , pokemon anime videojuegos"
+  },
+  "IMG_2938.jpeg": {
+    "title": "Calendario · Fotos de pareja y corazón",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Calendario. La muestra presenta Fotos de pareja y corazón. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Calendario · Fotos de pareja y corazón, aniversario pareja amor celebración, fotografías collage"
+  },
+  "IMG_2942.jpeg": {
+    "title": "Spider-Man · Chaco",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Spider-Man. La muestra presenta Chaco. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Spider-Man · Chaco, , spiderman spider man hombre araña marvel superhéroes cómics"
+  },
+  "IMG_2947.jpeg": {
+    "title": "Outer Banks · Collage de la serie",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Outer Banks. La muestra presenta Collage de la serie. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Outer Banks · Collage de la serie, "
+  },
+  "IMG_2949.jpeg": {
+    "title": "Bomberos · Retratos y equipo de emergencia",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de bomberos. La muestra presenta Retratos y equipo de emergencia. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Bomberos · Retratos y equipo de emergencia, , bombero rescate emergencia"
+  },
+  "IMG_2951.jpeg": {
+    "title": "One Piece · Luffy y collage manga",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en One Piece. La muestra presenta Luffy y collage manga. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "One Piece · Luffy y collage manga, , anime manga piratas"
+  },
+  "IMG_2958.jpeg": {
+    "title": "Y y J · Collage de fotos y personajes",
+    "category": "Aniversarios",
+    "description": "Collage de fotografías con las iniciales Y y J, personajes ilustrados y presentación de primer aniversario.",
+    "keywords": "Y y J · Collage de fotos y personajes, aniversario pareja amor celebración, fotografías collage"
+  },
+  "IMG_2967.jpeg": {
+    "title": "Sistema solar · Thomas",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de sistema solar. La muestra presenta Thomas. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Sistema solar · Thomas, , planetas astronomía espacio"
+  },
+  "IMG_2976.jpeg": {
+    "title": "Neon Genesis Evangelion · Josué",
+    "category": "Anime & Fandom",
+    "description": "Cuadro de Neon Genesis Evangelion con personajes de la serie y el nombre Josué.",
+    "keywords": "Neon Genesis Evangelion · Josué, , anime manga mecha"
+  },
+  "IMG_2981.jpeg": {
+    "title": "FC Barcelona y Messi · Roberto",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: FC Barcelona y Messi. La muestra presenta Roberto. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "FC Barcelona y Messi · Roberto, , lionel fútbol futbolista, barca barça fútbol"
+  },
+  "IMG_2983.jpeg": {
+    "title": "Ariel y collage de personajes · Ariela",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Ariel y collage de personajes. La muestra presenta Ariela. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Ariel y collage de personajes · Ariela, , la sirenita disney princesa"
+  },
+  "IMG_2985.jpeg": {
+    "title": "Real Madrid · Marcelo",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Real Madrid. La muestra presenta Marcelo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Real Madrid · Marcelo, , fútbol madridista"
+  },
+  "IMG_3009.jpeg": {
+    "title": "Star Wars, Batman y Metallica · Aarón",
+    "category": "Anime & Fandom",
+    "description": "Cuadro que combina Darth Vader de Star Wars, el símbolo de Batman y el nombre de Metallica, personalizado para Aarón.",
+    "keywords": "Star Wars, Batman y Metallica · Aarón, , DC cómics superhéroes caballero oscuro, guerra de las galaxias ciencia ficción, música banda rock metal"
+  },
+  "IMG_3010.jpeg": {
+    "title": "Batman y Kuromi · Te amo con fotos",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Batman y Kuromi. La muestra presenta Te amo con fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Batman y Kuromi · Te amo con fotos, pareja novios amor romántico san valentín, DC cómics superhéroes caballero oscuro, sanrio, fotografías collage"
+  },
+  "IMG_3014.jpeg": {
+    "title": "Pittsburgh Steelers · Fútbol americano",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Pittsburgh Steelers. La muestra presenta Fútbol americano. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Pittsburgh Steelers · Fútbol americano, , nfl fútbol americano"
+  },
+  "IMG_3019.jpeg": {
+    "title": "Panda · Cinthia",
+    "category": "Otros",
+    "description": "Cuadro personalizado: Panda. La muestra presenta Cinthia. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Panda · Cinthia, "
+  },
+  "IMG_3020.jpeg": {
+    "title": "One Piece · Leonardo y Zoro",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en One Piece. La muestra presenta Leonardo y Zoro. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "One Piece · Leonardo y Zoro, , anime manga piratas"
+  },
+  "IMG_3025.jpeg": {
+    "title": "Motocicletas Yamaha · Eytel",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro con motocicletas, el emblema de Yamaha y el nombre Eytel.",
+    "keywords": "Motocicletas Yamaha · Eytel, , moto motos motocicleta motor"
+  },
+  "IMG_3033.jpeg": {
+    "title": "Collage de fotografías · Shary",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Collage de fotografías. La muestra presenta Shary. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Collage de fotografías · Shary, pareja novios amor romántico san valentín, fotos retratos"
+  },
+  "IMG_3043.jpeg": {
+    "title": "Te amo · Letras con fotos de pareja",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Te amo. La muestra presenta Letras con fotos de pareja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Te amo · Letras con fotos de pareja, pareja novios amor romántico san valentín, fotografías collage"
+  },
+  "IMG_3048.jpeg": {
+    "title": "Barbería · Royer y herramientas de barbero",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro de barbería con el nombre Royer, herramientas de barbero y decoración en tonos dorados.",
+    "keywords": "Barbería · Royer y herramientas de barbero, , barbero barberia barber shop peluquería, barbero"
+  },
+  "IMG_3054.jpeg": {
+    "title": "Bayern Múnich · Leandro",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Bayern Múnich. La muestra presenta Leandro. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Bayern Múnich · Leandro, , fútbol munich"
+  },
+  "IMG_3058.jpeg": {
+    "title": "Resident Evil · Roberth",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Resident Evil. La muestra presenta Roberth. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Resident Evil · Roberth, , videojuego gamer"
+  },
+  "IMG_3064.jpeg": {
+    "title": "Hollow Knight · Stwar",
+    "category": "Anime & Fandom",
+    "description": "Cuadro de Hollow Knight con personajes del videojuego y el nombre Stwar.",
+    "keywords": "Hollow Knight · Stwar, , videojuego gamer"
+  },
+  "IMG_3079.jpeg": {
+    "title": "Pao · Retrato con corazones y código musical",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Pao. La muestra presenta Retrato con corazones y código musical. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Pao · Retrato con corazones y código musical, pareja novios amor romántico san valentín"
+  },
+  "IMG_3107.jpeg": {
+    "title": "Cristiano Ronaldo · Víctor",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Víctor. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Víctor, , cr7 fútbol futbolista"
+  },
+  "IMG_3108.jpeg": {
+    "title": "Amor · Fotografías y mariposas",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Amor. La muestra presenta Fotografías y mariposas. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Amor · Fotografías y mariposas, pareja novios amor romántico san valentín, fotos retratos"
+  },
+  "IMG_3112.jpeg": {
+    "title": "Marvel · Daniel",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Marvel. La muestra presenta Daniel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Marvel · Daniel, , superhéroes cómics"
+  },
+  "IMG_3120.jpeg": {
+    "title": "Bebés gemelos · Sebas y Santi",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Bebés gemelos. La muestra presenta Sebas y Santi. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Bebés gemelos · Sebas y Santi, familia recuerdo regalo"
+  },
+  "IMG_3158.jpeg": {
+    "title": "6 años · Número con fotos de pareja",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: 6 años. La muestra presenta Número con fotos de pareja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "6 años · Número con fotos de pareja, aniversario pareja amor celebración, fotografías collage"
+  },
+  "IMG_3181.jpeg": {
+    "title": "2 años · Número con fotos de pareja",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: 2 años. La muestra presenta Número con fotos de pareja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "2 años · Número con fotos de pareja, aniversario pareja amor celebración, fotografías collage"
+  },
+  "IMG_3209.jpeg": {
+    "title": "Billie Eilish · Sam",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Billie Eilish. La muestra presenta Sam. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Billie Eilish · Sam, , música cantante"
+  },
+  "IMG_3214.jpeg": {
+    "title": "Naruto · Leonel",
+    "category": "Anime & Fandom",
+    "description": "Cuadro de Naruto con viñetas de manga, símbolos de la serie y el nombre Leonel.",
+    "keywords": "Naruto · Leonel, , anime manga ninja uzumaki"
+  },
+  "IMG_3225.jpeg": {
+    "title": "Los Simpson · Marcos",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Los Simpson. La muestra presenta Marcos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Los Simpson · Marcos, , simpsons caricaturas"
+  },
+  "IMG_3249.jpeg": {
+    "title": "Ingeniería agronómica · Cultivos y retratos",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de ingeniería agronómica. La muestra presenta Cultivos y retratos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Ingeniería agronómica · Cultivos y retratos, "
+  },
+  "IMG_3261.jpeg": {
+    "title": "Te amo · Collage de fotografías",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Te amo. La muestra presenta Collage de fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Te amo · Collage de fotografías, pareja novios amor romántico san valentín, fotos retratos"
+  },
+  "IMG_3275.jpeg": {
+    "title": "25 años de matrimonio · Bodas de plata",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: 25 años de matrimonio. La muestra presenta Bodas de plata. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "25 años de matrimonio · Bodas de plata, aniversario pareja amor celebración"
+  },
+  "IMG_3282.jpeg": {
+    "title": "Museo de nuestra historia · Jareth y Sianny",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Museo de nuestra historia. La muestra presenta Jareth y Sianny. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Museo de nuestra historia · Jareth y Sianny, aniversario pareja amor celebración"
+  },
+  "IMG_3284.jpeg": {
+    "title": "Garfield · Dakisa",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Garfield. La muestra presenta Dakisa. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Garfield · Dakisa, , garfiel gato caricatura"
+  },
+  "IMG_3288.jpeg": {
+    "title": "Cristiano Ronaldo · CR7 y Portugal",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta CR7 y Portugal. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · CR7 y Portugal, , cr7 fútbol futbolista"
+  },
+  "IMG_3301.jpeg": {
+    "title": "Harry Potter · Andrea",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Harry Potter. La muestra presenta Andrea. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Harry Potter · Andrea, , hogwarts magia"
+  },
+  "IMG_3312.jpeg": {
+    "title": "La Sirenita · Sebastián el cangrejo",
+    "category": "Anime & Fandom",
+    "description": "Cuadro de La Sirenita con Sebastián el cangrejo, fondo submarino y nombre Sebastián.",
+    "keywords": "La Sirenita · Sebastián el cangrejo, , little mermaid disney"
+  },
+  "IMG_3367.jpeg": {
+    "title": "Enredados · Yancy y collage de fotos",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Enredados. La muestra presenta Yancy y collage de fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Enredados · Yancy y collage de fotos, , rapunzel tangled disney princesa, fotografías collage"
+  },
+  "IMG_3370.jpeg": {
+    "title": "Las Chicas Superpoderosas · Marcelo",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Las Chicas Superpoderosas. La muestra presenta Marcelo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Las Chicas Superpoderosas · Marcelo, , powerpuff girls caricaturas"
+  },
+  "IMG_3376.jpeg": {
+    "title": "Diez años · Collage de pareja",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Diez años. La muestra presenta Collage de pareja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Diez años · Collage de pareja, aniversario pareja amor celebración"
+  },
+  "IMG_3380.jpeg": {
+    "title": "Maquinaria Caterpillar · Anthony",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de maquinaria caterpillar. La muestra presenta Anthony. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Maquinaria Caterpillar · Anthony, , maquinaria construcción cat"
+  },
+  "IMG_3409.jpeg": {
+    "title": "Capibaras · Collage de fotografías",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Capibaras. La muestra presenta Collage de fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Capibaras · Collage de fotografías, , capibara capybara carpincho chigüiro, fotos retratos"
+  },
+  "IMG_3418.jpeg": {
+    "title": "Mapa estelar · Constelaciones en fondo morado",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Mapa estelar. La muestra presenta Constelaciones en fondo morado. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mapa estelar · Constelaciones en fondo morado, pareja novios amor romántico san valentín, astronomía estrellas constelaciones"
+  },
+  "IMG_3424.jpeg": {
+    "title": "Groot · Juli",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Groot. La muestra presenta Juli. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Groot · Juli, , marvel guardianes de la galaxia"
+  },
+  "IMG_3445.jpeg": {
+    "title": "DJ · Collage musical",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de DJ. La muestra presenta Collage musical. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "DJ · Collage musical, , música disc jockey"
+  },
+  "IMG_3481.jpeg": {
+    "title": "Liga Deportiva Alajuelense · EXZAZ",
+    "category": "Deportes",
+    "description": "Cuadro de Liga Deportiva Alajuelense con el nombre EXZAZ, escudos del equipo, un león y una dedicatoria para papá, en colores rojo y negro.",
+    "keywords": "Liga Deportiva Alajuelense, Alajuela, LDA, la liga, manudo, manudos, rojinegro, fútbol, EXZAZ, león, papá, padre, día del padre"
+  },
+  "IMG_3498.jpeg": {
+    "title": "Motocicletas Kawasaki · Sanabria",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de motocicletas kawasaki. La muestra presenta Sanabria. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Motocicletas Kawasaki · Sanabria, , moto motos motocicleta motor"
+  },
+  "IMG_3503.jpeg": {
+    "title": "El Señor de los Anillos · Yuli",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en El Señor de los Anillos. La muestra presenta Yuli. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "El Señor de los Anillos · Yuli, , lord of the rings lotr"
+  },
+  "IMG_3509.jpeg": {
+    "title": "Vehículos todoterreno · Jimmy",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de vehículos todoterreno. La muestra presenta Jimmy. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Vehículos todoterreno · Jimmy, "
+  },
+  "IMG_3521.jpeg": {
+    "title": "Ganadería · Sharon y vacas",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de ganadería. La muestra presenta Sharon y vacas. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Ganadería · Sharon y vacas, , ganadero campo vacas"
+  },
+  "IMG_3568.jpeg": {
+    "title": "Cristiano Ronaldo · Luis",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Luis. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Luis, , cr7 fútbol futbolista"
+  },
+  "IMG_3571.jpeg": {
+    "title": "Fórmula 1 Red Bull · Gabriela",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Fórmula 1 Red Bull. La muestra presenta Gabriela. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Fórmula 1 Red Bull · Gabriela, , formula1 f1 automovilismo carreras"
+  },
+  "IMG_3575.jpeg": {
+    "title": "Motociclista bajo la luna · JP",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de motociclista bajo la luna. La muestra presenta JP. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Motociclista bajo la luna · JP, "
+  },
+  "IMG_3599.jpeg": {
+    "title": "Collage de fotografías y recuerdos",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Collage de fotografías y recuerdos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Collage de fotografías y recuerdos, familia recuerdo regalo, fotos retratos"
+  },
+  "IMG_3623.jpeg": {
+    "title": "Snoopy y Peanuts · Génesis",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Snoopy y Peanuts. La muestra presenta Génesis. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Snoopy y Peanuts · Génesis, , peanuts charlie brown caricaturas"
+  },
+  "IMG_3667.jpeg": {
+    "title": "Primer aniversario · Fotos estilo polaroid",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Primer aniversario. La muestra presenta Fotos estilo polaroid. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Primer aniversario · Fotos estilo polaroid, aniversario pareja amor celebración, fotografías collage"
+  },
+  "IMG_3955.jpeg": {
+    "title": "Terror · Catalina, Freddy Krueger y Jason",
+    "category": "Anime & Fandom",
+    "description": "Cuadro de terror personalizado con el nombre Catalina, Freddy Krueger, Jason y máscaras de personajes de películas de terror, con detalles rojos y efecto de pintura goteando.",
+    "keywords": "terror, horror, cine, películas, Catalina, Freddy Krueger, Jason Voorhees, Viernes 13, Friday the 13th, Pesadilla en Elm Street, Halloween, máscaras"
+  },
+  "IMG_3962.jpeg": {
+    "title": "Enredados · Nombre y personajes",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Enredados. La muestra presenta Nombre y personajes. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Enredados · Nombre y personajes, , rapunzel tangled disney princesa"
+  },
+  "IMG_3968.jpeg": {
+    "title": "Kuromi · Mariana",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Kuromi. La muestra presenta Mariana. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Kuromi · Mariana, , sanrio"
+  },
+  "IMG_3972.jpeg": {
+    "title": "Suits · Alexander",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Suits. La muestra presenta Alexander. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Suits · Alexander, "
+  },
+  "IMG_3978.jpeg": {
+    "title": "Messi y Argentina · Monty",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi y Argentina. La muestra presenta Monty. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi y Argentina · Monty, , lionel fútbol futbolista"
+  },
+  "IMG_3980.jpeg": {
+    "title": "Guitarras acústicas y eléctricas · Danii",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de guitarras acústicas y eléctricas. La muestra presenta Danii. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Guitarras acústicas y eléctricas · Danii, , música músico instrumentos"
+  },
+  "IMG_3990.jpeg": {
+    "title": "4 años · Número con fotos",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: 4 años. La muestra presenta Número con fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "4 años · Número con fotos, aniversario pareja amor celebración, fotografías collage"
+  },
+  "IMG_3994.jpeg": {
+    "title": "Te amo · Foto con corazones y código musical",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Te amo. La muestra presenta Foto con corazones y código musical. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Te amo · Foto con corazones y código musical, pareja novios amor romántico san valentín"
+  },
+  "IMG_3999.jpeg": {
+    "title": "Cristiano Ronaldo · Esteban",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Esteban. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Esteban, , cr7 fútbol futbolista"
+  },
+  "IMG_4040.jpeg": {
+    "title": "Recuerdo de mascota · Collage de perro",
+    "category": "Mascotas",
+    "description": "Cuadro personalizado: Recuerdo de mascota. La muestra presenta Collage de perro. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Recuerdo de mascota · Collage de perro, mascota animales recuerdo, perrito mascota"
+  },
+  "IMG_4046.jpeg": {
+    "title": "Segundo aniversario · Calendario y collage",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Segundo aniversario. La muestra presenta Calendario y collage. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Segundo aniversario · Calendario y collage, aniversario pareja amor celebración"
+  },
+  "IMG_4066.jpeg": {
+    "title": "Papá · Homenaje con fotos y rosas azules",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Papá. La muestra presenta Homenaje con fotos y rosas azules. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Papá · Homenaje con fotos y rosas azules, familia recuerdo regalo, padre padres papi día del padre, fotografías collage"
+  },
+  "IMG_4070.jpeg": {
+    "title": "Portero de fútbol · Isaac",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Portero de fútbol. La muestra presenta Isaac. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Portero de fútbol · Isaac, "
+  },
+  "IMG_4090.jpeg": {
+    "title": "Deadpool · Melissa",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Deadpool. La muestra presenta Melissa. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Deadpool · Melissa, , marvel superhéroes cómics"
+  },
+  "IMG_4102.jpeg": {
+    "title": "Snoopy y Peanuts · Miángela",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Snoopy y Peanuts. La muestra presenta Miángela. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Snoopy y Peanuts · Miángela, , peanuts charlie brown caricaturas"
+  },
+  "IMG_4114.jpeg": {
+    "title": "Star Wars · Naves espaciales y Darío",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Star Wars. La muestra presenta Naves espaciales y Darío. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Star Wars · Naves espaciales y Darío, , guerra de las galaxias ciencia ficción"
+  },
+  "IMG_4211.jpeg": {
+    "title": "Pompompurin · Mariana",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Pompompurin. La muestra presenta Mariana. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Pompompurin · Mariana, , sanrio"
+  },
+  "IMG_4250.jpeg": {
+    "title": "Real Madrid y Cristiano Ronaldo · Isaías",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Real Madrid y Cristiano Ronaldo. La muestra presenta Isaías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Real Madrid y Cristiano Ronaldo · Isaías, , cr7 fútbol futbolista, fútbol madridista"
+  },
+  "IMG_4257.jpeg": {
+    "title": "Carros y motocicletas · Ariel",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de carros y motocicletas. La muestra presenta Ariel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Carros y motocicletas · Ariel, , la sirenita disney princesa, autos coches automóviles"
+  },
+  "IMG_4262.jpeg": {
+    "title": "Spider-Man · Jean",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Spider-Man. La muestra presenta Jean. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Spider-Man · Jean, , spiderman spider man hombre araña marvel superhéroes cómics"
+  },
+  "IMG_4267.jpeg": {
+    "title": "Boca Juniors · Kepvin",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Boca Juniors. La muestra presenta Kepvin. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Boca Juniors · Kepvin, , fútbol"
+  },
+  "IMG_4272.jpeg": {
+    "title": "Te amo · Calendario, fotos y corazón",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Te amo. La muestra presenta Calendario, fotos y corazón. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Te amo · Calendario, fotos y corazón, pareja novios amor romántico san valentín, fotografías collage"
+  },
+  "IMG_4334.jpeg": {
+    "title": "Real Madrid y Cristiano Ronaldo · Villarreál",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Real Madrid y Cristiano Ronaldo. La muestra presenta Villarreál. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Real Madrid y Cristiano Ronaldo · Villarreál, , cr7 fútbol futbolista, fútbol madridista"
+  },
+  "IMG_4628.jpeg": {
+    "title": "Snoopy y Peanuts · Collage de pareja",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Snoopy y Peanuts. La muestra presenta Collage de pareja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Snoopy y Peanuts · Collage de pareja, , peanuts charlie brown caricaturas"
+  },
+  "IMG_4796.jpeg": {
+    "title": "CEN-CINAI · Liderazgo y compromiso",
+    "category": "Reconocimientos",
+    "description": "Cuadro personalizado: CEN-CINAI. La muestra presenta Liderazgo y compromiso. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "CEN-CINAI · Liderazgo y compromiso, reconocimiento agradecimiento homenaje"
+  },
+  "IMG_4800.jpeg": {
+    "title": "Frida Kahlo · Andrea",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Frida Kahlo. La muestra presenta Andrea. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Frida Kahlo · Andrea, "
+  },
+  "IMG_4814.jpeg": {
+    "title": "Diego Maradona y Argentina · Rudy",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Diego Maradona y Argentina. La muestra presenta Rudy. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Diego Maradona y Argentina · Rudy, , fútbol futbolista"
+  },
+  "IMG_4831.jpeg": {
+    "title": "Taylor Swift · Roberto y Lover",
+    "category": "Anime & Fandom",
+    "description": "Cuadro de Taylor Swift inspirado en Lover, con mariposas y el nombre Roberto.",
+    "keywords": "Taylor Swift · Roberto y Lover, , música cantante swiftie"
+  },
+  "IMG_4889.jpeg": {
+    "title": "Messi y FC Barcelona · Jason",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi y FC Barcelona. La muestra presenta Jason. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi y FC Barcelona · Jason, , lionel fútbol futbolista, barca barça fútbol"
+  },
+  "IMG_4901.jpeg": {
+    "title": "Mamá · Feliz cumpleaños y mosaico de fotos",
+    "category": "Cumpleaños",
+    "description": "Cuadro personalizado: Mamá. La muestra presenta Feliz cumpleaños y mosaico de fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mamá · Feliz cumpleaños y mosaico de fotos, cumpleaños birthday celebración, madre madres mami día de la madre, fotografías collage"
+  },
+  "IMG_4907.jpeg": {
+    "title": "¿Quieres ser mi novia? · Retrato y rosas",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: ¿Quieres ser mi novia?. La muestra presenta Retrato y rosas. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "¿Quieres ser mi novia? · Retrato y rosas, pareja novios amor romántico san valentín"
+  },
+  "IMG_4926.jpeg": {
+    "title": "27 años · Collage de fotografías",
+    "category": "Cumpleaños",
+    "description": "Cuadro personalizado: 27 años. La muestra presenta Collage de fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "27 años · Collage de fotografías, cumpleaños birthday celebración, fotos retratos"
+  },
+  "IMG_4927.jpeg": {
+    "title": "Amor a distancia · Costa Rica y Puerto Rico",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Amor a distancia. La muestra presenta Costa Rica y Puerto Rico. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Amor a distancia · Costa Rica y Puerto Rico, pareja novios amor romántico san valentín"
+  },
+  "IMG_4937.jpeg": {
+    "title": "Motocicletas · Bobin",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de motocicletas. La muestra presenta Bobin. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Motocicletas · Bobin, , moto motos motocicleta motor"
+  },
+  "IMG_4944.jpeg": {
+    "title": "Yamaha MT-09 · Motocicleta azul",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de yamaha mt-09. La muestra presenta Motocicleta azul. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Yamaha MT-09 · Motocicleta azul, , moto motos motocicleta motor"
+  },
+  "IMG_4986.jpeg": {
+    "title": "Te amo · Collage de fotos en blanco y negro",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Te amo. La muestra presenta Collage de fotos en blanco y negro. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Te amo · Collage de fotos en blanco y negro, pareja novios amor romántico san valentín, fotografías collage"
+  },
+  "IMG_5119.jpeg": {
+    "title": "Spider-Man · Mi flaco",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Spider-Man. La muestra presenta Mi flaco. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Spider-Man · Mi flaco, , spiderman spider man hombre araña marvel superhéroes cómics"
+  },
+  "IMG_5248.jpeg": {
+    "title": "Familia · Fotos y personajes Disney",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Familia. La muestra presenta Fotos y personajes Disney. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Familia · Fotos y personajes Disney, familia recuerdo regalo, fotografías collage"
+  },
+  "IMG_5251.jpeg": {
+    "title": "Collage de personajes · Cumpleaños 27",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Collage de personajes. La muestra presenta Cumpleaños 27. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Collage de personajes · Cumpleaños 27, "
+  },
+  "IMG_5305.jpeg": {
+    "title": "Star Wars · Moisés",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Star Wars. La muestra presenta Moisés. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Star Wars · Moisés, , guerra de las galaxias ciencia ficción"
+  },
+  "IMG_5323.jpeg": {
+    "title": "7 años · Número con fotografías",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: 7 años. La muestra presenta Número con fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "7 años · Número con fotografías, aniversario pareja amor celebración, fotos retratos"
+  },
+  "IMG_5364.jpeg": {
+    "title": "Deadpool · Lio",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Deadpool. La muestra presenta Lio. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Deadpool · Lio, , marvel superhéroes cómics"
+  },
+  "IMG_5569.jpeg": {
+    "title": "Tiburones · Jeancarlos",
+    "category": "Otros",
+    "description": "Cuadro personalizado: Tiburones. La muestra presenta Jeancarlos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Tiburones · Jeancarlos, "
+  },
+  "IMG_5576.jpeg": {
+    "title": "Ford Mustang Shelby GT500 · Dayan",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de ford mustang shelby gt500. La muestra presenta Dayan. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Ford Mustang Shelby GT500 · Dayan, "
+  },
+  "IMG_5582.jpeg": {
+    "title": "Cristiano Ronaldo · Kendall",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Kendall. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Kendall, , cr7 fútbol futbolista"
+  },
+  "IMG_5587.jpeg": {
+    "title": "Mitsubishi Lancer · Carros rojos",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de mitsubishi lancer. La muestra presenta Carros rojos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mitsubishi Lancer · Carros rojos, , autos coches automóviles"
+  },
+  "IMG_5596.jpeg": {
+    "title": "Messi y FC Barcelona · Ulises",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi y FC Barcelona. La muestra presenta Ulises. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi y FC Barcelona · Ulises, , lionel fútbol futbolista, barca barça fútbol"
+  },
+  "IMG_5600.jpeg": {
+    "title": "Messi y Argentina · Richard",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi y Argentina. La muestra presenta Richard. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi y Argentina · Richard, , lionel fútbol futbolista"
+  },
+  "IMG_5762.jpeg": {
+    "title": "J y D · Collage de fotos y recuerdos de viajes",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: J y D. La muestra presenta Collage de fotos y recuerdos de viajes. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "J y D · Collage de fotos y recuerdos de viajes, pareja novios amor romántico san valentín, fotografías collage"
+  },
+  "IMG_5763.jpeg": {
+    "title": "México y caballos · Óscar",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de méxico y caballos. La muestra presenta Óscar. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "México y caballos · Óscar, "
+  },
+  "IMG_5876.jpeg": {
+    "title": "15 años · Triyanna y mariposas",
+    "category": "Cumpleaños",
+    "description": "Cuadro personalizado: 15 años. La muestra presenta Triyanna y mariposas. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "15 años · Triyanna y mariposas, cumpleaños birthday celebración"
+  },
+  "IMG_5881.jpeg": {
+    "title": "Marvel · Kevin",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Marvel. La muestra presenta Kevin. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Marvel · Kevin, , superhéroes cómics"
+  },
+  "IMG_5935.jpeg": {
+    "title": "Dragon Ball Z · Vegeta y Bulma",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Dragon Ball Z. La muestra presenta Vegeta y Bulma. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Dragon Ball Z · Vegeta y Bulma, , anime manga dragonball saiyajin"
+  },
+  "IMG_6062.jpeg": {
+    "title": "Neymar · Brasil y recorrido futbolístico",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Neymar. La muestra presenta Brasil y recorrido futbolístico. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Neymar · Brasil y recorrido futbolístico, , fútbol futbolista"
+  },
+  "IMG_6219.jpeg": {
+    "title": "Cristiano Ronaldo · Daniel",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Daniel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Daniel, , cr7 fútbol futbolista"
+  },
+  "IMG_6231.jpeg": {
+    "title": "Fórmula 1 Ferrari · Gretchell",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Fórmula 1 Ferrari. La muestra presenta Gretchell. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Fórmula 1 Ferrari · Gretchell, , formula1 f1 automovilismo carreras"
+  },
+  "IMG_6246.jpeg": {
+    "title": "Messi · Argentina y recorrido futbolístico",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi. La muestra presenta Argentina y recorrido futbolístico. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi · Argentina y recorrido futbolístico, , lionel fútbol futbolista"
+  },
+  "IMG_6401.jpeg": {
+    "title": "Calendario de mayo · Fotos en blanco y negro",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Calendario de mayo. La muestra presenta Fotos en blanco y negro. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Calendario de mayo · Fotos en blanco y negro, pareja novios amor romántico san valentín, fotografías collage"
+  },
+  "IMG_6419.jpeg": {
+    "title": "Cars · Yerian",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Cars. La muestra presenta Yerian. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cars · Yerian, , disney pixar rayo mcqueen"
+  },
+  "IMG_6460.jpeg": {
+    "title": "Motocicletas · José",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de motocicletas. La muestra presenta José. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Motocicletas · José, , moto motos motocicleta motor"
+  },
+  "IMG_6478.jpeg": {
+    "title": "Messi · El último baile",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi. La muestra presenta El último baile. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi · El último baile, , lionel fútbol futbolista"
+  },
+  "IMG_6547.jpeg": {
+    "title": "Messi · Collage de Argentina",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi. La muestra presenta Collage de Argentina. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi · Collage de Argentina, , lionel fútbol futbolista"
+  },
+  "IMG_6575.jpeg": {
+    "title": "Cristiano Ronaldo · Portugal y CR7",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Portugal y CR7. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Portugal y CR7, , cr7 fútbol futbolista"
+  },
+  "IMG_6584.jpeg": {
+    "title": "Black Clover · Alexander",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Black Clover. La muestra presenta Alexander. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Black Clover · Alexander, , anime manga"
+  },
+  "IMG_6619.jpeg": {
+    "title": "Cristiano Ronaldo · Su último Mundial",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Su último Mundial. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Su último Mundial, , cr7 fútbol futbolista"
+  },
+  "IMG_6627.jpeg": {
+    "title": "Cristiano Ronaldo · Josué",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Josué. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Josué, , cr7 fútbol futbolista"
+  },
+  "IMG_6633.jpeg": {
+    "title": "Cristiano Ronaldo · El último baile",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta El último baile. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · El último baile, , cr7 fútbol futbolista"
+  },
+  "IMG_6671.jpeg": {
+    "title": "Marvel · Tati",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Marvel. La muestra presenta Tati. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Marvel · Tati, , superhéroes cómics"
+  },
+  "IMG_6675.jpeg": {
+    "title": "Para el mejor papá · Fotos y dedicatoria",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Para el mejor papá. La muestra presenta Fotos y dedicatoria. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Para el mejor papá · Fotos y dedicatoria, familia recuerdo regalo, fotografías collage"
+  },
+  "IMG_6684.jpeg": {
+    "title": "Carros y motocicletas · Randy V",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de carros y motocicletas. La muestra presenta Randy V. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Carros y motocicletas · Randy V, , autos coches automóviles"
+  },
+  "IMG_6696.jpeg": {
+    "title": "Ocho años · Collage de pareja",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Ocho años. La muestra presenta Collage de pareja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Ocho años · Collage de pareja, aniversario pareja amor celebración"
+  },
+  "IMG_6753.jpeg": {
+    "title": "One Piece · Luffy Gear 5 y Yohan",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en One Piece. La muestra presenta Luffy Gear 5 y Yohan. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "One Piece · Luffy Gear 5 y Yohan, , anime manga piratas"
+  },
+  "IMG_6773.jpeg": {
+    "title": "Gravity Falls · Joel y fotos",
+    "category": "Anime & Fandom",
+    "description": "Cuadro de Gravity Falls con personajes, fotografías, mensajes y el nombre Joel.",
+    "keywords": "Gravity Falls · Joel y fotos, , disney dibujos animados, fotografías collage"
+  },
+  "IMG_6797.jpeg": {
+    "title": "Motocicletas Honda · Brandi",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de motocicletas honda. La muestra presenta Brandi. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Motocicletas Honda · Brandi, , moto motos motocicleta motor"
+  },
+  "IMG_6807.jpeg": {
+    "title": "Cristiano Ronaldo · Collage rojo de Portugal",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Collage rojo de Portugal. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Collage rojo de Portugal, , cr7 fútbol futbolista"
+  },
+  "IMG_6934.jpeg": {
+    "title": "Messi · Trayectoria y Copa del Mundo",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi. La muestra presenta Trayectoria y Copa del Mundo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi · Trayectoria y Copa del Mundo, , lionel fútbol futbolista"
+  },
+  "IMG_6953.jpeg": {
+    "title": "Scoott · Homenaje a un perro",
+    "category": "Mascotas",
+    "description": "Cuadro personalizado: Scoott. La muestra presenta Homenaje a un perro. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Scoott · Homenaje a un perro, mascota animales recuerdo, perrito mascota"
+  },
+  "IMG_6985.jpeg": {
+    "title": "Messi y Cristiano Ronaldo · El último baile",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi y Cristiano Ronaldo. La muestra presenta El último baile. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi y Cristiano Ronaldo · El último baile, , cr7 fútbol futbolista, lionel fútbol futbolista"
+  },
+  "IMG_7048.jpeg": {
+    "title": "Hot Wheels · Kendall",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Hot Wheels. La muestra presenta Kendall. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Hot Wheels · Kendall, "
+  },
+  "IMG_7155.jpeg": {
+    "title": "Deportivo Saprissa · Brandi",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Deportivo Saprissa. La muestra presenta Brandi. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Deportivo Saprissa · Brandi, , fútbol morado"
+  },
+  "IMG_7159.jpeg": {
+    "title": "Groot · Papá",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Groot. La muestra presenta Papá. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Groot · Papá, , marvel guardianes de la galaxia, padre padres papi día del padre"
+  },
+  "IMG_7241.jpeg": {
+    "title": "Messi y Argentina · Alfredo",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi y Argentina. La muestra presenta Alfredo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi y Argentina · Alfredo, , lionel fútbol futbolista"
+  },
+  "IMG_7253.jpeg": {
+    "title": "Primer año · Número con fotografías",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Primer año. La muestra presenta Número con fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Primer año · Número con fotografías, aniversario pareja amor celebración, fotos retratos"
+  },
+  "IMG_7259.jpeg": {
+    "title": "Cristiano Ronaldo · Yonaiker",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Yonaiker. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Yonaiker, , cr7 fútbol futbolista"
+  },
+  "IMG_7271.jpeg": {
+    "title": "Minecraft · Andrey",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Minecraft. La muestra presenta Andrey. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Minecraft · Andrey, , videojuego gamer"
+  },
+  "IMG_7280.jpeg": {
+    "title": "Cristiano Ronaldo · Said",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Said. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Said, , cr7 fútbol futbolista"
+  },
+  "IMG_7295.jpeg": {
+    "title": "Cliff jumping · Saltos al agua",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cliff jumping. La muestra presenta Saltos al agua. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cliff jumping · Saltos al agua, "
+  },
+  "IMG_7299.jpeg": {
+    "title": "12 años · Número con fotografías",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: 12 años. La muestra presenta Número con fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "12 años · Número con fotografías, aniversario pareja amor celebración, fotos retratos"
+  },
+  "IMG_7377.jpeg": {
+    "title": "Spider-Man · James",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Spider-Man. La muestra presenta James. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Spider-Man · James, , spiderman spider man hombre araña marvel superhéroes cómics"
+  },
+  "IMG_7382.jpeg": {
+    "title": "Cars · Jackson",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Cars. La muestra presenta Jackson. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cars · Jackson, , disney pixar rayo mcqueen"
+  },
+  "IMG_7392.jpeg": {
+    "title": "Motocicletas Yamaha · Carlos",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de motocicletas yamaha. La muestra presenta Carlos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Motocicletas Yamaha · Carlos, , moto motos motocicleta motor"
+  },
+  "IMG_7433.jpeg": {
+    "title": "Messi · Copa del Mundo y Argentina",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi. La muestra presenta Copa del Mundo y Argentina. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi · Copa del Mundo y Argentina, , lionel fútbol futbolista"
+  },
+  "IMG_7443.jpeg": {
+    "title": "Cristiano Ronaldo · Cinco Mundiales, una leyenda",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Cinco Mundiales, una leyenda. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Cinco Mundiales, una leyenda, , cr7 fútbol futbolista"
+  },
+  "IMG_7452.jpeg": {
+    "title": "Rock · Juank y fotografías familiares",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro con fotografías familiares, decoración de rock y el nombre Juank.",
+    "keywords": "Rock · Juank y fotografías familiares, , música rockero, fotos retratos"
+  },
+  "IMG_7455.jpeg": {
+    "title": "Papá · Real Madrid y retratos ilustrados",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Papá. La muestra presenta Real Madrid y retratos ilustrados. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Papá · Real Madrid y retratos ilustrados, familia recuerdo regalo, fútbol madridista, padre padres papi día del padre"
+  },
+  "IMG_7460.jpeg": {
+    "title": "Aviones y aviación · Javier",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de aviones y aviación. La muestra presenta Javier. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Aviones y aviación · Javier, , aviación piloto"
+  },
+  "IMG_7464.jpeg": {
+    "title": "Yamaha · Reconocimiento y viaje a Japón",
+    "category": "Reconocimientos",
+    "description": "Cuadro personalizado: Yamaha. La muestra presenta Reconocimiento y viaje a Japón. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Yamaha · Reconocimiento y viaje a Japón, reconocimiento agradecimiento homenaje"
+  },
+  "IMG_7573.jpeg": {
+    "title": "Los Simpson · Álvaro",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Los Simpson. La muestra presenta Álvaro. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Los Simpson · Álvaro, , simpsons caricaturas"
+  },
+  "IMG_7578.jpeg": {
+    "title": "Cristiano Ronaldo · El último baile en Portugal",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta El último baile en Portugal. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · El último baile en Portugal, , cr7 fútbol futbolista"
+  },
+  "IMG_7582.jpeg": {
+    "title": "Lamine Yamal · Brandon",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Lamine Yamal. La muestra presenta Brandon. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Lamine Yamal · Brandon, , fútbol futbolista fc barcelona"
+  },
+  "IMG_7591.jpeg": {
+    "title": "¿Quieres ser mi cuchurrumina? · Ilustración de pareja y Shrek",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: ¿Quieres ser mi cuchurrumina?. La muestra presenta Ilustración de pareja y Shrek. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "¿Quieres ser mi cuchurrumina? · Ilustración de pareja y Shrek, pareja novios amor romántico san valentín"
+  },
+  "IMG_7623.jpeg": {
+    "title": "Te amo papá · Collage de fotografías",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Te amo papá. La muestra presenta Collage de fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Te amo papá · Collage de fotografías, familia recuerdo regalo, fotos retratos"
+  },
+  "IMG_7628.jpeg": {
+    "title": "Deadpool · Papá",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Deadpool. La muestra presenta Papá. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Deadpool · Papá, , marvel superhéroes cómics, padre padres papi día del padre"
+  },
+  "IMG_7636.jpeg": {
+    "title": "Ganadería · Sombrero, lazo y retrato",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de ganadería. La muestra presenta Sombrero, lazo y retrato. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Ganadería · Sombrero, lazo y retrato, , ganadero campo vacas"
+  },
+  "IMG_7649.jpeg": {
+    "title": "Davor Šuker · Croacia",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Davor Šuker. La muestra presenta Croacia. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Davor Šuker · Croacia, , fútbol futbolista"
+  },
+  "IMG_7664.jpeg": {
+    "title": "Liga Deportiva Alajuelense · Steven",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Liga Deportiva Alajuelense. La muestra presenta Steven. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Liga Deportiva Alajuelense · Steven, , fútbol liga lda manudo"
+  },
+  "IMG_7673.jpeg": {
+    "title": "Gatos · Collage felino",
+    "category": "Mascotas",
+    "description": "Cuadro personalizado: Gatos. La muestra presenta Collage felino. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Gatos · Collage felino, mascota animales recuerdo, gato felino"
+  },
+  "IMG_7684.jpeg": {
+    "title": "Messi y Cristiano Ronaldo · Trayectorias",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi y Cristiano Ronaldo. La muestra presenta Trayectorias. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi y Cristiano Ronaldo · Trayectorias, , cr7 fútbol futbolista, lionel fútbol futbolista"
+  },
+  "IMG_7958.jpeg": {
+    "title": "Motocicletas Yamaha · Gerardo",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de motocicletas yamaha. La muestra presenta Gerardo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Motocicletas Yamaha · Gerardo, , moto motos motocicleta motor"
+  },
+  "IMG_7963.jpeg": {
+    "title": "Messi y FC Barcelona · Edwin",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Messi y FC Barcelona. La muestra presenta Edwin. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Messi y FC Barcelona · Edwin, , lionel fútbol futbolista, barca barça fútbol"
+  },
+  "IMG_8073.jpeg": {
+    "title": "Marvel · Roiner",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Marvel. La muestra presenta Roiner. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Marvel · Roiner, , superhéroes cómics"
+  },
+  "IMG_8093.jpeg": {
+    "title": "Snoopy y Peanuts · Sofi",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Snoopy y Peanuts. La muestra presenta Sofi. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Snoopy y Peanuts · Sofi, , peanuts charlie brown caricaturas"
+  },
+  "IMG_8188.jpeg": {
+    "title": "Enredados · Cuadro en caja de regalo",
+    "category": "Anime & Fandom",
+    "description": "Cuadro de Enredados con Rapunzel, personajes de la película y letras personalizadas, presentado en una caja de regalo con dulces y tarjeta de San Valentín.",
+    "keywords": "Enredados, Rapunzel, Tangled, Disney, princesa, película, caja de regalo, San Valentín"
+  },
+  "IMG_8189.jpeg": {
+    "title": "Caja de regalo · Vino y chocolates",
+    "category": "Otros",
+    "description": "Presentación de regalo con una botella de vino, chocolates y una tarjeta. Esta fotografía muestra la caja de regalo, sin un cuadro visible.",
+    "keywords": "Caja de regalo · Vino y chocolates, "
+  },
+  "IMG_8191.jpeg": {
+    "title": "Dragon Ball Z · Goku en caja de regalo",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Dragon Ball Z. La muestra presenta Goku en caja de regalo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Dragon Ball Z · Goku en caja de regalo, , anime manga dragonball saiyajin"
+  },
+  "IMG_8319.jpeg": {
+    "title": "La Bella y la Bestia · Isa",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en La Bella y la Bestia. La muestra presenta Isa. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "La Bella y la Bestia · Isa, , disney princesa belle"
+  },
+  "IMG_8349.jpeg": {
+    "title": "Pokémon · Emma y Pikachu",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Pokémon. La muestra presenta Emma y Pikachu. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Pokémon · Emma y Pikachu, , pokemon anime videojuegos"
+  },
+  "IMG_8357.jpeg": {
+    "title": "Fórmula 1 Red Bull · Jeffred",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Fórmula 1 Red Bull. La muestra presenta Jeffred. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Fórmula 1 Red Bull · Jeffred, , formula1 f1 automovilismo carreras"
+  },
+  "IMG_8361.jpeg": {
+    "title": "Calaveras y rosas · Will",
+    "category": "Otros",
+    "description": "Cuadro con calaveras, rosas rojas y el nombre Will.",
+    "keywords": "Calaveras y rosas · Will, "
+  },
+  "IMG_8364.jpeg": {
+    "title": "TikTok · José",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de TikTok. La muestra presenta José. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "TikTok · José, "
+  },
+  "IMG_8381.jpeg": {
+    "title": "Liga Deportiva Alajuelense · Darío",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Liga Deportiva Alajuelense. La muestra presenta Darío. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Liga Deportiva Alajuelense · Darío, , fútbol liga lda manudo"
+  },
+  "IMG_8387.jpeg": {
+    "title": "Mensaje de ánimo · Atardecer y silueta",
+    "category": "Fe e inspiración",
+    "description": "Cuadro personalizado: Mensaje de ánimo. La muestra presenta Atardecer y silueta. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mensaje de ánimo · Atardecer y silueta, fe inspiración mensaje motivación"
+  },
+  "IMG_8401.jpeg": {
+    "title": "Deadpool · Joel",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Deadpool. La muestra presenta Joel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Deadpool · Joel, , marvel superhéroes cómics"
+  },
+  "IMG_8420.jpeg": {
+    "title": "Estampa de fútbol personalizada · Mati y Ari",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Estampa de fútbol personalizada. La muestra presenta Mati y Ari. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Estampa de fútbol personalizada · Mati y Ari, pareja novios amor romántico san valentín"
+  },
+  "IMG_8488.jpeg": {
+    "title": "Primer mes · Collage de pareja",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Primer mes. La muestra presenta Collage de pareja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Primer mes · Collage de pareja, aniversario pareja amor celebración"
+  },
+  "IMG_8536.jpeg": {
+    "title": "La noche estrellada · Van Gogh y siluetas de gatos",
+    "category": "Parejas",
+    "description": "Diseño inspirado en La noche estrellada de Van Gogh, con dos siluetas de gatos y una dedicatoria.",
+    "keywords": "La noche estrellada · Van Gogh y siluetas de gatos, pareja novios amor romántico san valentín, gato felino"
+  },
+  "IMG_8880.jpeg": {
+    "title": "BTS · Kimberly",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en BTS. La muestra presenta Kimberly. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "BTS · Kimberly, , música kpop k pop army"
+  },
+  "IMG_8883.jpeg": {
+    "title": "Te amo · Letras con fotografías",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Te amo. La muestra presenta Letras con fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Te amo · Letras con fotografías, pareja novios amor romántico san valentín, fotos retratos"
+  },
+  "IMG_8885.jpeg": {
+    "title": "Your Name · Diana",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Your Name. La muestra presenta Diana. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Your Name · Diana, , anime kimi no na wa"
+  },
+  "IMG_8886.jpeg": {
+    "title": "Batman · Juank en caja de regalo",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Batman. La muestra presenta Juank en caja de regalo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Batman · Juank en caja de regalo, , DC cómics superhéroes caballero oscuro"
+  },
+  "IMG_8891.jpeg": {
+    "title": "Carros rojos · Jessy",
+    "category": "Profesiones y hobbies",
+    "description": "Cuadro personalizado de carros rojos. La muestra presenta Jessy. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Carros rojos · Jessy, , autos coches automóviles"
+  },
+  "IMG_8895.jpeg": {
+    "title": "Minecraft · Ryan en caja de regalo",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Minecraft. La muestra presenta Ryan en caja de regalo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Minecraft · Ryan en caja de regalo, , videojuego gamer"
+  },
+  "IMG_8900.jpeg": {
+    "title": "Dragon Ball Z · Goku y Pablo",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Dragon Ball Z. La muestra presenta Goku y Pablo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Dragon Ball Z · Goku y Pablo, , anime manga dragonball saiyajin"
+  },
+  "IMG_8908.jpeg": {
+    "title": "Kuromi · Mariana en caja de regalo",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Kuromi. La muestra presenta Mariana en caja de regalo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Kuromi · Mariana en caja de regalo, , sanrio"
+  },
+  "IMG_8911.jpeg": {
+    "title": "Museo de nuestra historia · Janis y Nathan",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Museo de nuestra historia. La muestra presenta Janis y Nathan. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Museo de nuestra historia · Janis y Nathan, aniversario pareja amor celebración"
+  },
+  "IMG_8914.jpeg": {
+    "title": "Jujutsu Kaisen · Manuel",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Jujutsu Kaisen. La muestra presenta Manuel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Jujutsu Kaisen · Manuel, , anime manga"
+  },
+  "IMG_8916.jpeg": {
+    "title": "Rugrats · Verónica",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Rugrats. La muestra presenta Verónica. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Rugrats · Verónica, , aventuras en pañales caricaturas"
+  },
+  "IMG_8932.jpeg": {
+    "title": "Hunter x Hunter · Jesús",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Hunter x Hunter. La muestra presenta Jesús. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Hunter x Hunter · Jesús, , anime manga hunterxhunter"
+  },
+  "IMG_8934.jpeg": {
+    "title": "Stitch · Te amo con fotos",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Stitch. La muestra presenta Te amo con fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Stitch · Te amo con fotos, , lilo stitch disney, fotografías collage"
+  },
+  "IMG_8937.jpeg": {
+    "title": "Keylor Navas · Alets",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Keylor Navas. La muestra presenta Alets. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Keylor Navas · Alets, , fútbol portero costa rica"
+  },
+  "IMG_8969.jpeg": {
+    "title": "Todos los días de mi vida · Collage romántico",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Todos los días de mi vida. La muestra presenta Collage romántico. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Todos los días de mi vida · Collage romántico, pareja novios amor romántico san valentín"
+  },
+  "IMG_9005.jpeg": {
+    "title": "Te amo · Letras con fotos",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Te amo. La muestra presenta Letras con fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Te amo · Letras con fotos, pareja novios amor romántico san valentín, fotografías collage"
+  },
+  "IMG_9128.jpeg": {
+    "title": "Captain Harlock · Tommy",
+    "category": "Anime & Fandom",
+    "description": "Cuadro de Captain Harlock con personajes de anime y el nombre Tommy.",
+    "keywords": "Captain Harlock · Tommy, , anime capitan harlock albator"
+  },
+  "IMG_9187.jpeg": {
+    "title": "Daira y Eduardo · Collage de pareja",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Daira y Eduardo. La muestra presenta Collage de pareja. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Daira y Eduardo · Collage de pareja, pareja novios amor romántico san valentín"
+  },
+  "IMG_9289.jpeg": {
+    "title": "Yzma · Martha y cumpleaños 50",
+    "category": "Anime & Fandom",
+    "description": "Cuadro con Yzma de Las locuras del emperador y el nombre Martha, presentado como regalo de cumpleaños 50.",
+    "keywords": "Yzma · Martha y cumpleaños 50, , las locuras del emperador disney emperor new groove"
+  },
+  "IMG_9295.jpeg": {
+    "title": "Collage de fotografías · Dedicatoria familiar",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Collage de fotografías. La muestra presenta Dedicatoria familiar. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Collage de fotografías · Dedicatoria familiar, familia recuerdo regalo, fotos retratos"
+  },
+  "IMG_9300.jpeg": {
+    "title": "Grupo Proyección Folclórica · Fotografía grupal",
+    "category": "Reconocimientos",
+    "description": "Cuadro personalizado: Grupo Proyección Folclórica. La muestra presenta Fotografía grupal. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Grupo Proyección Folclórica · Fotografía grupal, reconocimiento agradecimiento homenaje, fotos retratos"
+  },
+  "IMG_9302.jpeg": {
+    "title": "Enredados · Rapunzel y collage",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Enredados. La muestra presenta Rapunzel y collage. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Enredados · Rapunzel y collage, , rapunzel tangled disney princesa"
+  },
+  "IMG_9322.jpeg": {
+    "title": "Cars · Te amo con fotos",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Cars. La muestra presenta Te amo con fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cars · Te amo con fotos, pareja novios amor romántico san valentín, disney pixar rayo mcqueen, fotografías collage"
+  },
+  "IMG_9328.jpeg": {
+    "title": "Michael Jackson · MJ",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Michael Jackson. La muestra presenta MJ. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Michael Jackson · MJ, , música cantante rey del pop"
+  },
+  "IMG_9449.jpeg": {
+    "title": "Stranger Things · Nayeli",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Stranger Things. La muestra presenta Nayeli. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Stranger Things · Nayeli, "
+  },
+  "IMG_9511.jpeg": {
+    "title": "Enredados · Te amo y propuesta de noviazgo",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Enredados. La muestra presenta Te amo y propuesta de noviazgo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Enredados · Te amo y propuesta de noviazgo, pareja novios amor romántico san valentín, rapunzel tangled disney princesa"
+  },
+  "IMG_9565.jpeg": {
+    "title": "CNCO · Mariana",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en CNCO. La muestra presenta Mariana. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "CNCO · Mariana, , música grupo pop"
+  },
+  "IMG_9568.jpeg": {
+    "title": "Star Wars · Gabriel",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Star Wars. La muestra presenta Gabriel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Star Wars · Gabriel, , guerra de las galaxias ciencia ficción"
+  },
+  "IMG_9695.jpeg": {
+    "title": "Mickey y Minnie · Te amo",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Mickey y Minnie. La muestra presenta Te amo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Mickey y Minnie · Te amo, pareja novios amor romántico san valentín, disney mouse, disney mouse"
+  },
+  "IMG_9730.jpeg": {
+    "title": "Caja de regalo · One Piece y Zoro",
+    "category": "Otros",
+    "description": "Detalle de la tapa de una caja de regalo con Zoro de One Piece y una dedicatoria sobre sus espadas. El cuadro no se ve en esta fotografía.",
+    "keywords": "Caja de regalo · One Piece y Zoro, , anime manga piratas"
+  },
+  "IMG_9736.jpeg": {
+    "title": "Caja kraft · Lazo verde",
+    "category": "Otros",
+    "description": "Presentación exterior de una caja kraft cerrada, decorada con cinta y lazo verdes. El contenido no se ve en esta fotografía.",
+    "keywords": "Caja kraft · Lazo verde, "
+  },
+  "IMG_9830.jpeg": {
+    "title": "Papá · Retrato y rosas azules",
+    "category": "Familia",
+    "description": "Cuadro personalizado: Papá. La muestra presenta Retrato y rosas azules. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Papá · Retrato y rosas azules, familia recuerdo regalo, padre padres papi día del padre"
+  },
+  "IMG_9833.jpeg": {
+    "title": "Pokémon · Gengar y Yocsan",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Pokémon. La muestra presenta Gengar y Yocsan. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Pokémon · Gengar y Yocsan, , pokemon anime videojuegos, pokemon fantasma"
+  },
+  "IMG_9836.jpeg": {
+    "title": "Hot Wheels · Bryan y tarjeta de graduación",
+    "category": "Graduación + Escolar",
+    "description": "Tarjeta de felicitación por graduación en primer plano, con un cuadro de Hot Wheels personalizado con el nombre Bryan al fondo.",
+    "keywords": "Hot Wheels · Bryan y tarjeta de graduación, graduación escolar graduado logro, graduado graduada escolar"
+  },
+  "IMG_9837.jpeg": {
+    "title": "Hot Wheels · Bryan",
+    "category": "Graduación + Escolar",
+    "description": "Cuadro personalizado: Hot Wheels. La muestra presenta Bryan. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Hot Wheels · Bryan, graduación escolar graduado logro"
+  },
+  "IMG_9843.jpeg": {
+    "title": "Cristiano Ronaldo · Manuel",
+    "category": "Deportes",
+    "description": "Cuadro de temática deportiva: Cristiano Ronaldo. La muestra presenta Manuel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Cristiano Ronaldo · Manuel, , cr7 fútbol futbolista"
+  },
+  "IMG_9850.jpeg": {
+    "title": "Spider-Man · Shandrell",
+    "category": "Anime & Fandom",
+    "description": "Diseño inspirado en Spider-Man. La muestra presenta Shandrell. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Spider-Man · Shandrell, , spiderman spider man hombre araña marvel superhéroes cómics"
+  },
+  "IMG_9884.jpeg": {
+    "title": "Collage de retratos · Mariposas azules y moradas",
+    "category": "Cumpleaños",
+    "description": "Cuadro personalizado: Collage de retratos. La muestra presenta Mariposas azules y moradas. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Collage de retratos · Mariposas azules y moradas, cumpleaños birthday celebración"
+  },
+  "IMG_9947.jpeg": {
+    "title": "Boda · Retrato con decoración tropical",
+    "category": "Parejas",
+    "description": "Cuadro personalizado: Boda. La muestra presenta Retrato con decoración tropical. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Boda · Retrato con decoración tropical, pareja novios amor romántico san valentín"
+  },
+  "IMG_9963.jpeg": {
+    "title": "Deadpool y meme de perro · Kevin",
+    "category": "Anime & Fandom",
+    "description": "Cuadro con viñetas de Deadpool, un meme de perro y el nombre Kevin, presentado en una caja temática de Deadpool.",
+    "keywords": "Deadpool y meme de perro · Kevin, , marvel superhéroes cómics, perrito mascota"
+  },
+  "IMG_9967.jpeg": {
+    "title": "Primer aniversario · Collage de fotografías",
+    "category": "Aniversarios",
+    "description": "Cuadro personalizado: Primer aniversario. La muestra presenta Collage de fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+    "keywords": "Primer aniversario · Collage de fotografías, aniversario pareja amor celebración, fotos retratos"
+  }
+};
+
+function inferCategory(path){
+
+  const n=norm(path);
+
+  if(/gradu|escolar|profe|maestro|teacher|colegio|escuela/.test(n))
+    return"Graduación + Escolar";
+
+  if(/cumple|birthday|feliz/.test(n))
+    return"Cumpleaños";
+
+  if(/anivers|novio|novia|pareja|amor|boda/.test(n))
+    return"Parejas";
+
+  if(/mama|mamá|papa|papá|familia|abuela|abuelo|hija|hijo/.test(n))
+    return"Familia";
+
+  if(/mascota|perro|gato|pet/.test(n))
+    return"Mascotas";
+
+  if(/reconoc|ingenier|bombero|medic|doctor|dj|musico|músico|yamaha|laboral/.test(n))
+    return"Reconocimientos";
+
+  if(/futbol|fútbol|messi|ronaldo|cr7|neymar|barcelona|real madrid|saprissa|nba|basket|baloncesto/.test(n))
+    return"Deportes";
+
+  if(/anime|goku|vegeta|dragon|naruto|luffy|one piece|chopper|levi|manga/.test(n))
+    return"Anime & Fandom";
+
+  return"Otros";
+
+}
+function buildItem(path,index,cfg){
+
+  const c=cfg[path]||{};
+
+  const fileName=path.split("/").pop();
+
+  const manual=MANUAL_CATALOG[fileName]||{};
+
+  return{
+
+    path,
+
+    id:c.id||refFor(path),
+
+    title:
+      c.title ||
+      manual.title ||
+      cleanTitle(path),
+
+    category:
+      c.category ||
+      manual.category ||
+      inferCategory(path),
+
+    keywords:
+      c.keywords ||
+      manual.keywords ||
+      path.replace(/[\/_.-]+/g," "),
+
+    description:
+      c.description ||
+      manual.description ||
+      "Este diseño puede personalizarse con tus fotos, nombre y detalles.",
+
+    price:
+      c.price ||
+      manual.price ||
+      "Desde ₡17.500",
+
+    image:
+      c.image ||
+      rawUrl(path),
+
+    active:
+      c.active!==false
+
+  };
+
+}
+async function loadImages(){
+  $("#status").style.display="block";
+  try{
+    const response=await fetch('./catalog.json',{cache:'no-store'});
+    if(!response.ok)throw new Error('No se pudo leer el catálogo.');
+    const data=await response.json();
+    if(data.version!==1||!Array.isArray(data.items))throw new Error('Formato de catálogo no válido.');
+    ITEMS=data.items.map((item,index)=>({...buildItem(item.path,index,{}),...item,image:rawUrl(item.coverPhoto||item.path)})).filter(x=>!HIDDEN_REFS.has(x.id));
+    $("#status").style.display="none";
+    renderChips();render();
+  }catch(err){
+    console.error(err);
+    $("#count").textContent="No se pudo cargar el catálogo";
+    $("#status").innerHTML=`<div class="statusbox"><strong>No pude leer automáticamente las imágenes.</strong><br>Verifica que el repositorio <b>${OWNER}/${REPO}</b> siga público y que la rama sea <b>${BRANCH}</b>. No se borró ninguna imagen.</div>`;
+  }
+}
+
+function renderChips(){
+  const used=new Set(ITEMS.filter(x=>x.active).map(x=>x.category));
+  const visibleCats=CATS.filter(c=>c==="Todos"||used.has(c));
+  $("#chips").innerHTML=visibleCats.map(c=>`<button class="chip ${c===active?"active":""}" aria-pressed="${c===active}" data-c="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join("");
+  document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{active=b.dataset.c;renderChips();render()});
+}
+function escapeHtml(s=""){
+  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+}
+function searchText(value){
+  return norm(value).replace(/[^a-z0-9]+/g," ").trim();
+}
+function matchesSearch(item,query){
+  const terms=searchText(query).split(/\s+/).filter(Boolean);
+  const text=searchText(`${item.id} ${item.title} ${item.category} ${item.keywords} ${item.description} ${item.path}`);
+  return terms.every(term=>text.includes(term));
+}
+function filtered(){
+  return ITEMS.filter(x=>x.active&&(active==="Todos"||x.category===active)&&matchesSearch(x,$("#q").value));
+}
+  let showAll = false;
+  const FEATURED_CATEGORIES = ["Parejas", "Familia", "Anime & Fandom", "Deportes", "Mascotas", "Cumpleaños", "Aniversarios", "Profesiones y hobbies"];
+
+function featuredItems(){
+  return FEATURED_CATEGORIES.map(cat =>
+    ITEMS.find(x => x.active !== false && x.category === cat)
+  ).filter(Boolean);
+}
+function render(){
+
+  const q=norm($("#q").value);
+
+  const showingFeatured =
+    !showAll &&
+    active==="Todos" &&
+    !q;
+
+  const list =
+    showingFeatured
+      ? featuredItems()
+      : filtered();
+
+  $("#count").textContent = showingFeatured
+    ? "Diseños destacados"
+    : `${list.length} diseño${list.length===1?"":"s"}`;
+
+  $("#empty").style.display =
+    list.length ? "none" : "block";
+
+  $("#grid").innerHTML = list.map(x=>`
+    <article class="card">
+      <div class="photo" onclick="openDetail('${x.id}')">
+        <img
+          loading="lazy"
+          src="${x.image}"
+          alt="${escapeHtml(x.title)}"
+          onerror="this.alt='Imagen temporalmente no disponible: ' + this.alt"
+        >
+        <span class="ref">${escapeHtml(x.id)}</span>
+      </div>
+
+      <div class="body">
+        <div class="cat">${escapeHtml(x.category)}</div>
+        <h2 class="title">${escapeHtml(x.title)}</h2>
+        <div class="price">${escapeHtml(x.price)}</div>
+
+        <div class="actions">
+          <button
+            class="view"
+            onclick="openDetail('${x.id}')"
+          >
+            Ver grande
+          </button>
+
+          <button
+            class="wa"
+            onclick="sendWA('${x.id}')"
+          >
+            WhatsApp
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  if(showingFeatured){
+    $("#grid").insertAdjacentHTML("beforeend",`
+      <div class="catalog-more">
+        <button class="cta" onclick="expandCatalog()">Ver todos los ${ITEMS.filter(x=>x.active!==false).length} diseños</button>
+      </div>
+    `);
+  }
+}
+function expandCatalog(){
+  showAll=true;
+  render();
+  $("#catalogo").focus({preventScroll:true});
+  $("#catalogo").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+let detailPhotos=[],detailPhotoIndex=0;
+function renderDetailPhoto(){
+  $("#detailImg").src=rawUrl(detailPhotos[detailPhotoIndex]);
+  $("#detailImg").alt=`${selected.title} · Foto ${detailPhotoIndex+1} de ${detailPhotos.length}`;
+  $("#galleryControls").hidden=detailPhotos.length<2;
+  $("#galleryCounter").textContent=`${detailPhotoIndex+1} / ${detailPhotos.length}`;
+  $("#galleryThumbs").replaceChildren();
+  detailPhotos.forEach((path,index)=>{const button=document.createElement('button');button.type='button';button.setAttribute('aria-label',`Ver foto ${index+1}`);button.setAttribute('aria-pressed',String(index===detailPhotoIndex));const img=document.createElement('img');img.src=rawUrl(path);img.alt='';img.loading='lazy';button.append(img);button.onclick=()=>{detailPhotoIndex=index;renderDetailPhoto();};$("#galleryThumbs").append(button);});
+}
+function stepPhoto(step){if(!detailPhotos.length)return;detailPhotoIndex=(detailPhotoIndex+step+detailPhotos.length)%detailPhotos.length;renderDetailPhoto();}
+$("#galleryPrev").onclick=()=>stepPhoto(-1);$("#galleryNext").onclick=()=>stepPhoto(1);
+$("#detail").addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();stepPhoto(e.key==='ArrowLeft'?-1:1);}});
+let touchStart=null;
+$("#galleryStage").addEventListener('touchstart',e=>{touchStart=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null;},{passive:true});
+$("#galleryStage").addEventListener('touchend',e=>{if(!touchStart||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)stepPhoto(dx<0?1:-1);},{passive:true});
+function openDetail(id){
+  selected=ITEMS.find(x=>x.id===id);if(!selected)return;
+  detailPhotos=[...new Set([...(Array.isArray(selected.photos)?selected.photos:[selected.path]),selected.path])];
+  detailPhotoIndex=Math.max(0,detailPhotos.indexOf(selected.coverPhoto||selected.path));
+  renderDetailPhoto();
+  $("#detailCat").textContent=selected.category;
+  $("#detailTitle").textContent=selected.title;
+  $("#detailRef").textContent=`Referencia: ${selected.id} · ${selected.price}`;
+  $("#detailDesc").textContent=selected.description||"Diseño personalizado de MISO CR.";
+  detail.showModal();
+}
+function sendWA(id){
+  const x=ITEMS.find(i=>i.id===id);if(!x)return;
+  const msg=`Hola MISO CR 👋 Me interesa el diseño ${x.id} (${x.title}). ¿Me pueden dar información para personalizarlo?`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+function openGeneralWA(){
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola MISO CR 👋 Quiero información sobre los cuadros personalizados.")}`,"_blank");
+}
+$("#detailWa").onclick=()=>selected&&sendWA(selected.id);
+$("#q").oninput=render;
+$("#clear").onclick=()=>{$("#q").value="";render();$("#q").focus()};
+
+loadImages();
+</script>
+
+<script>
+/* Animaciones de entrada independientes del catálogo y de sus datos. */
+(() => {
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (motion.matches || !('IntersectionObserver' in window)) return;
+  const seen = new WeakSet();
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('miso-arrive');
+      observer.unobserve(entry.target);
+    }
+  }, {threshold: 0.08});
+  const watch = element => {
+    if (seen.has(element)) return;
+    seen.add(element);
+    observer.observe(element);
+  };
+  document.querySelectorAll('.section-title,.size-card,.step-card,.payment-card,.final-cta').forEach(watch);
+  const grid = document.getElementById('grid');
+  const mutations = new MutationObserver(records => {
+    for (const record of records) {
+      for (const node of record.removedNodes) {
+        if (node.nodeType === 1) observer.unobserve(node);
+      }
+      for (const node of record.addedNodes) {
+        if (node.nodeType === 1 && node.matches('.card')) watch(node);
+      }
+    }
+  });
+  grid.querySelectorAll('.card').forEach(watch);
+  mutations.observe(grid, {childList:true});
+  motion.addEventListener('change', () => {
+    if (!motion.matches) return;
+    observer.disconnect();
+    mutations.disconnect();
+    document.querySelectorAll('.miso-arrive').forEach(el => el.classList.remove('miso-arrive'));
+  });
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
