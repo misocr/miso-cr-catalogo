@@ -20,16 +20,23 @@ button{cursor:pointer}
 [hidden]{display:none!important}
 header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .head{max-width:1240px;min-height:72px;margin:auto;padding:12px 24px;display:flex;align-items:center;gap:12px}
-.logo{font-size:27px;font-weight:900;letter-spacing:-1.1px}.logo span{color:var(--miso);font-weight:650}
+.logo{display:flex;align-items:center}.logo img{display:block;width:124px;height:auto;mix-blend-mode:multiply}
 .head-actions{margin-left:auto;display:flex;gap:8px}
-.hero{position:relative;isolation:isolate;max-width:1240px;margin:auto;padding:36px 24px 20px;background:radial-gradient(ellipse at 85% 12%,#f4eef9 0,transparent 54%)}
-.hero::after{content:"✧";position:absolute;z-index:-1;right:8%;top:26px;color:#d9bd98;font-size:58px;pointer-events:none}
+.hero{position:relative;isolation:isolate;max-width:1192px;margin:24px auto 32px;padding:44px 44px 0;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:24px 40px;border:1px solid #eee3f5;border-radius:32px;background:radial-gradient(ellipse at 0 0,#fffdf6,transparent 55%),radial-gradient(ellipse at 100% 70%,#dfcdec,transparent 62%),#f6effb}
+.hero-copy{padding:14px 0 24px;position:relative;z-index:1}
 .badge{display:inline-flex;align-items:center;padding:7px 11px;border:1px solid #e7deef;border-radius:999px;background:#f7f3fb;color:#69527f;font-size:11px;font-weight:750;letter-spacing:.8px;line-height:1.4}
-.hero h1{max-width:900px;font-size:clamp(29px,3.7vw,46px);font-weight:750;line-height:1.13;letter-spacing:-1.65px;margin:16px 0 12px;text-wrap:balance}
-.hero h1 em{font-style:normal;color:var(--miso)}
-.hero p{max-width:740px;margin:0;color:var(--muted);font-size:16px;line-height:1.6}
-.benefits{margin-top:24px;padding:13px 16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(100deg,#faf7fd,#fffdfa);color:#665571;font-size:13px;font-weight:550;line-height:1.7}
-.search-area{max-width:1240px;margin:auto;padding:10px 24px 0;position:relative}
+.hero h1{font-size:clamp(38px,4.5vw,61px);font-weight:800;line-height:1.08;letter-spacing:-2px;margin:24px 0;text-wrap:balance;color:#38234e}
+.hero h1 em{display:block;margin-top:8px;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;color:#8254a7;letter-spacing:-1.8px;text-decoration:underline;text-decoration-color:#f3d47b;text-decoration-thickness:4px;text-underline-offset:9px}
+.hero p{max-width:430px;margin:0;color:#665771;font-size:16px;line-height:1.65}
+.hero .hero-subtitle{font-size:18px;font-weight:650;color:#43324e;margin:0 0 10px}
+.hero-catalog{display:inline-flex;align-items:center;justify-content:center;gap:30px;min-height:54px;margin-top:26px;padding:15px 28px;border-radius:999px;color:white;background:#78459a;text-decoration:none;font-weight:700;font-size:17px;box-shadow:0 5px 0 #edd58f,0 12px 26px #69438320;transition:background .2s,transform .2s}
+.hero-catalog span{font-size:24px;line-height:1}
+.hero-visual{position:relative;padding:0 4px 6px;max-width:430px;justify-self:center;width:100%}
+.hero-visual>img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;border-radius:24px;border:6px solid #ffffff;box-shadow:0 18px 40px #51346324;transform:rotate(2deg)}
+.hero-spark{position:absolute;z-index:1;pointer-events:none;line-height:1;text-shadow:0 2px 0 white}
+.hero-spark-one{top:12%;left:-22px;font-size:54px;color:#d4a73e}.hero-spark-two{right:-20px;bottom:13%;font-size:60px;color:#a46fc1;transform:rotate(14deg)}
+.benefits{grid-column:1/-1;margin:8px -20px 0;padding:20px 16px;border:1px solid #eadff0;border-bottom:0;border-radius:22px 22px 0 0;background:#ffffffdf;color:#665571;font-size:14px;font-weight:550;line-height:1.9;text-align:center}
+.search-area{scroll-margin-top:92px;max-width:1240px;margin:auto;padding:10px 24px 0;position:relative}
 .search{position:relative}
 .search input{width:100%;min-height:54px;padding:15px 50px 15px 46px;border:1px solid #ddd2e6;border-radius:16px;background:#fff;color:var(--ink);font-size:16px;outline:none;box-shadow:0 4px 16px rgba(61,43,80,.04)}
 .search input::placeholder{color:#7b7184;opacity:1}
@@ -83,13 +90,15 @@ dialog{border:1px solid var(--line);padding:0;border-radius:24px;width:min(760px
 dialog::backdrop{background:rgba(35,25,44,.65);backdrop-filter:blur(4px)}
 .modal{background:#fff}.modal-top{display:flex;justify-content:flex-end;padding:9px}.x{border:0;width:44px;height:44px;border-radius:50%;background:var(--lav);color:var(--ink);font-size:24px}.modal-img{background:#f6f3f8}.modal-img img{width:100%;max-height:58dvh;object-fit:contain;display:block}.modal-copy{padding:24px}.modal-copy h2{margin:8px 0 12px;font-size:25px;font-weight:650;line-height:1.3}.modal-copy p{color:var(--muted);line-height:1.65}.fullwa{width:100%;font-size:15px;padding:14px}
 .gallery-nav{display:flex;align-items:center;justify-content:center;gap:20px;padding:12px}.gallery-nav button{min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--lav);color:#614b75;font-size:22px}#galleryThumbs{display:flex;gap:8px;overflow-x:auto;padding:4px 16px 12px}#galleryThumbs button{flex:0 0 64px;height:64px;padding:3px;border:2px solid transparent;border-radius:10px;background:var(--lav)}#galleryThumbs button[aria-pressed="true"]{border-color:var(--miso)}#galleryThumbs img{width:100%;height:100%;object-fit:contain}#galleryCounter{font-size:14px;color:#614b75}
+@media(min-width:650px) and (max-width:1000px){.hero{margin:20px 20px 28px;padding:30px 28px 0;gap:20px}.hero h1{font-size:42px}}
+@media(hover:hover) and (pointer:fine){.hero-catalog:hover{background:#643581;transform:translateY(-2px)}}
 @media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(min-width:980px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.sizes-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(hover:hover) and (pointer:fine){.card:hover{transform:translateY(-3px);box-shadow:0 14px 32px #3d2b5014;border-color:#d4c2e2}.chip:not(.active):hover,.view:hover{background:#eae1f3;border-color:#d4c2e2}.wa:hover,.fullwa:hover,.head-actions .iconbtn:hover,.btn-whatsapp:hover{background:#1b533e}.cta:hover,.location-card .btn-whatsapp:hover{background:#654c80}}
 @media(max-width:649px){
-  .head{min-height:62px;padding:9px 14px}.logo{font-size:24px}.head-actions .iconbtn{min-height:44px;padding:10px 14px}
-  .hero{padding:22px 14px 14px}.hero::after{right:18px;top:18px;font-size:34px}.hero h1{font-size:30px;letter-spacing:-.9px;margin:12px 0 10px}.hero p{font-size:14px;line-height:1.55}.hero .badge{font-size:10px}
-  .benefits{margin-top:16px;padding:10px 12px;font-size:12px;line-height:1.9}.search-area{padding:4px 14px 0}.search input{min-height:52px;font-size:16px}.chips{padding:12px 0 10px}.chip{font-size:13px;padding:10px 14px}
+  .head{min-height:62px;padding:9px 14px}.logo img{width:108px}.head-actions .iconbtn{min-height:44px;padding:10px 14px}
+  .hero{margin:14px 12px 24px;padding:26px 20px 0;grid-template-columns:1fr;gap:20px;border-radius:26px}.hero-copy{padding:0;text-align:center}.hero h1{font-size:40px;letter-spacing:-1.4px;margin:18px 0 22px}.hero h1 em{letter-spacing:-1.3px;text-underline-offset:7px}.hero p{font-size:14px;line-height:1.6;margin-left:auto;margin-right:auto}.hero .hero-subtitle{font-size:16px}.hero .badge{font-size:10px}.hero-catalog{margin-top:22px;min-height:52px;padding:13px 26px;font-size:16px}.hero-visual{max-width:310px;padding:0 6px}.hero-visual>img{border-width:5px;border-radius:20px;transform:rotate(1deg)}.hero-spark-one{font-size:38px;left:-9px}.hero-spark-two{font-size:44px;right:-8px}.benefits{margin:0 -8px;padding:14px 8px;font-size:12px;line-height:1.9;border-radius:18px 18px 0 0}
+  .search-area{padding:4px 14px 0}.search input{min-height:52px;font-size:16px}.chips{padding:12px 0 10px}.chip{font-size:13px;padding:10px 14px}
   .toolbar{font-size:15px;padding:15px 14px;scroll-margin-top:74px}.status{padding:0 14px}.grid{padding:0 12px 18px;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
   .card{border-radius:16px}.body{padding:11px}.cat{font-size:10px;min-height:30px;letter-spacing:.4px}.title{font-size:14px;min-height:41px;margin:6px 0 10px}.price{font-size:13px;margin-bottom:12px}.actions{flex-direction:column;gap:7px}.actions button{width:100%;flex:auto;font-size:13px}.ref{left:6px;bottom:6px;font-size:9px;padding:4px 6px}
   .catalog-more{padding:12px 0}.sizes-section,.how-section,.location-section,.payments-section,.final-cta{margin:24px 12px;padding:26px 16px;border-radius:22px}.section-title{margin-bottom:22px}.section-title h2,.final-cta h2{font-size:25px;letter-spacing:-.6px}.section-title p{font-size:14px}.sizes-grid{gap:12px}.size-card{padding:20px 8px}.size-card h3{font-size:15px}.size-card strong{font-size:21px}.size-card p{font-size:13px}
@@ -106,7 +115,7 @@ dialog::backdrop{background:rgba(35,25,44,.65);backdrop-filter:blur(4px)}
 <body>
 <header>
   <div class="head">
-    <div class="logo">MISO<span>CR</span></div>
+    <div class="logo"><img src="./miso-logo.jpg" alt="Miso Costa Rica" width="1280" height="578"></div>
     <div class="head-actions">
       <button class="iconbtn" onclick="openGeneralWA()">WhatsApp</button>
     </div>
@@ -114,15 +123,22 @@ dialog::backdrop{background:rgba(35,25,44,.65);backdrop-filter:blur(4px)}
 </header>
 
 <section class="hero">
+  <div class="hero-copy">
   <span class="badge">✨ MISO COSTA RICA</span>
-
-  <h1>Cuadros personalizados hechos para vos 🧡</h1>
-
+  <h1>Regalos que cuentan <em>grandes historias</em></h1>
+  <p class="hero-subtitle">Cuadros personalizados hechos para vos 🧡</p>
   <p>Elegí tu diseño favorito y personalizalo con tus fotos, nombres y recuerdos.</p>
+  <a class="hero-catalog" href="#explorar">Ver catálogo <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="hero-visual">
+    <span class="hero-spark hero-spark-one" aria-hidden="true">✧</span>
+    <img src="./regalo-real-naruto.jpg" alt="Cuadro personalizado de Naruto con luz LED, presentado en su caja con tarjeta y dulces" width="1152" height="1536" fetchpriority="high" decoding="async">
+    <span class="hero-spark hero-spark-two" aria-hidden="true">♡</span>
+  </div>
   <div class="benefits">✨ Personalizado · 🎁 Listo para regalar · 💡 Opción 3D · 🚚 Envíos disponibles</div>
 </section>
 
-<section class="search-area">
+<section class="search-area" id="explorar" aria-label="Explorar diseños">
   <div class="search">
     <span>⌕</span>
     <input id="q" aria-label="Buscar diseños" type="search" placeholder="Ej: anime, pareja, profesor, cumpleaños…" autocomplete="off">
