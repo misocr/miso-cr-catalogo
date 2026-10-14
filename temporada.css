@@ -1,0 +1,26 @@
+/* Colecciones de temporada: estilos aislados del catálogo existente. */
+.seasonal{max-width:1192px;margin:0 auto 36px;padding:30px;background:#f5effa;border:1px solid #ede2f4;border-radius:28px}
+.seasonal-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:16px}
+.seasonal h2{margin:0;color:#4d2c66;font-size:clamp(24px,3vw,34px);letter-spacing:-.8px}
+.seasonal-heading>span{color:#c49a42;font-size:32px}
+.seasonal-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.seasonal-card{min-width:0;padding:20px;background:white;border:1px solid #e9deef;border-radius:22px;box-shadow:0 8px 24px #4c2b6310;--season-accent:#744398}
+.seasonal-card.teacher{--season-accent:#94570f}
+.seasonal-card h3{font-size:23px;color:#35273f;margin:0 0 16px;letter-spacing:-.4px}
+.seasonal-stage{position:relative;overflow:hidden;background:#f7f4f8;border-radius:14px;aspect-ratio:4/3}
+.seasonal-stage img{display:block;width:100%;height:100%;object-fit:contain;animation:season-photo-in .45s ease both}
+.seasonal-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0 16px;color:#65556f;font-size:13px}
+.seasonal-controls button{border:1px solid #e2d7e9;border-radius:999px;min-width:44px;min-height:44px;background:#fff;color:#573b6d;cursor:pointer;font:inherit}
+.seasonal-controls .seasonal-pause{padding:0 14px}
+.seasonal-controls .seasonal-counter{margin-right:auto;white-space:nowrap}
+.seasonal-link{display:flex;justify-content:center;align-items:center;gap:24px;min-height:48px;padding:12px 20px;background:var(--season-accent);border-radius:999px;color:#fff;text-decoration:none;font-weight:700}
+.seasonal-link[aria-disabled="true"]{opacity:.6;cursor:wait}
+.seasonal-link:focus-visible,.seasonal-controls button:focus-visible,.seasonal-selection button:focus-visible{outline:3px solid #b98bd1;outline-offset:4px}
+.seasonal-selection{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:10px 0;color:#58386e;font-size:14px}
+.seasonal-selection[hidden]{display:none}
+.seasonal-selection button{background:white;border:1px solid #d4c1e2;color:#58386e;border-radius:999px;padding:10px 16px;min-height:44px;cursor:pointer;font:inherit}
+@keyframes season-photo-in{from{opacity:.3;transform:translateX(12px)}to{opacity:1;transform:none}}
+@media(hover:hover){.seasonal-link:hover{filter:brightness(.94)}.seasonal-controls button:hover{background:#f5effa}}
+@media(max-width:1240px){.seasonal{margin-left:24px;margin-right:24px}}
+@media(max-width:650px){.seasonal{margin:0 12px 28px;padding:20px 14px;border-radius:24px}.seasonal-grid{gap:16px;grid-template-columns:1fr}.seasonal-heading{margin-bottom:18px}.seasonal-card{padding:16px}.seasonal-stage{aspect-ratio:1/1}.seasonal-card h3{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.seasonal-stage img{animation:none}}
