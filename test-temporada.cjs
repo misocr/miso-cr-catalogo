@@ -1,0 +1,33 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),cp=require('node:child_process');
+const html=fs.readFileSync('index.html','utf8');
+const data=JSON.parse(fs.readFileSync('catalog.json'));
+const old=JSON.parse(cp.execFileSync('git',['show','0f93b40:catalog.json'],{encoding:'utf8'}));
+assert.deepEqual(data.items.slice(0,old.items.length),old.items,'Todos los productos originales intactos y en orden');
+assert.equal(data.items.length,342);
+assert.equal(new Set(data.items.map(x=>x.id)).size,data.items.length);
+data.items.forEach(x=>assert(fs.existsSync(x.path),x.path));
+const elements=new Map();
+const element=key=>{if(!elements.has(key))elements.set(key,{value:'',style:{},addEventListener(){},querySelector(){return element(key+' child')}});return elements.get(key);};
+const ctx=vm.createContext({document:{querySelector:element,querySelectorAll:()=>[]},window:{},console,DATA:data});
+const season=fs.readFileSync('temporada.js','utf8');
+new vm.Script(season);vm.runInContext(season,ctx);
+const scripts=[...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
+scripts.forEach(s=>new vm.Script(s));
+vm.runInContext(scripts.find(s=>s.includes('const OWNER=')).replace('loadImages();',''),ctx);
+vm.runInContext('ITEMS=DATA.items;activeSeason="graduacion";',ctx);
+assert.equal(vm.runInContext('filtered().length',ctx),9);
+vm.runInContext('activeSeason="maestros"',ctx);
+assert.equal(vm.runInContext('filtered().length',ctx),6);
+element('#q').value='Isabel';assert.equal(vm.runInContext('filtered().length',ctx),1);
+element('#q').value='';vm.runInContext('activeSeason="";active="Mascotas"',ctx);
+assert.equal(vm.runInContext('filtered().length',ctx),5);
+vm.runInContext('active="Todos"',ctx);assert.equal(vm.runInContext('filtered().length',ctx),342);
+element('#q').value='Naruto';assert.equal(vm.runInContext('filtered().length',ctx),3);
+const baseline=cp.execFileSync('git',['show','0f93b40:index.html'],{encoding:'utf8'});
+for(const fn of ['renderDetailPhoto','stepPhoto','openDetail','sendWA','openGeneralWA']){
+  const pattern=new RegExp('function '+fn+'\\([^]*?(?=\\n(?:function |let |\\$\\())');
+  assert.equal(html.match(pattern)?.[0],baseline.match(pattern)?.[0],fn+' intacta');
+}
+assert(html.indexOf('class="hero"')<html.indexOf('class="seasonal"'));
+assert(html.indexOf('class="seasonal"')<html.indexOf('id="explorar"'));
+console.log('OK: 332 originales intactos, 10 nuevos, 342 rutas presentes, filtros 9/6, búsqueda, categorías, funciones de detalle y WhatsApp sin cambios.');
