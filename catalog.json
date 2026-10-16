@@ -3320,8 +3320,7 @@
       "description": "Cuadro personalizado: Primer aniversario. La muestra presenta Collage de fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
       "active": true
-    }
-    ,
+    },
     {
       "path": "B0F76F40-C6EA-450E-9B68-80986DC0CE3C.jpeg",
       "id": "MISO-TEMP01",
@@ -3421,7 +3420,16 @@
       "description": "Cuadro personalizado: Gracias Miss Olinda · Globos con fotografías. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
       "active": true
+    },
+    {
+      "path": "uploads/9bc40b6c6d90fdcca146cdd2402b29359ad833034914ce57aa49c789c433d447.jpg",
+      "id": "MISO-L3FZ8Y",
+      "title": "Diseño Neymar",
+      "category": "Deportes",
+      "description": "Diseño Neymar en Brasil y otros equipos",
+      "keywords": "neymar, psg, brasil, futbol, deportes, mundial",
+      "price": "Desde ₡17.500",
+      "active": true
     }
   ]
 }
-
