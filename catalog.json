@@ -3034,7 +3034,12 @@
       "keywords": "Hunter x Hunter · Jesús, , anime manga hunterxhunter",
       "description": "Diseño inspirado en Hunter x Hunter. La muestra presenta Jesús. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
-      "active": true
+      "active": true,
+      "photos": [
+        "IMG_8932.jpeg",
+        "uploads/853681b4bb898cb0e2583ee7d88cc5517acefb7b50b63d405397eef7f84994ed.jpg"
+      ],
+      "coverPhoto": "IMG_8932.jpeg"
     },
     {
       "path": "IMG_8934.jpeg",
