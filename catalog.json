@@ -2993,12 +2993,17 @@
     {
       "path": "IMG_8908.jpeg",
       "id": "MISO-15QGME",
-      "title": "Kuromi · Mariana en caja de regalo",
+      "title": "Kuromi · Ariana en caja de regalo",
       "category": "Anime & Fandom",
-      "keywords": "Kuromi · Mariana en caja de regalo, , sanrio",
-      "description": "Diseño inspirado en Kuromi. La muestra presenta Mariana en caja de regalo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
+      "keywords": "Kuromi · Ariana en caja de regalo, , sanrio",
+      "description": "Diseño inspirado en Kuromi. La muestra presenta Ariana en caja de regalo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
-      "active": true
+      "active": true,
+      "photos": [
+        "IMG_8908.jpeg",
+        "uploads/3923068939068f2d9c98e9a610459181c3ec2fba1d588c3a93136f7c6c35e727.jpg"
+      ],
+      "coverPhoto": "IMG_8908.jpeg"
     },
     {
       "path": "IMG_8911.jpeg",
