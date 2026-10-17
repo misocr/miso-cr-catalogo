@@ -3074,7 +3074,12 @@
       "keywords": "Te amo · Letras con fotos, pareja novios amor romántico san valentín, fotografías collage",
       "description": "Cuadro personalizado: Te amo. La muestra presenta Letras con fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
-      "active": true
+      "active": true,
+      "photos": [
+        "IMG_9005.jpeg",
+        "uploads/3d9b9e9e3ec76e5e5c47d7d720910700e260ccdc33d20679e67259568533b53d.jpg"
+      ],
+      "coverPhoto": "IMG_9005.jpeg"
     },
     {
       "path": "IMG_9128.jpeg",
