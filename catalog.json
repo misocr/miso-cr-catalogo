@@ -3044,7 +3044,12 @@
       "keywords": "Stitch · Te amo con fotos, , lilo stitch disney, fotografías collage",
       "description": "Diseño inspirado en Stitch. La muestra presenta Te amo con fotos. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
-      "active": true
+      "active": true,
+      "photos": [
+        "IMG_8934.jpeg",
+        "uploads/df5d2a62cc79307a7bcbb75c07a36032513871d0c6751e9492582b2d5769a68b.jpg"
+      ],
+      "coverPhoto": "IMG_8934.jpeg"
     },
     {
       "path": "IMG_8937.jpeg",
