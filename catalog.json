@@ -139,7 +139,12 @@
       "keywords": "Boston Celtics · Daniel, , nba baloncesto basquetbol basketball basket",
       "description": "Cuadro de temática deportiva: Boston Celtics. La muestra presenta Daniel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
-      "active": true
+      "active": true,
+      "photos": [
+        "a8ed2c28-39f2-409e-85c4-a78b75bcae6d.jpeg",
+        "uploads/5ff150ce5340a7bcbdee576d6a3bdfea3a41ededbec9d7140f6a74943870f0f7.jpg"
+      ],
+      "coverPhoto": "a8ed2c28-39f2-409e-85c4-a78b75bcae6d.jpeg"
     },
     {
       "path": "e6ee1137-4ee8-4ff5-9e3b-30fcd43b425f.jpeg",
