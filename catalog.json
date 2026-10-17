@@ -154,7 +154,12 @@
       "keywords": "Minecraft · Ryan, , videojuego gamer",
       "description": "Diseño inspirado en Minecraft. La muestra presenta Ryan. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
-      "active": true
+      "active": true,
+      "photos": [
+        "e6ee1137-4ee8-4ff5-9e3b-30fcd43b425f.jpeg",
+        "uploads/fedb7940a7b1181842eedc5a39db6cf7e4834671da8d2762dc3fb82de9a356a4.jpg"
+      ],
+      "coverPhoto": "e6ee1137-4ee8-4ff5-9e3b-30fcd43b425f.jpeg"
     },
     {
       "path": "e7435ec3-a9ec-4cb1-9913-0e6538c1315f.jpeg",
