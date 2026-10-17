@@ -2644,7 +2644,7 @@ $("#galleryStage").addEventListener('touchstart',e=>{touchStart=e.touches.length
 $("#galleryStage").addEventListener('touchend',e=>{if(!touchStart||!e.changedTouches.length)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)stepPhoto(dx<0?1:-1);},{passive:true});
 function openDetail(id){
   selected=ITEMS.find(x=>x.id===id);if(!selected)return;
-  detailPhotos=[...new Set([...(Array.isArray(selected.photos)?selected.photos:[selected.path]),selected.path])];
+  detailPhotos=[...new Set(Array.isArray(selected.photos)&&selected.photos.length?selected.photos:[selected.path])];
   detailPhotoIndex=Math.max(0,detailPhotos.indexOf(selected.coverPhoto||selected.path));
   renderDetailPhoto();
   $("#detailCat").textContent=selected.category;
