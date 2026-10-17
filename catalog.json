@@ -3268,12 +3268,18 @@
     {
       "path": "IMG_9836.jpeg",
       "id": "MISO-WGKTUF",
-      "title": "Hot Wheels · Bryan y tarjeta de graduación",
-      "category": "Graduación + Escolar",
-      "keywords": "Hot Wheels · Bryan y tarjeta de graduación, graduación escolar graduado logro, graduado graduada escolar",
-      "description": "Tarjeta de felicitación por graduación en primer plano, con un cuadro de Hot Wheels personalizado con el nombre Bryan al fondo.",
+      "title": "Hot Wheels · Erick",
+      "category": "Deportes",
+      "keywords": "Hot Wheels, Carros,",
+      "description": "cuadro de Hot Wheels personalizado con el nombre Erick",
       "price": "Desde ₡17.500",
-      "active": true
+      "active": true,
+      "photos": [
+        "uploads/c7a1799dfbb47925195d28be7867f1acdb6b19f654c715595f39a18ceee5c24d.jpg",
+        "uploads/c52bdf0c624b7b9b12c7ab9ba573fd2b345d4220e7a92d69c489af7e758c3ffc.jpg",
+        "IMG_9836.jpeg"
+      ],
+      "coverPhoto": "uploads/c7a1799dfbb47925195d28be7867f1acdb6b19f654c715595f39a18ceee5c24d.jpg"
     },
     {
       "path": "IMG_9837.jpeg",
