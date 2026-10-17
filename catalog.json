@@ -2804,7 +2804,11 @@
       "keywords": "Dragon Ball Z · Goku en caja de regalo, , anime manga dragonball saiyajin",
       "description": "Diseño inspirado en Dragon Ball Z. La muestra presenta Goku en caja de regalo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
-      "active": true
+      "active": false,
+      "photos": [
+        "IMG_8191.jpeg"
+      ],
+      "coverPhoto": "IMG_8191.jpeg"
     },
     {
       "path": "IMG_8319.jpeg",
