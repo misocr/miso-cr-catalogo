@@ -2988,7 +2988,12 @@
       "keywords": "Dragon Ball Z · Goku y Pablo, , anime manga dragonball saiyajin",
       "description": "Diseño inspirado en Dragon Ball Z. La muestra presenta Goku y Pablo. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
-      "active": true
+      "active": true,
+      "photos": [
+        "IMG_8900.jpeg",
+        "uploads/fb4c830b409318297d42c4a5f7c142c97f2860ac19e7cd71f1422163dca41f9d.jpg"
+      ],
+      "coverPhoto": "IMG_8900.jpeg"
     },
     {
       "path": "IMG_8908.jpeg",
