@@ -3018,7 +3018,12 @@
       "keywords": "Jujutsu Kaisen · Manuel, , anime manga",
       "description": "Diseño inspirado en Jujutsu Kaisen. La muestra presenta Manuel. Puedes adaptar el nombre, las fotos y la dedicatoria a tu regalo.",
       "price": "Desde ₡17.500",
-      "active": true
+      "active": true,
+      "photos": [
+        "IMG_8914.jpeg",
+        "uploads/c7ad5f19e8282c31156df217d673c37db72caa56c7037631e2dcfd86a4361e4e.jpg"
+      ],
+      "coverPhoto": "IMG_8914.jpeg"
     },
     {
       "path": "IMG_8916.jpeg",
